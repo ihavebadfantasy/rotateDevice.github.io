@@ -2,6 +2,7 @@ let NOTIFICATION_WRAPPER_CLASS = 'notification-wrapper';
 let NOTIFICATION_BLOCK_CLASS = 'notification-block';
 let NOTIFICATION_MAIN_MESSAGE_CLASS = 'notification-main-message';
 let NOTIFICATION_EXTRA_MESSAGE_CLASS = 'notification-extra-message';
+let NOTIFICATION_IMAGE_WRAPPER_CLASS = 'notification-img-wrapper';
 const contentWrapper = document.body;
 
 export abstract class NotificationClass {
@@ -11,13 +12,16 @@ export abstract class NotificationClass {
   notificationWrapper: HTMLUnknownElement;
   allowContentShow: boolean;
   showClass: string;
-  abstract notificationClassPrefix: string;
+  notificationClassPrefix: string;
+  iconPath: any;
   constructor(opts: any) {
     this.isTouchDevice = /Mobile|webOS|BlackBerry|IEMobile|MeeGo|mini|Fennec|Windows Phone|Android|iP(ad|od|hone)/i.test(navigator.userAgent);
     this.mainMessage = opts.mainMessage;
     this.extraMessage = opts.extraMessage;
     this.allowContentShow = opts.allowContentShow;
     this.showClass = 'show';
+    this.notificationClassPrefix = opts.notificationClassPrefix;
+    this.iconPath = opts.iconPath;
   }
   protected getWindowWidth(): number {
     return window.innerWidth;
@@ -31,22 +35,33 @@ export abstract class NotificationClass {
     const notyWrapper = document.createElement('div');
     notyWrapper.classList.add(`${this.notificationClassPrefix}-${NOTIFICATION_WRAPPER_CLASS}`);
     const notyBlock = document.createElement('div');
-    notyBlock.classList.add(NOTIFICATION_BLOCK_CLASS);
+    notyBlock.classList.add(`${this.notificationClassPrefix}-${NOTIFICATION_BLOCK_CLASS}`);
     const notyMainMessage = document.createElement('p');
-    notyMainMessage.classList.add(NOTIFICATION_MAIN_MESSAGE_CLASS);
+    notyMainMessage.classList.add(`${this.notificationClassPrefix}-${NOTIFICATION_MAIN_MESSAGE_CLASS}`);
     notyMainMessage.innerText = this.mainMessage;
     let notyExtraMessage;
     if (this.extraMessage) {
       notyExtraMessage = document.createElement('p');
-      notyExtraMessage.classList.add(NOTIFICATION_EXTRA_MESSAGE_CLASS);
+      notyExtraMessage.classList.add(`${this.notificationClassPrefix}-${NOTIFICATION_EXTRA_MESSAGE_CLASS}`);
       notyExtraMessage.innerText = this.extraMessage;
     }
     notyBlock.appendChild(notyMainMessage);
+    const imageWrapper = document.createElement('div');
+    imageWrapper.classList.add(`${this.notificationClassPrefix}-&${NOTIFICATION_IMAGE_WRAPPER_CLASS}`);
+    let image;
+    if (typeof this.iconPath === 'string') {
+      image = document.createElement('img');
+      image.src = this.iconPath;
+      image.alt = 'icon';
+    } else {
+      image = this.iconPath;
+    }
+    notyBlock.appendChild(image);
     if (notyExtraMessage) {
       notyBlock.appendChild(notyExtraMessage);
     }
     notyWrapper.appendChild(notyBlock);
-    contentWrapper.insertAdjacentElement('beforebegin', notyWrapper);
+    contentWrapper.insertAdjacentElement('afterbegin', notyWrapper);
     this.notificationWrapper = notyWrapper;
   }
 
