@@ -14,7 +14,7 @@ const notificationSVG = createSVG('0 0 184.02 312.02','mobile-notification-icon'
 </g>`);
 
 interface TouchDeviceNotificationInterface {
-  desiredOrientation: string;
+  blockedOrientation: string;
   allowContentShow: boolean;
   onlyMobile: boolean;
   mainMessage: string;
@@ -33,7 +33,7 @@ interface TouchDeviceNotificationInterface {
 }
 
 const touchDeviceNotificationConfig = {
-  desiredOrientation: 'landscape',
+  blockedOrientation: 'landscape',
   allowContentShow: true,
   onlyMobile: true,
   mainMessage: 'Please turn your device',
@@ -51,13 +51,13 @@ const createTouchDeviceNotification = (userOpts?: object) => {
 }
 
 class TouchDeviceNotification extends NotificationClass implements TouchDeviceNotificationInterface {
-  desiredOrientation: string;
+  blockedOrientation: string;
   onlyMobile: boolean;
   responsiveLandscapeBreak: number;
   responsivePortraitBreak: number;
   constructor(opts: any) {
     super(opts);
-    this.desiredOrientation = opts.desiredOrientation;
+    this.blockedOrientation = opts.blockedOrientation;
     this.onlyMobile = opts.onlyMobile;
     this.responsiveLandscapeBreak = opts.responsiveLandscapeBreak;
     this.responsivePortraitBreak = opts.responsivePortraitBreak;
@@ -79,7 +79,7 @@ class TouchDeviceNotification extends NotificationClass implements TouchDeviceNo
   startNotification () {
     this.hideNotification();
     if (this.isTouchDevice) {
-      switch (this.desiredOrientation) {
+      switch (this.blockedOrientation) {
         case 'portrait':
           if (this.isPortrait()) {
             if (this.onlyMobile && this.isMobileInPortrait()) {

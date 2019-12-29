@@ -7,7 +7,7 @@ import './touchDeviceNotification.ts';
 import './desktopNotification.ts';
 
 // const noty = turnDeviceNotification({
-//   desiredOrientation: 'landscape',
+//   blockedOrientation: 'landscape',
 //   allowContentShow: true,
 //   onlyMobile: false,
 //   allowDesktopNotification: false,

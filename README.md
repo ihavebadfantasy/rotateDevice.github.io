@@ -4,14 +4,14 @@ Pass the settings into creating function. For example:
 
 ```js
 var TouchDeviceNotification = createDesktopNotification({
-  desiredOrientation: 'portrait',
+  blockedOrientation: 'portrait',
   onlyMobile: false,
 });
 ```
 
 |Setting|Type|Default Value|Description|
 |---|---|---|---|
-|desiredOrientation|string|landscape|orientation of device the user should have to use up site/app (not the one you want to block)|
+|blockedOrientation|string|landscape|orientation of device the user should have to use up site/app (not the one you want to block)|
 |allowContentShow|boolean|true|allow site/app content show on tap|
 |onlyMobile|boolean|boolean|true|show notification on mobile phones only (set to false if you want notification on tablets too)|
 |mainMessage|string|'Please turn your device'|general notification message (available if you use default notification template)|
