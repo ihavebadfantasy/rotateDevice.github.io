@@ -22,6 +22,12 @@ interface TouchDeviceNotificationInterface {
   responsiveLandscapeBreak: number;
   responsivePortraitBreak: number;
   notificationClassPrefix: string;
+  appearAnimation: string;
+  hideAnimation: string;
+  hideAnimationDuration: number;
+  getAnimationClasses(str: string): string[] | [];
+  setAnimationClasses(block: HTMLElement, classes: string[]): void;
+  removeAnimationClasses(block: HTMLElement, classes: string[]): void;
   isPortrait(): boolean;
   isMobileInLandscape(): boolean;
   isMobileInPortrait(): boolean;
@@ -43,6 +49,9 @@ const touchDeviceNotificationConfig = {
   showClass: 'show',
   notificationClassPrefix: 'touch-device',
   iconPath: notificationSVG,
+  appearAnimation: '',
+  hideAnimation: '',
+  hideAnimationDuration: 0,
 }
 
 const createTouchDeviceNotification = (userOpts?: object) => {
@@ -77,7 +86,6 @@ class TouchDeviceNotification extends NotificationClass implements TouchDeviceNo
   }
 
   startNotification () {
-    this.hideNotification();
     if (this.isTouchDevice) {
       switch (this.blockedOrientation) {
         case 'portrait':
@@ -101,11 +109,13 @@ class TouchDeviceNotification extends NotificationClass implements TouchDeviceNo
           break;
 
         default:
-          break;
+          this.hideNotification();
       }
     }
   }
 }
 
-const a = createTouchDeviceNotification();
-a.init();
+ const a = createTouchDeviceNotification({
+   appearAnimation: 'animated fadeIn',
+ });
+ a.init();

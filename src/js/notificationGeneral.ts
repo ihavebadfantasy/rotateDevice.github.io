@@ -14,6 +14,11 @@ export abstract class NotificationClass {
   showClass: string;
   notificationClassPrefix: string;
   iconPath: any;
+  appearAnimation: string;
+  hideAnimation: string;
+  hideAnimationDuration: number;
+  appearAnimationArr?: string[] | [];
+  hideAnimationArr?: string[]| [];
   constructor(opts: any) {
     this.isTouchDevice = /Mobile|webOS|BlackBerry|IEMobile|MeeGo|mini|Fennec|Windows Phone|Android|iP(ad|od|hone)/i.test(navigator.userAgent);
     this.mainMessage = opts.mainMessage;
@@ -22,6 +27,9 @@ export abstract class NotificationClass {
     this.showClass = 'show';
     this.notificationClassPrefix = opts.notificationClassPrefix;
     this.iconPath = opts.iconPath;
+    this.appearAnimation = opts.appearAnimation;
+    this.hideAnimation = opts.hideAnimation;
+    this.hideAnimationDuration = (opts.hideAnimationDuration === 0 && opts.hideAnimation !== '')? (400):(opts.hideAnimationDuration);
   }
   protected getWindowWidth(): number {
     return window.innerWidth;
@@ -63,9 +71,37 @@ export abstract class NotificationClass {
     notyWrapper.appendChild(notyBlock);
     contentWrapper.insertAdjacentElement('afterbegin', notyWrapper);
     this.notificationWrapper = notyWrapper;
+    this.appearAnimationArr = this.getAnimationClasses(this.appearAnimation);
+    this.hideAnimationArr = this.getAnimationClasses(this.hideAnimation);
+  }
+
+  getAnimationClasses (str: string): string[] | [] {
+    if (str.length > 0) {
+      return str.split(' ');
+    }
+    return []
+  }
+
+  setAnimationClasses (block: HTMLElement, classes: string[] | []): void {
+    if (classes.length > 0) {
+      classes.forEach( (value: string) => {
+        block.classList.add(value);
+      });
+    }
+  }
+
+  removeAnimationClasses (block: HTMLElement, classes: string[] | []): void {
+    console.log(classes)
+    if (classes.length > 0) {
+      classes.forEach( (value: string) => {
+        block.classList.remove(value);
+      });
+    }
   }
 
   showNotification() {
+    this.setAnimationClasses(this.notificationWrapper, this.appearAnimationArr);
+    this.removeAnimationClasses(this.notificationWrapper, this.hideAnimationArr);
     this.notificationWrapper.classList.add(this.showClass);
     contentWrapper.style.overflow = 'hidden';
     if (this.allowContentShow) {
@@ -74,8 +110,12 @@ export abstract class NotificationClass {
   }
 
   hideNotification() {
-    this.notificationWrapper.classList.remove(this.showClass);
-    contentWrapper.style.overflow = '';
+    this.removeAnimationClasses(this.notificationWrapper, this.appearAnimationArr);
+    this.setAnimationClasses(this.notificationWrapper, this.hideAnimationArr);
+    setTimeout( () => {
+      this.notificationWrapper.classList.remove(this.showClass);
+      contentWrapper.style.overflow = '';
+    }, this.hideAnimationDuration)
   }
 
   hideNotificationOnClick() {

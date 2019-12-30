@@ -44,6 +44,12 @@ interface DesktopNotificationInterface {
   desktopHeightBreak: number;
   notificationClassPrefix: string;
   showClass: string,
+  appearAnimation: string;
+  hideAnimation: string;
+  hideAnimationDuration: number;
+  getAnimationClasses(str: string): string[] | [];
+  setAnimationClasses(block: HTMLElement, classes: string[]): void;
+  removeAnimationClasses(block: HTMLElement, classes: string[]): void;
   showNotification(): void;
   hideNotification(): void;
   hideNotificationOnClick(): void;
@@ -60,6 +66,9 @@ const desktopNotificationConfig = {
   showClass: 'show',
   notificationClassPrefix: 'desktop',
   iconPath: notificationSVG,
+  appearAnimation: '',
+  hideAnimation: '',
+  hideAnimationDuration: 0,
 }
 
 const createDesktopNotification = (userOpts?: object) => {
@@ -91,5 +100,7 @@ class DesktopNotification extends NotificationClass implements DesktopNotificati
 }
 
 
-const b = createDesktopNotification();
+const b = createDesktopNotification({
+  hideAnimation: 'animated fadeOut',
+});
 b.init();
