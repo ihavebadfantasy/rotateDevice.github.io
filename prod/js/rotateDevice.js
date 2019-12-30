@@ -1,1 +1,998 @@
-!function(t){var e={};function n(i){if(e[i])return e[i].exports;var o=e[i]={i:i,l:!1,exports:{}};return t[i].call(o.exports,o,o.exports,n),o.l=!0,o.exports}n.m=t,n.c=e,n.d=function(t,e,i){n.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:i})},n.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},n.t=function(t,e){if(1&e&&(t=n(t)),8&e)return t;if(4&e&&"object"==typeof t&&t&&t.__esModule)return t;var i=Object.create(null);if(n.r(i),Object.defineProperty(i,"default",{enumerable:!0,value:t}),2&e&&"string"!=typeof t)for(var o in t)n.d(i,o,function(e){return t[e]}.bind(null,o));return i},n.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return n.d(e,"a",e),e},n.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},n.p="./",n(n.s=8)}([function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var i=document.body,o=function(){function t(t){this.isTouchDevice=/Mobile|webOS|BlackBerry|IEMobile|MeeGo|mini|Fennec|Windows Phone|Android|iP(ad|od|hone)/i.test(navigator.userAgent),this.mainMessage=t.mainMessage,this.extraMessage=t.extraMessage,this.allowContentShow=t.allowContentShow,this.showClass="show",this.notificationClassPrefix=t.notificationClassPrefix,this.iconPath=t.iconPath,this.appearAnimation=t.appearAnimation,this.hideAnimation=t.hideAnimation,this.hideAnimationDuration=0===t.hideAnimationDuration&&""!==t.hideAnimation?400:t.hideAnimationDuration}return t.prototype.getWindowWidth=function(){return window.innerWidth},t.prototype.getWindowHeight=function(){return window.innerHeight},t.prototype.buildNotificationHtml=function(){var t=document.createElement("div");t.classList.add(this.notificationClassPrefix+"-notification-wrapper");var e=document.createElement("div");e.classList.add(this.notificationClassPrefix+"-notification-block");var n,o,r=document.createElement("p");r.classList.add(this.notificationClassPrefix+"-notification-main-message"),r.innerText=this.mainMessage,this.extraMessage&&((n=document.createElement("p")).classList.add(this.notificationClassPrefix+"-notification-extra-message"),n.innerText=this.extraMessage),e.appendChild(r),document.createElement("div").classList.add(this.notificationClassPrefix+"-&notification-img-wrapper"),"string"==typeof this.iconPath?((o=document.createElement("img")).src=this.iconPath,o.alt="icon"):o=this.iconPath,e.appendChild(o),n&&e.appendChild(n),t.appendChild(e),i.insertAdjacentElement("afterbegin",t),this.notificationWrapper=t,this.appearAnimationArr=this.getAnimationClasses(this.appearAnimation),this.hideAnimationArr=this.getAnimationClasses(this.hideAnimation)},t.prototype.getAnimationClasses=function(t){return t.length>0?t.split(" "):[]},t.prototype.setAnimationClasses=function(t,e){e.length>0&&e.forEach((function(e){t.classList.add(e)}))},t.prototype.removeAnimationClasses=function(t,e){console.log(e),e.length>0&&e.forEach((function(e){t.classList.remove(e)}))},t.prototype.showNotification=function(){this.setAnimationClasses(this.notificationWrapper,this.appearAnimationArr),this.removeAnimationClasses(this.notificationWrapper,this.hideAnimationArr),this.notificationWrapper.classList.add(this.showClass),i.style.overflow="hidden",this.allowContentShow&&this.hideNotificationOnClick()},t.prototype.hideNotification=function(){var t=this;this.removeAnimationClasses(this.notificationWrapper,this.appearAnimationArr),this.setAnimationClasses(this.notificationWrapper,this.hideAnimationArr),setTimeout((function(){t.notificationWrapper.classList.remove(t.showClass),i.style.overflow=""}),this.hideAnimationDuration)},t.prototype.hideNotificationOnClick=function(){var t=this;window.addEventListener("click",(function(){t.hideNotification()})),window.addEventListener("touchstart",(function(){t.hideNotification()}),!1)},t.prototype.init=function(){var t=this;window.addEventListener("load",(function(){t.buildNotificationHtml(),t.startNotification()})),window.addEventListener("resize",(function(){t.startNotification()})),window.addEventListener("orientationchange",(function(){t.startNotification()}),!1)},t}();e.NotificationClass=o},function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.createSVG=function(t,e,n,i){var o=document.createElementNS("http://www.w3.org/2000/svg","svg");return o.setAttributeNS("http://www.w3.org/2000/xmlns/","xmlns:xlink","http://www.w3.org/1999/xlink"),o.setAttribute("id",""+e),o.setAttribute("viewBox",""+t),o.setAttribute("style",""+n),o.innerHTML=i,o}},function(t,e,n){"use strict";var i,o=this&&this.__extends||(i=function(t,e){return(i=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(t,e){t.__proto__=e}||function(t,e){for(var n in e)e.hasOwnProperty(n)&&(t[n]=e[n])})(t,e)},function(t,e){function n(){this.constructor=t}i(t,e),t.prototype=null===e?Object.create(e):(n.prototype=e.prototype,new n)}),r=this&&this.__assign||function(){return(r=Object.assign||function(t){for(var e,n=1,i=arguments.length;n<i;n++)for(var o in e=arguments[n])Object.prototype.hasOwnProperty.call(e,o)&&(t[o]=e[o]);return t}).apply(this,arguments)};Object.defineProperty(e,"__esModule",{value:!0});var s,a,c=n(0),l={blockedOrientation:"landscape",allowContentShow:!0,onlyMobile:!0,mainMessage:"Please turn your device",extraMessage:"or tap the screen to continue",responsivePortraitBreak:767,responsiveLandscapeBreak:850,showClass:"show",notificationClassPrefix:"touch-device",iconPath:n(1).createSVG("0 0 184.02 312.02","mobile-notification-icon","enable-background:new 0 0 184.02 312.02;",'<style type="text/css">\n.st0{fill:#FFFFFF;}\n</style>\n<g>\n<path d="M163.52,312H20.48C9.17,312,0,302.83,0,291.52V20.54C0,9.23,9.17,0.06,20.48,0.06h143.04c11.31,0,20.48,9.17,20.48,20.48\n  v270.98C184,302.83,174.83,312,163.52,312z"/>\n<path class="st0" d="M156.34,304.09H27.66c-10.91,0-19.75-8.84-19.75-19.75V25.56c0-10.91,8.84-19.75,19.75-19.75h128.69\n  c10.91,0,19.75,8.84,19.75,19.75v258.78C176.09,295.25,167.25,304.09,156.34,304.09z"/>\n<circle cx="92" cy="282.53" r="12.22"/>\n<path d="M113.46,14.44H70.54c-7.5,0-14.3-4.4-17.37-11.23l-1.41-3.14h80.5l-1.41,3.14C127.76,10.04,120.96,14.44,113.46,14.44z"/>\n</g>'),appearAnimation:"",hideAnimation:"",hideAnimationDuration:0},f=function(t){function e(e){var n=t.call(this,e)||this;return n.blockedOrientation=e.blockedOrientation,n.onlyMobile=e.onlyMobile,n.responsiveLandscapeBreak=e.responsiveLandscapeBreak,n.responsivePortraitBreak=e.responsivePortraitBreak,n}return o(e,t),e.prototype.isPortrait=function(){return window.matchMedia("(orientation: portrait)").matches},e.prototype.isMobileInPortrait=function(){return window.innerWidth<this.responsivePortraitBreak},e.prototype.isMobileInLandscape=function(){return window.innerWidth<this.responsiveLandscapeBreak},e.prototype.startNotification=function(){if(this.isTouchDevice)switch(this.blockedOrientation){case"portrait":this.isPortrait()&&(this.onlyMobile&&this.isMobileInPortrait()?this.showNotification():this.onlyMobile||this.showNotification());break;case"landscape":this.isPortrait()||(this.onlyMobile&&this.isMobileInLandscape()?this.showNotification():this.onlyMobile||this.showNotification());break;default:this.hideNotification()}},e}(c.NotificationClass);(s={appearAnimation:"animated fadeIn"},a=r(r({},l),s),new f(a)).init()},function(t,e,n){"use strict";var i,o=this&&this.__extends||(i=function(t,e){return(i=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(t,e){t.__proto__=e}||function(t,e){for(var n in e)e.hasOwnProperty(n)&&(t[n]=e[n])})(t,e)},function(t,e){function n(){this.constructor=t}i(t,e),t.prototype=null===e?Object.create(e):(n.prototype=e.prototype,new n)}),r=this&&this.__assign||function(){return(r=Object.assign||function(t){for(var e,n=1,i=arguments.length;n<i;n++)for(var o in e=arguments[n])Object.prototype.hasOwnProperty.call(e,o)&&(t[o]=e[o]);return t}).apply(this,arguments)};Object.defineProperty(e,"__esModule",{value:!0});var s,a,c=n(0),l={allowContentShow:!0,mainMessage:"Please expand your browser window",extraMessage:"or click to continue",desktopHeightBreak:350,desktopWidthBreak:400,showClass:"show",notificationClassPrefix:"desktop",iconPath:n(1).createSVG("0 0 206 160","desktop-notification-icon","enable-background:new 0 0 206 160;",'<g>\n<g>\n <path d="M181.64,160H24.36C10.93,160,0,149.07,0,135.64V24.36C0,10.93,10.93,0,24.36,0h157.28C195.07,0,206,10.93,206,24.36\n   v111.28C206,149.07,195.07,160,181.64,160z M24.36,6C14.24,6,6,14.24,6,24.36v111.28C6,145.76,14.24,154,24.36,154h157.28\n   c10.12,0,18.36-8.24,18.36-18.36V24.36C200,14.24,191.76,6,181.64,6H24.36z"/>\n</g>\n<g>\n <rect x="3" y="33.77" width="200" height="6"/>\n</g>\n<g>\n <circle cx="28.5" cy="21.5" r="4.5"/>\n</g>\n<g>\n <circle cx="41.5" cy="21.5" r="4.5"/>\n</g>\n<g>\n <circle cx="54.5" cy="21.5" r="4.5"/>\n</g>\n<g>\n <path d="M59.7,125.19c-0.99,0-1.96-0.49-2.53-1.38c-0.89-1.39-0.49-3.25,0.91-4.14L151,60.09c1.4-0.89,3.25-0.49,4.14,0.91\n   c0.89,1.39,0.49,3.25-0.91,4.14l-92.92,59.58C60.82,125.04,60.26,125.19,59.7,125.19z"/>\n</g>\n<g>\n <path d="M76.78,129.81c-0.22,0-0.45-0.02-0.67-0.08l-17.92-4.09c-0.78-0.18-1.45-0.65-1.87-1.33c-0.42-0.67-0.56-1.49-0.38-2.26\n   l4.4-19.3c0.37-1.62,1.98-2.63,3.59-2.26c1.62,0.37,2.63,1.98,2.26,3.59l-3.74,16.38l15,3.42c1.62,0.37,2.63,1.98,2.26,3.59\n   C79.38,128.87,78.15,129.81,76.78,129.81z"/>\n</g>\n<g>\n <path d="M148.75,84.58c-0.22,0-0.45-0.02-0.67-0.08c-1.62-0.37-2.63-1.98-2.26-3.59l3.74-16.38l-15-3.42\n   c-1.62-0.37-2.63-1.98-2.26-3.59c0.37-1.62,1.98-2.63,3.59-2.26l17.92,4.09c0.78,0.18,1.45,0.65,1.87,1.33\n   c0.42,0.67,0.56,1.49,0.38,2.26l-4.4,19.3C151.35,83.64,150.11,84.58,148.75,84.58z"/>\n</g>\n</g>'),appearAnimation:"",hideAnimation:"",hideAnimationDuration:0},f=function(t){function e(e){var n=t.call(this,e)||this;return n.desktopWidthBreak=e.desktopWidthBreak,n.desktopHeightBreak=e.desktopHeightBreak,n}return o(e,t),e.prototype.startNotification=function(){this.isTouchDevice||(this.getWindowHeight()<this.desktopHeightBreak||this.getWindowWidth()<this.desktopWidthBreak?(console.log("resize",this.getWindowHeight(),this.getWindowWidth()),console.log("resize",this.desktopHeightBreak,this.desktopWidthBreak),this.showNotification()):this.hideNotification())},e}(c.NotificationClass);(s={hideAnimation:"animated fadeOut"},a=r(r({},l),s),new f(a)).init()},function(t,e,n){var i=n(5);"string"==typeof i&&(i=[[t.i,i,""]]);var o={hmr:!0,transform:void 0,insertInto:void 0};n(6)(i,o);i.locals&&(t.exports=i.locals)},function(t,e,n){},function(t,e,n){var i,o,r={},s=(i=function(){return window&&document&&document.all&&!window.atob},function(){return void 0===o&&(o=i.apply(this,arguments)),o}),a=function(t,e){return e?e.querySelector(t):document.querySelector(t)},c=function(t){var e={};return function(t,n){if("function"==typeof t)return t();if(void 0===e[t]){var i=a.call(this,t,n);if(window.HTMLIFrameElement&&i instanceof window.HTMLIFrameElement)try{i=i.contentDocument.head}catch(t){i=null}e[t]=i}return e[t]}}(),l=null,f=0,h=[],u=n(7);function d(t,e){for(var n=0;n<t.length;n++){var i=t[n],o=r[i.id];if(o){o.refs++;for(var s=0;s<o.parts.length;s++)o.parts[s](i.parts[s]);for(;s<i.parts.length;s++)o.parts.push(g(i.parts[s],e))}else{var a=[];for(s=0;s<i.parts.length;s++)a.push(g(i.parts[s],e));r[i.id]={id:i.id,refs:1,parts:a}}}}function p(t,e){for(var n=[],i={},o=0;o<t.length;o++){var r=t[o],s=e.base?r[0]+e.base:r[0],a={css:r[1],media:r[2],sourceMap:r[3]};i[s]?i[s].parts.push(a):n.push(i[s]={id:s,parts:[a]})}return n}function v(t,e){var n=c(t.insertInto);if(!n)throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");var i=h[h.length-1];if("top"===t.insertAt)i?i.nextSibling?n.insertBefore(e,i.nextSibling):n.appendChild(e):n.insertBefore(e,n.firstChild),h.push(e);else if("bottom"===t.insertAt)n.appendChild(e);else{if("object"!=typeof t.insertAt||!t.insertAt.before)throw new Error("[Style Loader]\n\n Invalid value for parameter 'insertAt' ('options.insertAt') found.\n Must be 'top', 'bottom', or Object.\n (https://github.com/webpack-contrib/style-loader#insertat)\n");var o=c(t.insertAt.before,n);n.insertBefore(e,o)}}function m(t){if(null===t.parentNode)return!1;t.parentNode.removeChild(t);var e=h.indexOf(t);e>=0&&h.splice(e,1)}function w(t){var e=document.createElement("style");if(void 0===t.attrs.type&&(t.attrs.type="text/css"),void 0===t.attrs.nonce){var i=function(){0;return n.nc}();i&&(t.attrs.nonce=i)}return y(e,t.attrs),v(t,e),e}function y(t,e){Object.keys(e).forEach((function(n){t.setAttribute(n,e[n])}))}function g(t,e){var n,i,o,r;if(e.transform&&t.css){if(!(r="function"==typeof e.transform?e.transform(t.css):e.transform.default(t.css)))return function(){};t.css=r}if(e.singleton){var s=f++;n=l||(l=w(e)),i=A.bind(null,n,s,!1),o=A.bind(null,n,s,!0)}else t.sourceMap&&"function"==typeof URL&&"function"==typeof URL.createObjectURL&&"function"==typeof URL.revokeObjectURL&&"function"==typeof Blob&&"function"==typeof btoa?(n=function(t){var e=document.createElement("link");return void 0===t.attrs.type&&(t.attrs.type="text/css"),t.attrs.rel="stylesheet",y(e,t.attrs),v(t,e),e}(e),i=k.bind(null,n,e),o=function(){m(n),n.href&&URL.revokeObjectURL(n.href)}):(n=w(e),i=x.bind(null,n),o=function(){m(n)});return i(t),function(e){if(e){if(e.css===t.css&&e.media===t.media&&e.sourceMap===t.sourceMap)return;i(t=e)}else o()}}t.exports=function(t,e){if("undefined"!=typeof DEBUG&&DEBUG&&"object"!=typeof document)throw new Error("The style-loader cannot be used in a non-browser environment");(e=e||{}).attrs="object"==typeof e.attrs?e.attrs:{},e.singleton||"boolean"==typeof e.singleton||(e.singleton=s()),e.insertInto||(e.insertInto="head"),e.insertAt||(e.insertAt="bottom");var n=p(t,e);return d(n,e),function(t){for(var i=[],o=0;o<n.length;o++){var s=n[o];(a=r[s.id]).refs--,i.push(a)}t&&d(p(t,e),e);for(o=0;o<i.length;o++){var a;if(0===(a=i[o]).refs){for(var c=0;c<a.parts.length;c++)a.parts[c]();delete r[a.id]}}}};var b,C=(b=[],function(t,e){return b[t]=e,b.filter(Boolean).join("\n")});function A(t,e,n,i){var o=n?"":i.css;if(t.styleSheet)t.styleSheet.cssText=C(e,o);else{var r=document.createTextNode(o),s=t.childNodes;s[e]&&t.removeChild(s[e]),s.length?t.insertBefore(r,s[e]):t.appendChild(r)}}function x(t,e){var n=e.css,i=e.media;if(i&&t.setAttribute("media",i),t.styleSheet)t.styleSheet.cssText=n;else{for(;t.firstChild;)t.removeChild(t.firstChild);t.appendChild(document.createTextNode(n))}}function k(t,e,n){var i=n.css,o=n.sourceMap,r=void 0===e.convertToAbsoluteUrls&&o;(e.convertToAbsoluteUrls||r)&&(i=u(i)),o&&(i+="\n/*# sourceMappingURL=data:application/json;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(o))))+" */");var s=new Blob([i],{type:"text/css"}),a=t.href;t.href=URL.createObjectURL(s),a&&URL.revokeObjectURL(a)}},function(t,e){t.exports=function(t){var e="undefined"!=typeof window&&window.location;if(!e)throw new Error("fixUrls requires window.location");if(!t||"string"!=typeof t)return t;var n=e.protocol+"//"+e.host,i=n+e.pathname.replace(/\/[^\/]*$/,"/");return t.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi,(function(t,e){var o,r=e.trim().replace(/^"(.*)"$/,(function(t,e){return e})).replace(/^'(.*)'$/,(function(t,e){return e}));return/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/|\s*$)/i.test(r)?t:(o=0===r.indexOf("//")?r:0===r.indexOf("/")?n+r:i+r.replace(/^\.\//,""),"url("+JSON.stringify(o)+")")}))}},function(t,e,n){"use strict";n.r(e);n(2),n(3),n(4)}]);
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "./";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
+/* harmony import */ var _scss_main_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6);
+/* harmony import */ var _scss_main_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_scss_main_scss__WEBPACK_IMPORTED_MODULE_1__);
+// JS - ./js/index.js
+ // SCSS
+
+
+
+/***/ }),
+/* 1 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _touchDeviceNotification_ts__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
+/* harmony import */ var _touchDeviceNotification_ts__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_touchDeviceNotification_ts__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _desktopNotification_ts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5);
+/* harmony import */ var _desktopNotification_ts__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_desktopNotification_ts__WEBPACK_IMPORTED_MODULE_1__);
+/* eslint-disable no-restricted-syntax */
+// Main js file
+// import turnDeviceNotification from './turnDeviceNotification.js';
+// import './turnDeviceNotification.ts';
+
+ // const noty = turnDeviceNotification({
+//   blockedOrientation: 'landscape',
+//   allowContentShow: true,
+//   onlyMobile: false,
+//   allowDesktopNotification: false,
+// });
+// noty.init();
+// console.log(noty);
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var notificationGeneral_1 = __webpack_require__(3);
+var createSvg_1 = __webpack_require__(4);
+var notificationSVG = createSvg_1.createSVG('0 0 184.02 312.02', 'mobile-notification-icon', 'enable-background:new 0 0 184.02 312.02;', "<style type=\"text/css\">\n.st0{fill:#FFFFFF;}\n</style>\n<g>\n<path d=\"M163.52,312H20.48C9.17,312,0,302.83,0,291.52V20.54C0,9.23,9.17,0.06,20.48,0.06h143.04c11.31,0,20.48,9.17,20.48,20.48\n  v270.98C184,302.83,174.83,312,163.52,312z\"/>\n<path class=\"st0\" d=\"M156.34,304.09H27.66c-10.91,0-19.75-8.84-19.75-19.75V25.56c0-10.91,8.84-19.75,19.75-19.75h128.69\n  c10.91,0,19.75,8.84,19.75,19.75v258.78C176.09,295.25,167.25,304.09,156.34,304.09z\"/>\n<circle cx=\"92\" cy=\"282.53\" r=\"12.22\"/>\n<path d=\"M113.46,14.44H70.54c-7.5,0-14.3-4.4-17.37-11.23l-1.41-3.14h80.5l-1.41,3.14C127.76,10.04,120.96,14.44,113.46,14.44z\"/>\n</g>");
+var touchDeviceNotificationConfig = {
+    blockedOrientation: 'landscape',
+    allowContentShow: true,
+    onlyMobile: true,
+    mainMessage: 'Please turn your device',
+    extraMessage: 'or tap the screen to continue',
+    responsivePortraitBreak: 767,
+    responsiveLandscapeBreak: 850,
+    showClass: 'show',
+    notificationClassPrefix: 'touch-device',
+    iconPath: notificationSVG,
+    appearAnimation: '',
+    hideAnimation: '',
+    hideAnimationDuration: 0,
+};
+var createTouchDeviceNotification = function (userOpts) {
+    var opts = __assign(__assign({}, touchDeviceNotificationConfig), userOpts);
+    return new TouchDeviceNotification(opts);
+};
+var TouchDeviceNotification = /** @class */ (function (_super) {
+    __extends(TouchDeviceNotification, _super);
+    function TouchDeviceNotification(opts) {
+        var _this = _super.call(this, opts) || this;
+        _this.blockedOrientation = opts.blockedOrientation;
+        _this.onlyMobile = opts.onlyMobile;
+        _this.responsiveLandscapeBreak = opts.responsiveLandscapeBreak;
+        _this.responsivePortraitBreak = opts.responsivePortraitBreak;
+        return _this;
+    }
+    TouchDeviceNotification.prototype.isPortrait = function () {
+        var mql = window.matchMedia('(orientation: portrait)');
+        return mql.matches;
+    };
+    TouchDeviceNotification.prototype.isMobileInPortrait = function () {
+        return (window.innerWidth < this.responsivePortraitBreak);
+    };
+    TouchDeviceNotification.prototype.isMobileInLandscape = function () {
+        return (window.innerWidth < this.responsiveLandscapeBreak);
+    };
+    TouchDeviceNotification.prototype.startNotification = function () {
+        if (this.isTouchDevice) {
+            switch (this.blockedOrientation) {
+                case 'portrait':
+                    if (this.isPortrait() && !this.notificationState) {
+                        if (this.onlyMobile && this.isMobileInPortrait()) {
+                            this.showNotification();
+                        }
+                        else if (!this.onlyMobile) {
+                            this.showNotification();
+                        }
+                    }
+                    else {
+                        this.hideNotification();
+                    }
+                    break;
+                case 'landscape':
+                    if (!this.isPortrait() && !this.notificationState) {
+                        if (this.onlyMobile && this.isMobileInLandscape()) {
+                            this.showNotification();
+                        }
+                        else if (!this.onlyMobile) {
+                            this.showNotification();
+                        }
+                    }
+                    else {
+                        this.hideNotification();
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
+    return TouchDeviceNotification;
+}(notificationGeneral_1.NotificationClass));
+var a = createTouchDeviceNotification({
+    blockedOrientation: 'portrait',
+    appearAnimation: 'animated fadeIn',
+    hideAnimation: 'animated fadeOut',
+    onlyMobile: 'false',
+});
+a.init();
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var NOTIFICATION_WRAPPER_CLASS = 'notification-wrapper';
+var NOTIFICATION_BLOCK_CLASS = 'notification-block';
+var NOTIFICATION_MAIN_MESSAGE_CLASS = 'notification-main-message';
+var NOTIFICATION_EXTRA_MESSAGE_CLASS = 'notification-extra-message';
+var NOTIFICATION_IMAGE_WRAPPER_CLASS = 'notification-img-wrapper';
+var contentWrapper = document.body;
+var NotificationClass = /** @class */ (function () {
+    function NotificationClass(opts) {
+        this.isTouchDevice = /Mobile|webOS|BlackBerry|IEMobile|MeeGo|mini|Fennec|Windows Phone|Android|iP(ad|od|hone)/i.test(navigator.userAgent);
+        this.mainMessage = opts.mainMessage;
+        this.extraMessage = opts.extraMessage;
+        this.allowContentShow = opts.allowContentShow;
+        this.showClass = 'show';
+        this.notificationClassPrefix = opts.notificationClassPrefix;
+        this.iconPath = opts.iconPath;
+        this.appearAnimation = opts.appearAnimation;
+        this.hideAnimation = opts.hideAnimation;
+        this.hideAnimationDuration = (opts.hideAnimationDuration === 0 && opts.hideAnimation !== '') ? (400) : (opts.hideAnimationDuration);
+        this.notificationState = false;
+    }
+    NotificationClass.prototype.getWindowWidth = function () {
+        return window.innerWidth;
+    };
+    NotificationClass.prototype.getWindowHeight = function () {
+        return window.innerHeight;
+    };
+    NotificationClass.prototype.buildNotificationHtml = function () {
+        var notyWrapper = document.createElement('div');
+        notyWrapper.classList.add(this.notificationClassPrefix + "-" + NOTIFICATION_WRAPPER_CLASS);
+        var notyBlock = document.createElement('div');
+        notyBlock.classList.add(this.notificationClassPrefix + "-" + NOTIFICATION_BLOCK_CLASS);
+        var notyMainMessage = document.createElement('p');
+        notyMainMessage.classList.add(this.notificationClassPrefix + "-" + NOTIFICATION_MAIN_MESSAGE_CLASS);
+        notyMainMessage.innerText = this.mainMessage;
+        var notyExtraMessage;
+        if (this.extraMessage) {
+            notyExtraMessage = document.createElement('p');
+            notyExtraMessage.classList.add(this.notificationClassPrefix + "-" + NOTIFICATION_EXTRA_MESSAGE_CLASS);
+            notyExtraMessage.innerText = this.extraMessage;
+        }
+        notyBlock.appendChild(notyMainMessage);
+        var imageWrapper = document.createElement('div');
+        imageWrapper.classList.add(this.notificationClassPrefix + "-&" + NOTIFICATION_IMAGE_WRAPPER_CLASS);
+        var image;
+        if (typeof this.iconPath === 'string') {
+            image = document.createElement('img');
+            image.src = this.iconPath;
+            image.alt = 'icon';
+        }
+        else {
+            image = this.iconPath;
+        }
+        notyBlock.appendChild(image);
+        if (notyExtraMessage) {
+            notyBlock.appendChild(notyExtraMessage);
+        }
+        notyWrapper.appendChild(notyBlock);
+        contentWrapper.insertAdjacentElement('afterbegin', notyWrapper);
+        this.notificationWrapper = notyWrapper;
+        this.appearAnimationArr = this.getAnimationClasses(this.appearAnimation);
+        this.hideAnimationArr = this.getAnimationClasses(this.hideAnimation);
+    };
+    NotificationClass.prototype.getAnimationClasses = function (str) {
+        if (str.length > 0) {
+            return str.split(' ');
+        }
+        return [];
+    };
+    NotificationClass.prototype.setAnimationClasses = function (block, classes) {
+        if (classes.length > 0) {
+            classes.forEach(function (value) {
+                block.classList.add(value);
+            });
+        }
+    };
+    NotificationClass.prototype.removeAnimationClasses = function (block, classes) {
+        if (classes.length > 0) {
+            classes.forEach(function (value) {
+                block.classList.remove(value);
+            });
+        }
+    };
+    NotificationClass.prototype.showNotification = function () {
+        this.removeAnimationClasses(this.notificationWrapper, this.hideAnimationArr);
+        this.setAnimationClasses(this.notificationWrapper, this.appearAnimationArr);
+        this.notificationWrapper.classList.add(this.showClass);
+        contentWrapper.style.overflow = 'hidden';
+        this.notificationState = true;
+        if (this.allowContentShow) {
+            this.hideNotificationOnClick();
+        }
+    };
+    NotificationClass.prototype.hideNotification = function () {
+        var _this = this;
+        this.removeAnimationClasses(this.notificationWrapper, this.appearAnimationArr);
+        this.setAnimationClasses(this.notificationWrapper, this.hideAnimationArr);
+        setTimeout(function () {
+            _this.notificationWrapper.classList.remove(_this.showClass);
+            contentWrapper.style.overflow = '';
+            _this.notificationState = false;
+            // this.removeAnimationClasses(this.notificationWrapper, this.hideAnimationArr);
+        }, this.hideAnimationDuration);
+    };
+    NotificationClass.prototype.hideNotificationOnClick = function () {
+        var _this = this;
+        window.addEventListener('click', function () {
+            _this.hideNotification();
+        });
+        window.addEventListener('touchstart', function () {
+            _this.hideNotification();
+        }, false);
+    };
+    NotificationClass.prototype.init = function () {
+        var _this = this;
+        window.addEventListener('load', function () {
+            _this.buildNotificationHtml();
+            _this.startNotification();
+        });
+        window.addEventListener('resize', function () {
+            _this.startNotification();
+        });
+    };
+    return NotificationClass;
+}());
+exports.NotificationClass = NotificationClass;
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+function createSVG(viewBox, id, style, innerContent) {
+    var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttributeNS('http://www.w3.org/2000/xmlns/', 'xmlns:xlink', 'http://www.w3.org/1999/xlink');
+    svg.setAttribute('id', "" + id);
+    svg.setAttribute('viewBox', "" + viewBox);
+    svg.setAttribute('style', "" + style);
+    svg.innerHTML = innerContent;
+    return svg;
+}
+exports.createSVG = createSVG;
+
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var notificationGeneral_1 = __webpack_require__(3);
+var createSvg_1 = __webpack_require__(4);
+var notificationSVG = createSvg_1.createSVG('0 0 206 160', 'desktop-notification-icon', 'enable-background:new 0 0 206 160;', "<g>\n<g>\n <path d=\"M181.64,160H24.36C10.93,160,0,149.07,0,135.64V24.36C0,10.93,10.93,0,24.36,0h157.28C195.07,0,206,10.93,206,24.36\n   v111.28C206,149.07,195.07,160,181.64,160z M24.36,6C14.24,6,6,14.24,6,24.36v111.28C6,145.76,14.24,154,24.36,154h157.28\n   c10.12,0,18.36-8.24,18.36-18.36V24.36C200,14.24,191.76,6,181.64,6H24.36z\"/>\n</g>\n<g>\n <rect x=\"3\" y=\"33.77\" width=\"200\" height=\"6\"/>\n</g>\n<g>\n <circle cx=\"28.5\" cy=\"21.5\" r=\"4.5\"/>\n</g>\n<g>\n <circle cx=\"41.5\" cy=\"21.5\" r=\"4.5\"/>\n</g>\n<g>\n <circle cx=\"54.5\" cy=\"21.5\" r=\"4.5\"/>\n</g>\n<g>\n <path d=\"M59.7,125.19c-0.99,0-1.96-0.49-2.53-1.38c-0.89-1.39-0.49-3.25,0.91-4.14L151,60.09c1.4-0.89,3.25-0.49,4.14,0.91\n   c0.89,1.39,0.49,3.25-0.91,4.14l-92.92,59.58C60.82,125.04,60.26,125.19,59.7,125.19z\"/>\n</g>\n<g>\n <path d=\"M76.78,129.81c-0.22,0-0.45-0.02-0.67-0.08l-17.92-4.09c-0.78-0.18-1.45-0.65-1.87-1.33c-0.42-0.67-0.56-1.49-0.38-2.26\n   l4.4-19.3c0.37-1.62,1.98-2.63,3.59-2.26c1.62,0.37,2.63,1.98,2.26,3.59l-3.74,16.38l15,3.42c1.62,0.37,2.63,1.98,2.26,3.59\n   C79.38,128.87,78.15,129.81,76.78,129.81z\"/>\n</g>\n<g>\n <path d=\"M148.75,84.58c-0.22,0-0.45-0.02-0.67-0.08c-1.62-0.37-2.63-1.98-2.26-3.59l3.74-16.38l-15-3.42\n   c-1.62-0.37-2.63-1.98-2.26-3.59c0.37-1.62,1.98-2.63,3.59-2.26l17.92,4.09c0.78,0.18,1.45,0.65,1.87,1.33\n   c0.42,0.67,0.56,1.49,0.38,2.26l-4.4,19.3C151.35,83.64,150.11,84.58,148.75,84.58z\"/>\n</g>\n</g>");
+var desktopNotificationConfig = {
+    allowContentShow: true,
+    mainMessage: 'Please expand your browser window',
+    extraMessage: 'or click to continue',
+    desktopHeightBreak: 350,
+    desktopWidthBreak: 400,
+    showClass: 'show',
+    notificationClassPrefix: 'desktop',
+    iconPath: notificationSVG,
+    appearAnimation: '',
+    hideAnimation: '',
+    hideAnimationDuration: 0,
+};
+var createDesktopNotification = function (userOpts) {
+    var opts = __assign(__assign({}, desktopNotificationConfig), userOpts);
+    return new DesktopNotification(opts);
+};
+var DesktopNotification = /** @class */ (function (_super) {
+    __extends(DesktopNotification, _super);
+    function DesktopNotification(opts) {
+        var _this = _super.call(this, opts) || this;
+        _this.desktopWidthBreak = opts.desktopWidthBreak;
+        _this.desktopHeightBreak = opts.desktopHeightBreak;
+        return _this;
+    }
+    DesktopNotification.prototype.startNotification = function () {
+        if (!this.isTouchDevice) {
+            if (this.getWindowHeight() < this.desktopHeightBreak || this.getWindowWidth() < this.desktopWidthBreak) {
+                this.showNotification();
+            }
+            else {
+                this.hideNotification();
+            }
+        }
+    };
+    return DesktopNotification;
+}(notificationGeneral_1.NotificationClass));
+var b = createDesktopNotification({
+    hideAnimation: 'animated fadeOut',
+});
+b.init();
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(7);
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(8)(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+
+var stylesInDom = {};
+
+var	memoize = function (fn) {
+	var memo;
+
+	return function () {
+		if (typeof memo === "undefined") memo = fn.apply(this, arguments);
+		return memo;
+	};
+};
+
+var isOldIE = memoize(function () {
+	// Test for IE <= 9 as proposed by Browserhacks
+	// @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
+	// Tests for existence of standard globals is to allow style-loader
+	// to operate correctly into non-standard environments
+	// @see https://github.com/webpack-contrib/style-loader/issues/177
+	return window && document && document.all && !window.atob;
+});
+
+var getTarget = function (target, parent) {
+  if (parent){
+    return parent.querySelector(target);
+  }
+  return document.querySelector(target);
+};
+
+var getElement = (function (fn) {
+	var memo = {};
+
+	return function(target, parent) {
+                // If passing function in options, then use it for resolve "head" element.
+                // Useful for Shadow Root style i.e
+                // {
+                //   insertInto: function () { return document.querySelector("#foo").shadowRoot }
+                // }
+                if (typeof target === 'function') {
+                        return target();
+                }
+                if (typeof memo[target] === "undefined") {
+			var styleTarget = getTarget.call(this, target, parent);
+			// Special case to return head of iframe instead of iframe itself
+			if (window.HTMLIFrameElement && styleTarget instanceof window.HTMLIFrameElement) {
+				try {
+					// This will throw an exception if access to iframe is blocked
+					// due to cross-origin restrictions
+					styleTarget = styleTarget.contentDocument.head;
+				} catch(e) {
+					styleTarget = null;
+				}
+			}
+			memo[target] = styleTarget;
+		}
+		return memo[target]
+	};
+})();
+
+var singleton = null;
+var	singletonCounter = 0;
+var	stylesInsertedAtTop = [];
+
+var	fixUrls = __webpack_require__(9);
+
+module.exports = function(list, options) {
+	if (typeof DEBUG !== "undefined" && DEBUG) {
+		if (typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
+	}
+
+	options = options || {};
+
+	options.attrs = typeof options.attrs === "object" ? options.attrs : {};
+
+	// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+	// tags it will allow on a page
+	if (!options.singleton && typeof options.singleton !== "boolean") options.singleton = isOldIE();
+
+	// By default, add <style> tags to the <head> element
+        if (!options.insertInto) options.insertInto = "head";
+
+	// By default, add <style> tags to the bottom of the target
+	if (!options.insertAt) options.insertAt = "bottom";
+
+	var styles = listToStyles(list, options);
+
+	addStylesToDom(styles, options);
+
+	return function update (newList) {
+		var mayRemove = [];
+
+		for (var i = 0; i < styles.length; i++) {
+			var item = styles[i];
+			var domStyle = stylesInDom[item.id];
+
+			domStyle.refs--;
+			mayRemove.push(domStyle);
+		}
+
+		if(newList) {
+			var newStyles = listToStyles(newList, options);
+			addStylesToDom(newStyles, options);
+		}
+
+		for (var i = 0; i < mayRemove.length; i++) {
+			var domStyle = mayRemove[i];
+
+			if(domStyle.refs === 0) {
+				for (var j = 0; j < domStyle.parts.length; j++) domStyle.parts[j]();
+
+				delete stylesInDom[domStyle.id];
+			}
+		}
+	};
+};
+
+function addStylesToDom (styles, options) {
+	for (var i = 0; i < styles.length; i++) {
+		var item = styles[i];
+		var domStyle = stylesInDom[item.id];
+
+		if(domStyle) {
+			domStyle.refs++;
+
+			for(var j = 0; j < domStyle.parts.length; j++) {
+				domStyle.parts[j](item.parts[j]);
+			}
+
+			for(; j < item.parts.length; j++) {
+				domStyle.parts.push(addStyle(item.parts[j], options));
+			}
+		} else {
+			var parts = [];
+
+			for(var j = 0; j < item.parts.length; j++) {
+				parts.push(addStyle(item.parts[j], options));
+			}
+
+			stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
+		}
+	}
+}
+
+function listToStyles (list, options) {
+	var styles = [];
+	var newStyles = {};
+
+	for (var i = 0; i < list.length; i++) {
+		var item = list[i];
+		var id = options.base ? item[0] + options.base : item[0];
+		var css = item[1];
+		var media = item[2];
+		var sourceMap = item[3];
+		var part = {css: css, media: media, sourceMap: sourceMap};
+
+		if(!newStyles[id]) styles.push(newStyles[id] = {id: id, parts: [part]});
+		else newStyles[id].parts.push(part);
+	}
+
+	return styles;
+}
+
+function insertStyleElement (options, style) {
+	var target = getElement(options.insertInto)
+
+	if (!target) {
+		throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");
+	}
+
+	var lastStyleElementInsertedAtTop = stylesInsertedAtTop[stylesInsertedAtTop.length - 1];
+
+	if (options.insertAt === "top") {
+		if (!lastStyleElementInsertedAtTop) {
+			target.insertBefore(style, target.firstChild);
+		} else if (lastStyleElementInsertedAtTop.nextSibling) {
+			target.insertBefore(style, lastStyleElementInsertedAtTop.nextSibling);
+		} else {
+			target.appendChild(style);
+		}
+		stylesInsertedAtTop.push(style);
+	} else if (options.insertAt === "bottom") {
+		target.appendChild(style);
+	} else if (typeof options.insertAt === "object" && options.insertAt.before) {
+		var nextSibling = getElement(options.insertAt.before, target);
+		target.insertBefore(style, nextSibling);
+	} else {
+		throw new Error("[Style Loader]\n\n Invalid value for parameter 'insertAt' ('options.insertAt') found.\n Must be 'top', 'bottom', or Object.\n (https://github.com/webpack-contrib/style-loader#insertat)\n");
+	}
+}
+
+function removeStyleElement (style) {
+	if (style.parentNode === null) return false;
+	style.parentNode.removeChild(style);
+
+	var idx = stylesInsertedAtTop.indexOf(style);
+	if(idx >= 0) {
+		stylesInsertedAtTop.splice(idx, 1);
+	}
+}
+
+function createStyleElement (options) {
+	var style = document.createElement("style");
+
+	if(options.attrs.type === undefined) {
+		options.attrs.type = "text/css";
+	}
+
+	if(options.attrs.nonce === undefined) {
+		var nonce = getNonce();
+		if (nonce) {
+			options.attrs.nonce = nonce;
+		}
+	}
+
+	addAttrs(style, options.attrs);
+	insertStyleElement(options, style);
+
+	return style;
+}
+
+function createLinkElement (options) {
+	var link = document.createElement("link");
+
+	if(options.attrs.type === undefined) {
+		options.attrs.type = "text/css";
+	}
+	options.attrs.rel = "stylesheet";
+
+	addAttrs(link, options.attrs);
+	insertStyleElement(options, link);
+
+	return link;
+}
+
+function addAttrs (el, attrs) {
+	Object.keys(attrs).forEach(function (key) {
+		el.setAttribute(key, attrs[key]);
+	});
+}
+
+function getNonce() {
+	if (false) {}
+
+	return __webpack_require__.nc;
+}
+
+function addStyle (obj, options) {
+	var style, update, remove, result;
+
+	// If a transform function was defined, run it on the css
+	if (options.transform && obj.css) {
+	    result = typeof options.transform === 'function'
+		 ? options.transform(obj.css) 
+		 : options.transform.default(obj.css);
+
+	    if (result) {
+	    	// If transform returns a value, use that instead of the original css.
+	    	// This allows running runtime transformations on the css.
+	    	obj.css = result;
+	    } else {
+	    	// If the transform function returns a falsy value, don't add this css.
+	    	// This allows conditional loading of css
+	    	return function() {
+	    		// noop
+	    	};
+	    }
+	}
+
+	if (options.singleton) {
+		var styleIndex = singletonCounter++;
+
+		style = singleton || (singleton = createStyleElement(options));
+
+		update = applyToSingletonTag.bind(null, style, styleIndex, false);
+		remove = applyToSingletonTag.bind(null, style, styleIndex, true);
+
+	} else if (
+		obj.sourceMap &&
+		typeof URL === "function" &&
+		typeof URL.createObjectURL === "function" &&
+		typeof URL.revokeObjectURL === "function" &&
+		typeof Blob === "function" &&
+		typeof btoa === "function"
+	) {
+		style = createLinkElement(options);
+		update = updateLink.bind(null, style, options);
+		remove = function () {
+			removeStyleElement(style);
+
+			if(style.href) URL.revokeObjectURL(style.href);
+		};
+	} else {
+		style = createStyleElement(options);
+		update = applyToTag.bind(null, style);
+		remove = function () {
+			removeStyleElement(style);
+		};
+	}
+
+	update(obj);
+
+	return function updateStyle (newObj) {
+		if (newObj) {
+			if (
+				newObj.css === obj.css &&
+				newObj.media === obj.media &&
+				newObj.sourceMap === obj.sourceMap
+			) {
+				return;
+			}
+
+			update(obj = newObj);
+		} else {
+			remove();
+		}
+	};
+}
+
+var replaceText = (function () {
+	var textStore = [];
+
+	return function (index, replacement) {
+		textStore[index] = replacement;
+
+		return textStore.filter(Boolean).join('\n');
+	};
+})();
+
+function applyToSingletonTag (style, index, remove, obj) {
+	var css = remove ? "" : obj.css;
+
+	if (style.styleSheet) {
+		style.styleSheet.cssText = replaceText(index, css);
+	} else {
+		var cssNode = document.createTextNode(css);
+		var childNodes = style.childNodes;
+
+		if (childNodes[index]) style.removeChild(childNodes[index]);
+
+		if (childNodes.length) {
+			style.insertBefore(cssNode, childNodes[index]);
+		} else {
+			style.appendChild(cssNode);
+		}
+	}
+}
+
+function applyToTag (style, obj) {
+	var css = obj.css;
+	var media = obj.media;
+
+	if(media) {
+		style.setAttribute("media", media)
+	}
+
+	if(style.styleSheet) {
+		style.styleSheet.cssText = css;
+	} else {
+		while(style.firstChild) {
+			style.removeChild(style.firstChild);
+		}
+
+		style.appendChild(document.createTextNode(css));
+	}
+}
+
+function updateLink (link, options, obj) {
+	var css = obj.css;
+	var sourceMap = obj.sourceMap;
+
+	/*
+		If convertToAbsoluteUrls isn't defined, but sourcemaps are enabled
+		and there is no publicPath defined then lets turn convertToAbsoluteUrls
+		on by default.  Otherwise default to the convertToAbsoluteUrls option
+		directly
+	*/
+	var autoFixUrls = options.convertToAbsoluteUrls === undefined && sourceMap;
+
+	if (options.convertToAbsoluteUrls || autoFixUrls) {
+		css = fixUrls(css);
+	}
+
+	if (sourceMap) {
+		// http://stackoverflow.com/a/26603875
+		css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
+	}
+
+	var blob = new Blob([css], { type: "text/css" });
+
+	var oldSrc = link.href;
+
+	link.href = URL.createObjectURL(blob);
+
+	if(oldSrc) URL.revokeObjectURL(oldSrc);
+}
+
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports) {
+
+/**
+ * When source maps are enabled, `style-loader` uses a link element with a data-uri to
+ * embed the css on the page. This breaks all relative urls because now they are relative to a
+ * bundle instead of the current page.
+ *
+ * One solution is to only use full urls, but that may be impossible.
+ *
+ * Instead, this function "fixes" the relative urls to be absolute according to the current page location.
+ *
+ * A rudimentary test suite is located at `test/fixUrls.js` and can be run via the `npm test` command.
+ *
+ */
+module.exports = function (css) {
+  // get current location
+  var location = typeof window !== "undefined" && window.location;
+
+  if (!location) {
+    throw new Error("fixUrls requires window.location");
+  } // blank or null?
+
+
+  if (!css || typeof css !== "string") {
+    return css;
+  }
+
+  var baseUrl = location.protocol + "//" + location.host;
+  var currentDir = baseUrl + location.pathname.replace(/\/[^\/]*$/, "/"); // convert each url(...)
+
+  /*
+  This regular expression is just a way to recursively match brackets within
+  a string.
+  	 /url\s*\(  = Match on the word "url" with any whitespace after it and then a parens
+     (  = Start a capturing group
+       (?:  = Start a non-capturing group
+           [^)(]  = Match anything that isn't a parentheses
+           |  = OR
+           \(  = Match a start parentheses
+               (?:  = Start another non-capturing groups
+                   [^)(]+  = Match anything that isn't a parentheses
+                   |  = OR
+                   \(  = Match a start parentheses
+                       [^)(]*  = Match anything that isn't a parentheses
+                   \)  = Match a end parentheses
+               )  = End Group
+               *\) = Match anything and then a close parens
+           )  = Close non-capturing group
+           *  = Match anything
+        )  = Close capturing group
+   \)  = Match a close parens
+  	 /gi  = Get all matches, not the first.  Be case insensitive.
+   */
+
+  var fixedCss = css.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi, function (fullMatch, origUrl) {
+    // strip quotes (if they exist)
+    var unquotedOrigUrl = origUrl.trim().replace(/^"(.*)"$/, function (o, $1) {
+      return $1;
+    }).replace(/^'(.*)'$/, function (o, $1) {
+      return $1;
+    }); // already a full url? no change
+
+    if (/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/|\s*$)/i.test(unquotedOrigUrl)) {
+      return fullMatch;
+    } // convert the url to a full url
+
+
+    var newUrl;
+
+    if (unquotedOrigUrl.indexOf("//") === 0) {
+      //TODO: should we add protocol?
+      newUrl = unquotedOrigUrl;
+    } else if (unquotedOrigUrl.indexOf("/") === 0) {
+      // path should be relative to the base url
+      newUrl = baseUrl + unquotedOrigUrl; // already starts with '/'
+    } else {
+      // path should be relative to current directory
+      newUrl = currentDir + unquotedOrigUrl.replace(/^\.\//, ""); // Strip leading './'
+    } // send back the fixed url(...)
+
+
+    return "url(" + JSON.stringify(newUrl) + ")";
+  }); // send back the fixed css
+
+  return fixedCss;
+};
+
+/***/ })
+/******/ ]);
