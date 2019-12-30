@@ -88,8 +88,6 @@ class DesktopNotification extends NotificationClass implements DesktopNotificati
   startNotification() {
     if (!this.isTouchDevice) {
       if (this.getWindowHeight() < this.desktopHeightBreak || this.getWindowWidth() < this.desktopWidthBreak) {
-        console.log('resize', this.getWindowHeight(), this.getWindowWidth());
-        console.log('resize', this.desktopHeightBreak, this.desktopWidthBreak);
         this.showNotification();
       } else {
         this.hideNotification();

@@ -19,6 +19,7 @@ export abstract class NotificationClass {
   hideAnimationDuration: number;
   appearAnimationArr?: string[] | [];
   hideAnimationArr?: string[]| [];
+  notificationState: boolean;
   constructor(opts: any) {
     this.isTouchDevice = /Mobile|webOS|BlackBerry|IEMobile|MeeGo|mini|Fennec|Windows Phone|Android|iP(ad|od|hone)/i.test(navigator.userAgent);
     this.mainMessage = opts.mainMessage;
@@ -30,6 +31,7 @@ export abstract class NotificationClass {
     this.appearAnimation = opts.appearAnimation;
     this.hideAnimation = opts.hideAnimation;
     this.hideAnimationDuration = (opts.hideAnimationDuration === 0 && opts.hideAnimation !== '')? (400):(opts.hideAnimationDuration);
+    this.notificationState = false;
   }
   protected getWindowWidth(): number {
     return window.innerWidth;
@@ -91,7 +93,6 @@ export abstract class NotificationClass {
   }
 
   removeAnimationClasses (block: HTMLElement, classes: string[] | []): void {
-    console.log(classes)
     if (classes.length > 0) {
       classes.forEach( (value: string) => {
         block.classList.remove(value);
@@ -100,10 +101,11 @@ export abstract class NotificationClass {
   }
 
   showNotification() {
-    this.setAnimationClasses(this.notificationWrapper, this.appearAnimationArr);
     this.removeAnimationClasses(this.notificationWrapper, this.hideAnimationArr);
+    this.setAnimationClasses(this.notificationWrapper, this.appearAnimationArr);
     this.notificationWrapper.classList.add(this.showClass);
     contentWrapper.style.overflow = 'hidden';
+    this.notificationState = true;
     if (this.allowContentShow) {
       this.hideNotificationOnClick();
     }
@@ -115,6 +117,8 @@ export abstract class NotificationClass {
     setTimeout( () => {
       this.notificationWrapper.classList.remove(this.showClass);
       contentWrapper.style.overflow = '';
+      this.notificationState = false;
+      // this.removeAnimationClasses(this.notificationWrapper, this.hideAnimationArr);
     }, this.hideAnimationDuration)
   }
 
@@ -137,9 +141,6 @@ export abstract class NotificationClass {
     window.addEventListener('resize', () => {
       this.startNotification();
     });
-    window.addEventListener('orientationchange', () => {
-      this.startNotification();
-    }, false);
   }
 
 }

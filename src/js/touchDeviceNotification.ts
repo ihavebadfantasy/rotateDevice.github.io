@@ -25,6 +25,7 @@ interface TouchDeviceNotificationInterface {
   appearAnimation: string;
   hideAnimation: string;
   hideAnimationDuration: number;
+  notificationState: boolean;
   getAnimationClasses(str: string): string[] | [];
   setAnimationClasses(block: HTMLElement, classes: string[]): void;
   removeAnimationClasses(block: HTMLElement, classes: string[]): void;
@@ -89,33 +90,40 @@ class TouchDeviceNotification extends NotificationClass implements TouchDeviceNo
     if (this.isTouchDevice) {
       switch (this.blockedOrientation) {
         case 'portrait':
-          if (this.isPortrait()) {
+          if (this.isPortrait() && !this.notificationState) {
             if (this.onlyMobile && this.isMobileInPortrait()) {
               this.showNotification();
             } else if (!this.onlyMobile) {
               this.showNotification();
             }
+          } else {
+            this.hideNotification();
           }
           break;
 
         case 'landscape':
-          if (!this.isPortrait()) {
+          if (!this.isPortrait() && !this.notificationState) {
             if (this.onlyMobile && this.isMobileInLandscape()) {
               this.showNotification();
             } else if (!this.onlyMobile) {
               this.showNotification();
             }
+          } else {
+            this.hideNotification();
           }
           break;
 
         default:
-          this.hideNotification();
+          break;
       }
     }
   }
 }
 
  const a = createTouchDeviceNotification({
+   blockedOrientation: 'portrait',
    appearAnimation: 'animated fadeIn',
+   hideAnimation: 'animated fadeOut',
+   onlyMobile: 'false',
  });
  a.init();
