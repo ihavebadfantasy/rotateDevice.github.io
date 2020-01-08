@@ -1,7 +1,8 @@
 import { NotificationClass } from './notificationGeneral';
-import { createSVG } from './createSvg';
 
-const notificationSVG = createSVG('0 0 206 160', 'desktop-notification-icon', 'enable-background:new 0 0 206 160;', `<g>
+const notificationSVG = `<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+viewBox="0 0 206 160" style="enable-background:new 0 0 206 160;" xml:space="preserve">
+<g>
 <g>
  <path d="M181.64,160H24.36C10.93,160,0,149.07,0,135.64V24.36C0,10.93,10.93,0,24.36,0h157.28C195.07,0,206,10.93,206,24.36
    v111.28C206,149.07,195.07,160,181.64,160z M24.36,6C14.24,6,6,14.24,6,24.36v111.28C6,145.76,14.24,154,24.36,154h157.28
@@ -33,7 +34,8 @@ const notificationSVG = createSVG('0 0 206 160', 'desktop-notification-icon', 'e
    c-1.62-0.37-2.63-1.98-2.26-3.59c0.37-1.62,1.98-2.63,3.59-2.26l17.92,4.09c0.78,0.18,1.45,0.65,1.87,1.33
    c0.42,0.67,0.56,1.49,0.38,2.26l-4.4,19.3C151.35,83.64,150.11,84.58,148.75,84.58z"/>
 </g>
-</g>`);
+</g>
+</svg>`;
 
 const desktopNotificationConfig = {
   allowContentShow: true,

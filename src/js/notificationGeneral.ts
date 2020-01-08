@@ -14,7 +14,7 @@ export abstract class NotificationClass {
   allowContentShow: boolean;
   showClass: string;
   notificationClassPrefix: string;
-  iconPath: any;
+  iconPath: string;
   appearAnimation: string;
   hideAnimation: string;
   hideAnimationDuration: number;
@@ -48,35 +48,19 @@ export abstract class NotificationClass {
   }
 
   protected buildNotificationHtml() {
+    if (this.iconPath[0] !== '<') {
+      this.iconPath = `<img src="${this.iconPath}" alt="icon">`
+    }
+    if (this.extraMessage) {
+      this.extraMessage = `<p class"${this.notificationClassPrefix}-${NOTIFICATION_EXTRA_MESSAGE_CLASS}">${this.extraMessage}</p>`
+    } else {
+      this.extraMessage = '';
+    }
     const notyWrapper = document.createElement('div');
     notyWrapper.classList.add(`${this.notificationClassPrefix}-${NOTIFICATION_WRAPPER_CLASS}`);
-    const notyBlock = document.createElement('div');
-    notyBlock.classList.add(`${this.notificationClassPrefix}-${NOTIFICATION_BLOCK_CLASS}`);
-    const notyMainMessage = document.createElement('p');
-    notyMainMessage.classList.add(`${this.notificationClassPrefix}-${NOTIFICATION_MAIN_MESSAGE_CLASS}`);
-    notyMainMessage.innerText = this.mainMessage;
-    let notyExtraMessage;
-    if (this.extraMessage) {
-      notyExtraMessage = document.createElement('p');
-      notyExtraMessage.classList.add(`${this.notificationClassPrefix}-${NOTIFICATION_EXTRA_MESSAGE_CLASS}`);
-      notyExtraMessage.innerText = this.extraMessage;
-    }
-    notyBlock.appendChild(notyMainMessage);
-    const imageWrapper = document.createElement('div');
-    imageWrapper.classList.add(`${this.notificationClassPrefix}-&${NOTIFICATION_IMAGE_WRAPPER_CLASS}`);
-    let image;
-    if (typeof this.iconPath === 'string') {
-      image = document.createElement('img');
-      image.src = this.iconPath;
-      image.alt = 'icon';
-    } else {
-      image = this.iconPath;
-    }
-    notyBlock.appendChild(image);
-    if (notyExtraMessage) {
-      notyBlock.appendChild(notyExtraMessage);
-    }
-    notyWrapper.appendChild(notyBlock);
+    notyWrapper.innerHTML = `<div class="${this.notificationClassPrefix}-${NOTIFICATION_BLOCK_CLASS}">
+    <p class="${this.notificationClassPrefix}-${NOTIFICATION_MAIN_MESSAGE_CLASS}">${this.mainMessage}</p> <div class="${NOTIFICATION_IMAGE_WRAPPER_CLASS}">${this.iconPath}</div> ${this.extraMessage}
+    </div>`
     contentWrapper.insertAdjacentElement('afterbegin', notyWrapper);
     this.notificationWrapper = notyWrapper;
     this.appearAnimationArr = this.getAnimationClasses(this.appearAnimation);
