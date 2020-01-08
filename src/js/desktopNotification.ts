@@ -35,28 +35,6 @@ const notificationSVG = createSVG('0 0 206 160','desktop-notification-icon', 'en
 </g>
 </g>`);
 
-
-interface DesktopNotificationInterface {
-  allowContentShow: boolean;
-  mainMessage: string;
-  extraMessage: string;
-  desktopWidthBreak: number;
-  desktopHeightBreak: number;
-  notificationClassPrefix: string;
-  showClass: string,
-  appearAnimation: string;
-  hideAnimation: string;
-  hideAnimationDuration: number;
-  getAnimationClasses(str: string): string[] | [];
-  setAnimationClasses(block: HTMLElement, classes: string[]): void;
-  removeAnimationClasses(block: HTMLElement, classes: string[]): void;
-  showNotification(): void;
-  hideNotification(): void;
-  hideNotificationOnClick(): void;
-  startNotification(): void;
-  init(): void;
-}
-
 const desktopNotificationConfig = {
   allowContentShow: true,
   mainMessage: 'Please expand your browser window',
@@ -76,7 +54,7 @@ const createDesktopNotification = (userOpts?: object) => {
   return new DesktopNotification(opts);
 }
 
-class DesktopNotification extends NotificationClass implements DesktopNotificationInterface {
+class DesktopNotification extends NotificationClass {
   desktopWidthBreak: number;
   desktopHeightBreak: number;
   constructor(opts: any) {

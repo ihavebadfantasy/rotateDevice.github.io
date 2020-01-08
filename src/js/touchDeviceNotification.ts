@@ -13,32 +13,6 @@ const notificationSVG = createSVG('0 0 184.02 312.02','mobile-notification-icon'
 <path d="M113.46,14.44H70.54c-7.5,0-14.3-4.4-17.37-11.23l-1.41-3.14h80.5l-1.41,3.14C127.76,10.04,120.96,14.44,113.46,14.44z"/>
 </g>`);
 
-interface TouchDeviceNotificationInterface {
-  blockedOrientation: string;
-  allowContentShow: boolean;
-  onlyMobile: boolean;
-  mainMessage: string;
-  showClass: string,
-  responsiveLandscapeBreak: number;
-  responsivePortraitBreak: number;
-  notificationClassPrefix: string;
-  appearAnimation: string;
-  hideAnimation: string;
-  hideAnimationDuration: number;
-  notificationState: boolean;
-  getAnimationClasses(str: string): string[] | [];
-  setAnimationClasses(block: HTMLElement, classes: string[]): void;
-  removeAnimationClasses(block: HTMLElement, classes: string[]): void;
-  isPortrait(): boolean;
-  isMobileInLandscape(): boolean;
-  isMobileInPortrait(): boolean;
-  showNotification(): void;
-  hideNotification(): void;
-  hideNotificationOnClick(): void;
-  startNotification(): void;
-  init(): void;
-}
-
 const touchDeviceNotificationConfig = {
   blockedOrientation: 'landscape',
   allowContentShow: true,
@@ -60,7 +34,7 @@ const createTouchDeviceNotification = (userOpts?: object) => {
   return new TouchDeviceNotification(opts);
 }
 
-class TouchDeviceNotification extends NotificationClass implements TouchDeviceNotificationInterface {
+class TouchDeviceNotification extends NotificationClass {
   blockedOrientation: string;
   onlyMobile: boolean;
   responsiveLandscapeBreak: number;
