@@ -4,6 +4,7 @@ let NOTIFICATION_MAIN_MESSAGE_CLASS = 'notification-main-message';
 let NOTIFICATION_EXTRA_MESSAGE_CLASS = 'notification-extra-message';
 let NOTIFICATION_IMAGE_WRAPPER_CLASS = 'notification-img-wrapper';
 const contentWrapper = document.body;
+const ORIENTATIONCHANGE_DELAY = 50; 
 
 export abstract class NotificationClass {
   isTouchDevice: boolean;
@@ -114,11 +115,11 @@ export abstract class NotificationClass {
   hideNotification() {
     this.removeAnimationClasses(this.notificationWrapper, this.appearAnimationArr);
     this.setAnimationClasses(this.notificationWrapper, this.hideAnimationArr);
+    this.notificationState = false;
     setTimeout( () => {
       this.notificationWrapper.classList.remove(this.showClass);
       contentWrapper.style.overflow = '';
-      this.notificationState = false;
-      // this.removeAnimationClasses(this.notificationWrapper, this.hideAnimationArr);
+      this.removeAnimationClasses(this.notificationWrapper, this.hideAnimationArr);
     }, this.hideAnimationDuration)
   }
 
@@ -126,9 +127,6 @@ export abstract class NotificationClass {
     window.addEventListener('click', () => {
       this.hideNotification();
     });
-    window.addEventListener('touchstart', () => {
-      this.hideNotification();
-    }, false);
   }
 
   abstract startNotification(): void; 
@@ -139,7 +137,9 @@ export abstract class NotificationClass {
       this.startNotification();
     });
     window.addEventListener('resize', () => {
-      this.startNotification();
+      setTimeout( ()=> {
+        this.startNotification();
+      }, ORIENTATIONCHANGE_DELAY)
     });
   }
 

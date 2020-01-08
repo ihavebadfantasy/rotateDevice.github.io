@@ -16,7 +16,6 @@ const notificationSVG = createSVG('0 0 184.02 312.02','mobile-notification-icon'
 const touchDeviceNotificationConfig = {
   blockedOrientation: 'landscape',
   allowContentShow: true,
-  onlyMobile: true,
   mainMessage: 'Please turn your device',
   extraMessage: 'or tap the screen to continue',
   responsivePortraitBreak: 767,
@@ -36,53 +35,50 @@ const createTouchDeviceNotification = (userOpts?: object) => {
 
 class TouchDeviceNotification extends NotificationClass {
   blockedOrientation: string;
-  onlyMobile: boolean;
   responsiveLandscapeBreak: number;
   responsivePortraitBreak: number;
   constructor(opts: any) {
     super(opts);
     this.blockedOrientation = opts.blockedOrientation;
-    this.onlyMobile = opts.onlyMobile;
     this.responsiveLandscapeBreak = opts.responsiveLandscapeBreak;
     this.responsivePortraitBreak = opts.responsivePortraitBreak;
   }
 
   isPortrait() {
-    const mql = window.matchMedia('(orientation: portrait)');
-    return mql.matches;
+     const mql = window.matchMedia('(orientation: portrait)');
+     return mql.matches;
   }
 
-  isMobileInPortrait() {
+  isDeviceInBlockedPortrait() {
     return (window.innerWidth < this.responsivePortraitBreak);
   }
 
-  isMobileInLandscape() {
+  isDeviceInBlockedLandscape() {
     return (window.innerWidth < this.responsiveLandscapeBreak);
   }
 
   startNotification () {
+    console.log('startNotification')
     if (this.isTouchDevice) {
       switch (this.blockedOrientation) {
         case 'portrait':
-          if (this.isPortrait() && !this.notificationState) {
-            if (this.onlyMobile && this.isMobileInPortrait()) {
-              this.showNotification();
-            } else if (!this.onlyMobile) {
-              this.showNotification();
+            console.log(this.isPortrait());
+          if (!this.notificationState && this.isPortrait()) {
+            if (this.isDeviceInBlockedPortrait()) {
+            console.log('show');  
+            this.showNotification();
             }
-          } else {
+          } else if (this.notificationState && !this.isPortrait()) {
             this.hideNotification();
           }
           break;
 
         case 'landscape':
           if (!this.isPortrait() && !this.notificationState) {
-            if (this.onlyMobile && this.isMobileInLandscape()) {
+            if (this.isDeviceInBlockedLandscape()) {
               this.showNotification();
-            } else if (!this.onlyMobile) {
-              this.showNotification();
-            }
-          } else {
+              }
+          } else if (this.isPortrait() && this.notificationState) {
             this.hideNotification();
           }
           break;
@@ -98,6 +94,6 @@ class TouchDeviceNotification extends NotificationClass {
    blockedOrientation: 'portrait',
    appearAnimation: 'animated fadeIn',
    hideAnimation: 'animated fadeOut',
-   onlyMobile: 'false',
+   responsivePortraitBreak: 769,
  });
  a.init();
