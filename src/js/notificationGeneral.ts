@@ -7,7 +7,7 @@ const contentWrapper = document.body;
 const ORIENTATIONCHANGE_DELAY = 50; 
 
 export abstract class NotificationClass {
-  isTouchDevice: boolean;
+  type: string;
   mainMessage: string;
   extraMessage: string;
   notificationWrapper: HTMLUnknownElement;
@@ -22,7 +22,7 @@ export abstract class NotificationClass {
   hideAnimationArr?: string[]| [];
   notificationState: boolean;
   constructor(opts: any) {
-    this.isTouchDevice = /Mobile|webOS|BlackBerry|IEMobile|MeeGo|mini|Fennec|Windows Phone|Android|iP(ad|od|hone)/i.test(navigator.userAgent);
+    this.type = opts.type;
     this.mainMessage = opts.mainMessage;
     this.extraMessage = opts.extraMessage;
     this.allowContentShow = opts.allowContentShow;
@@ -34,6 +34,11 @@ export abstract class NotificationClass {
     this.hideAnimationDuration = (opts.hideAnimationDuration === 0 && opts.hideAnimation !== '')? (400):(opts.hideAnimationDuration);
     this.notificationState = false;
   }
+
+  protected deviceType(): string {
+    return /Mobile|webOS|BlackBerry|IEMobile|MeeGo|mini|Fennec|Windows Phone|Android|iP(ad|od|hone)/i.test(navigator.userAgent)?('touchDevice'):('desktop')
+  }
+
   protected getWindowWidth(): number {
     return window.innerWidth;
   }
@@ -132,15 +137,17 @@ export abstract class NotificationClass {
   abstract startNotification(): void; 
 
   init() {
-    window.addEventListener('load', () => {
-      this.buildNotificationHtml();
-      this.startNotification();
-    });
-    window.addEventListener('resize', () => {
-      setTimeout( ()=> {
+    if (this.type === this.deviceType()) {
+      window.addEventListener('load', () => {
+        this.buildNotificationHtml();
         this.startNotification();
-      }, ORIENTATIONCHANGE_DELAY)
-    });
+      });
+      window.addEventListener('resize', () => {
+        setTimeout( ()=> {
+          this.startNotification();
+        }, ORIENTATIONCHANGE_DELAY)
+      });
+    }
   }
 
 }

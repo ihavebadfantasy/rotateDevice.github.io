@@ -1,7 +1,7 @@
 import { NotificationClass } from './notificationGeneral';
-import {createSVG} from './createSvg';
+import { createSVG } from './createSvg';
 
-const notificationSVG = createSVG('0 0 206 160','desktop-notification-icon', 'enable-background:new 0 0 206 160;', `<g>
+const notificationSVG = createSVG('0 0 206 160', 'desktop-notification-icon', 'enable-background:new 0 0 206 160;', `<g>
 <g>
  <path d="M181.64,160H24.36C10.93,160,0,149.07,0,135.64V24.36C0,10.93,10.93,0,24.36,0h157.28C195.07,0,206,10.93,206,24.36
    v111.28C206,149.07,195.07,160,181.64,160z M24.36,6C14.24,6,6,14.24,6,24.36v111.28C6,145.76,14.24,154,24.36,154h157.28
@@ -47,10 +47,11 @@ const desktopNotificationConfig = {
   appearAnimation: '',
   hideAnimation: '',
   hideAnimationDuration: 0,
+  type: 'desktop',
 }
 
 const createDesktopNotification = (userOpts?: object) => {
-  const opts = {...desktopNotificationConfig, ...userOpts};
+  const opts = { ...desktopNotificationConfig, ...userOpts };
   return new DesktopNotification(opts);
 }
 
@@ -64,13 +65,11 @@ class DesktopNotification extends NotificationClass {
   }
 
   startNotification() {
-    if (!this.isTouchDevice) {
-      if (this.getWindowHeight() < this.desktopHeightBreak || this.getWindowWidth() < this.desktopWidthBreak) {
-        this.showNotification();
-      } else {
-        this.hideNotification();
-      }
-    } 
+    if (this.getWindowHeight() < this.desktopHeightBreak || this.getWindowWidth() < this.desktopWidthBreak) {
+      this.showNotification();
+    } else {
+      this.hideNotification();
+    }
   }
 
 }

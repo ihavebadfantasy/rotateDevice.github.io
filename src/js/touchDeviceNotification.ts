@@ -26,6 +26,7 @@ const touchDeviceNotificationConfig = {
   appearAnimation: '',
   hideAnimation: '',
   hideAnimationDuration: 0,
+  type: 'touchDevice',
 }
 
 const createTouchDeviceNotification = (userOpts?: object) => {
@@ -59,7 +60,6 @@ class TouchDeviceNotification extends NotificationClass {
 
   startNotification () {
     console.log('startNotification')
-    if (this.isTouchDevice) {
       switch (this.blockedOrientation) {
         case 'portrait':
             console.log(this.isPortrait());
@@ -86,7 +86,6 @@ class TouchDeviceNotification extends NotificationClass {
         default:
           break;
       }
-    }
   }
 }
 
