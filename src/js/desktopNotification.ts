@@ -50,6 +50,7 @@ const desktopNotificationConfig = {
   hideAnimation: '',
   hideAnimationDuration: 0,
   type: 'desktop',
+  customHTML: false,
 }
 
 const createDesktopNotification = (userOpts?: object) => {

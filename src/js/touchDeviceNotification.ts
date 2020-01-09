@@ -28,6 +28,7 @@ const touchDeviceNotificationConfig = {
   hideAnimation: '',
   hideAnimationDuration: 0,
   type: 'touchDevice',
+  customHTML: false,
 }
 
 const createTouchDeviceNotification = (userOpts?: object) => {

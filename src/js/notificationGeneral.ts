@@ -22,6 +22,7 @@ export abstract class NotificationClass {
   appearAnimationArr?: string[] | [];
   hideAnimationArr?: string[]| [];
   notificationState: boolean;
+  customHTML: string | boolean;
   constructor(opts: any) {
     this.type = opts.type;
     this.mainMessage = opts.mainMessage;
@@ -34,6 +35,7 @@ export abstract class NotificationClass {
     this.hideAnimation = opts.hideAnimation;
     this.hideAnimationDuration = (opts.hideAnimationDuration === 0 && opts.hideAnimation !== '')? (400):(opts.hideAnimationDuration);
     this.notificationState = false;
+    this.customHTML = opts.customHTML;
   }
 
   protected deviceType(): string {
@@ -49,19 +51,24 @@ export abstract class NotificationClass {
   }
 
   protected buildNotificationHtml() {
-    if (this.iconPath[0] !== '<') {
-      this.iconPath = `<img src="${this.iconPath}" alt="icon">`
-    }
-    if (this.extraMessage) {
-      this.extraMessage = `<p class="${this.notificationClassPrefix}-${NOTIFICATION_EXTRA_MESSAGE_CLASS}">${this.extraMessage}</p>`
-    } else {
-      this.extraMessage = '';
-    }
     const notyWrapper = document.createElement('div');
     notyWrapper.classList.add(`${this.notificationClassPrefix}-${NOTIFICATION_WRAPPER_CLASS}`);
-    notyWrapper.innerHTML = `<div class="${this.notificationClassPrefix}-${NOTIFICATION_BLOCK_CLASS}">
-    <p class="${this.notificationClassPrefix}-${NOTIFICATION_MAIN_MESSAGE_CLASS}">${this.mainMessage}</p> <div class="${this.notificationClassPrefix}-${NOTIFICATION_IMAGE_WRAPPER_CLASS} ${this.notificationClassPrefix}-${DEFAULT_ICON_CLASS}">${this.iconPath}</div> ${this.extraMessage}
-    </div>`
+    if (typeof this.customHTML === 'boolean') {
+      if (this.iconPath[0] !== '<') {
+        this.iconPath = `<img src="${this.iconPath}" alt="icon">`
+      }
+      if (this.extraMessage) {
+        this.extraMessage = `<p class="${this.notificationClassPrefix}-${NOTIFICATION_EXTRA_MESSAGE_CLASS}">${this.extraMessage}</p>`
+      } else {
+        this.extraMessage = '';
+      }
+      notyWrapper.innerHTML = `<div class="${this.notificationClassPrefix}-${NOTIFICATION_BLOCK_CLASS}">
+      <p class="${this.notificationClassPrefix}-${NOTIFICATION_MAIN_MESSAGE_CLASS}">${this.mainMessage}</p> <div class="${this.notificationClassPrefix}-${NOTIFICATION_IMAGE_WRAPPER_CLASS} ${this.notificationClassPrefix}-${DEFAULT_ICON_CLASS}">${this.iconPath}</div> ${this.extraMessage}
+      </div>`
+    } else {
+      notyWrapper.innerHTML = this.customHTML;
+    }
+
     contentWrapper.insertAdjacentElement('afterbegin', notyWrapper);
     this.notificationWrapper = notyWrapper;
     this.appearAnimationArr = this.getAnimationClasses(this.appearAnimation);
@@ -72,7 +79,7 @@ export abstract class NotificationClass {
     if (str.length > 0) {
       return str.split(' ');
     }
-    return []
+    return [];
   }
 
   setAnimationClasses (block: HTMLElement, classes: string[] | []): void {
