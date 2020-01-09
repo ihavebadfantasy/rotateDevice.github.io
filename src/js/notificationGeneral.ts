@@ -1,8 +1,9 @@
-let NOTIFICATION_WRAPPER_CLASS = 'notification-wrapper';
-let NOTIFICATION_BLOCK_CLASS = 'notification-block';
-let NOTIFICATION_MAIN_MESSAGE_CLASS = 'notification-main-message';
-let NOTIFICATION_EXTRA_MESSAGE_CLASS = 'notification-extra-message';
-let NOTIFICATION_IMAGE_WRAPPER_CLASS = 'notification-img-wrapper';
+const NOTIFICATION_WRAPPER_CLASS = 'notification-wrapper';
+const NOTIFICATION_BLOCK_CLASS = 'notification-block';
+const NOTIFICATION_MAIN_MESSAGE_CLASS = 'notification-main-message';
+const NOTIFICATION_EXTRA_MESSAGE_CLASS = 'notification-extra-message';
+const NOTIFICATION_IMAGE_WRAPPER_CLASS = 'notification-img-wrapper';
+const DEFAULT_ICON_CLASS = 'default-icon';
 const contentWrapper = document.body;
 const ORIENTATIONCHANGE_DELAY = 50; 
 
@@ -52,14 +53,14 @@ export abstract class NotificationClass {
       this.iconPath = `<img src="${this.iconPath}" alt="icon">`
     }
     if (this.extraMessage) {
-      this.extraMessage = `<p class"${this.notificationClassPrefix}-${NOTIFICATION_EXTRA_MESSAGE_CLASS}">${this.extraMessage}</p>`
+      this.extraMessage = `<p class="${this.notificationClassPrefix}-${NOTIFICATION_EXTRA_MESSAGE_CLASS}">${this.extraMessage}</p>`
     } else {
       this.extraMessage = '';
     }
     const notyWrapper = document.createElement('div');
     notyWrapper.classList.add(`${this.notificationClassPrefix}-${NOTIFICATION_WRAPPER_CLASS}`);
     notyWrapper.innerHTML = `<div class="${this.notificationClassPrefix}-${NOTIFICATION_BLOCK_CLASS}">
-    <p class="${this.notificationClassPrefix}-${NOTIFICATION_MAIN_MESSAGE_CLASS}">${this.mainMessage}</p> <div class="${NOTIFICATION_IMAGE_WRAPPER_CLASS}">${this.iconPath}</div> ${this.extraMessage}
+    <p class="${this.notificationClassPrefix}-${NOTIFICATION_MAIN_MESSAGE_CLASS}">${this.mainMessage}</p> <div class="${this.notificationClassPrefix}-${NOTIFICATION_IMAGE_WRAPPER_CLASS} ${this.notificationClassPrefix}-${DEFAULT_ICON_CLASS}">${this.iconPath}</div> ${this.extraMessage}
     </div>`
     contentWrapper.insertAdjacentElement('afterbegin', notyWrapper);
     this.notificationWrapper = notyWrapper;

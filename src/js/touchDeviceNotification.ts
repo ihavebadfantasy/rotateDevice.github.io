@@ -63,10 +63,8 @@ class TouchDeviceNotification extends NotificationClass {
     console.log('startNotification')
       switch (this.blockedOrientation) {
         case 'portrait':
-            console.log(this.isPortrait());
           if (!this.notificationState && this.isPortrait()) {
             if (this.isDeviceInBlockedPortrait()) {
-            console.log('show');  
             this.showNotification();
             }
           } else if (this.notificationState && !this.isPortrait()) {
@@ -91,9 +89,10 @@ class TouchDeviceNotification extends NotificationClass {
 }
 
  const a = createTouchDeviceNotification({
-   blockedOrientation: 'portrait',
+   blockedOrientation: 'landscape',
    appearAnimation: 'animated fadeIn',
    hideAnimation: 'animated fadeOut',
    responsivePortraitBreak: 769,
+   responsiveLandscapeBreak: 1025,
  });
  a.init();

@@ -5,10 +5,7 @@
     position: fixed;
     display: none;
     background-color: #fff;
-    //change it to find property through js
     z-index: 111111111111;
-    background-color: white;
-
     &.show {
       display: block;
     }
@@ -20,26 +17,87 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    padding: 20px;
+    padding: 20px 10px;
   }
   &-main-message{
     font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
     font-weight: 500;
     text-transform: uppercase;
-    font-size: 22px;
+    font-size: 28px;
     line-height: 1.3;
     text-align: center;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    @include media('<=tablet-s') {
+      font-size: 22px;
+    }
     @include media ('landscape'){
-      font-size: 24px;
+      font-size: 28px;
+      @include media('<=desktop') {
+        font-size: 24px;
+      }
+    }
+  }
+  &-img-wrapper{
+    svg, img{
+      width: 100%;
     }
   }
   &-extra-message{
     font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
-    font-size: 16px;
+    font-size: 22px;
     line-height: 1.2;
     text-align: center;
-    @include media ('landscape'){
-      font-size: 18px;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    @include media('<=tablet-s') {
+      font-size: 16px;
     }
+    @include media ('landscape'){
+      font-size: 22px;
+      @include media('<=desktop') {
+        font-size: 18px;
+      }
+    }
+  }
+}
+
+.touch-device-default-icon{
+  @include media('portrait') {
+    max-width: 310px;
+    animation: portraitIconAnimation 1.7s forwards 0.6s infinite;
+    @include media('<=tablet-s') {
+      max-width: 210px;
+    }
+  }
+  @include media('landscape') {
+    transform: rotate(90deg);
+    animation: landscapeIconAnimation 1.7s forwards 0.6s infinite;
+    svg {
+      max-width: 220px;
+    }
+    @include media('<=desktop') {
+      svg {
+        max-width: 100px;
+      }
+    }
+  }
+}
+
+@keyframes portraitIconAnimation {
+  85% {
+    transform: rotate(90deg) scale(0.7);
+  }
+  to {
+    transform: rotate(90deg) scale(0.7);
+  }
+}
+
+@keyframes landscapeIconAnimation {
+  85% {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(0deg);
   }
 }
