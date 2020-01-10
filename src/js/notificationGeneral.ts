@@ -11,7 +11,7 @@ export abstract class NotificationClass {
   type: string;
   mainMessage: string;
   extraMessage: string;
-  notificationWrapper: HTMLUnknownElement;
+  notificationWrapper: HTMLUnknownElement | null;
   allowContentShow: boolean;
   showClass: string;
   notificationClassPrefix: string;
@@ -75,14 +75,14 @@ export abstract class NotificationClass {
     this.hideAnimationArr = this.getAnimationClasses(this.hideAnimation);
   }
 
-  getAnimationClasses (str: string): string[] | [] {
+  protected getAnimationClasses (str: string): string[] | [] {
     if (str.length > 0) {
       return str.split(' ');
     }
     return [];
   }
 
-  setAnimationClasses (block: HTMLElement, classes: string[] | []): void {
+  protected setAnimationClasses (block: HTMLElement, classes: string[] | []): void {
     if (classes.length > 0) {
       classes.forEach( (value: string) => {
         block.classList.add(value);
@@ -90,7 +90,7 @@ export abstract class NotificationClass {
     }
   }
 
-  removeAnimationClasses (block: HTMLElement, classes: string[] | []): void {
+  protected removeAnimationClasses (block: HTMLElement, classes: string[] | []): void {
     if (classes.length > 0) {
       classes.forEach( (value: string) => {
         block.classList.remove(value);
@@ -130,16 +130,24 @@ export abstract class NotificationClass {
 
   init() {
     if (this.type === this.deviceType()) {
-      window.addEventListener('load', () => {
+      if (!this.notificationWrapper) {
         this.buildNotificationHtml();
         this.startNotification();
-      });
+      }
       window.addEventListener('resize', () => {
         setTimeout( ()=> {
           this.startNotification();
         }, ORIENTATIONCHANGE_DELAY)
       });
     }
+  }
+
+  destroy() {
+      this.hideNotification();
+      setTimeout( ()=> {
+        contentWrapper.removeChild(this.notificationWrapper);
+        this.notificationWrapper = null;
+      }, this.hideAnimationDuration);
   }
 
 }

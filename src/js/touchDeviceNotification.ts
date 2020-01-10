@@ -61,7 +61,6 @@ class TouchDeviceNotification extends NotificationClass {
   }
 
   startNotification () {
-    console.log('startNotification')
       switch (this.blockedOrientation) {
         case 'portrait':
           if (!this.notificationState && this.isPortrait()) {
@@ -97,3 +96,9 @@ class TouchDeviceNotification extends NotificationClass {
    responsiveLandscapeBreak: 1025,
  });
  a.init();
+ setTimeout(()=> {
+  a.destroy();
+ }, 5000)
+ setTimeout(()=> {
+  a.init();
+ }, 10000)

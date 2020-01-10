@@ -6,6 +6,7 @@ Pass the settings into creating function. For example:
 var TouchDeviceNotification = createDesktopNotification({
   blockedOrientation: 'portrait',
   onlyMobile: false,
+  customHTML: `<div class="myNotificationClass">Hello, that is my custom notification!</div><img src="./src/img.png" alt="my icon">`,
 });
 ```
 
@@ -22,13 +23,6 @@ var TouchDeviceNotification = createDesktopNotification({
 |hideAnimation|string|''|pass the string with animation classes you want to set on notification hiding (like animate.css classes 'animated fadeOut)|
 |hideAnimationDuration|number|0/400|duration of hideAnimation (if no hideAnimation default is 0; if hideAnimation is passed and hideAnimationDuration is not set - default is 400 (ms))|
 |customHTML|string|false|custom markup of the notification. Markup you pass will be wrapped into main notification container with build in styles. Remember that you need to style all the custom markup on your own, so provide your own id/classes for styling. Example: 
-```js
-var TouchDeviceNotification = createDesktopNotification({
-  blockedOrientation: 'portrait',
-  onlyMobile: false,
-  customHTML: `<div class="myNotificationClass">Hello, that is my custom notification!</div><img src="./src/img.png" alt="my icon">`,
-});
-```
 
 
 ## DesktopNotification Settings
@@ -38,6 +32,7 @@ Pass the settings into creating function. For example:
 ```js
 var DesktopNotification = createDesktopNotification({
   allowontentShow: false,
+  customHTML: `<div class="myNotificationClass">Hello, that is my custom notification!</div><img src="./src/img.png" alt="my icon">`,
 });
 ```
 
@@ -52,14 +47,7 @@ iconPath|string or SVGHTMLElement|default svg icon|path to icon or svg icon (ava
 appearAnimation|string|''|pass the string with animation classes you want to set on notification appearance (like animate.css classes 'animated fadeIn)|
 hideAnimation|string|''|pass the string with animation classes you want to set on notification hiding (like animate.css classes 'animated fadeOut)|
 hideAnimationDuration|number|0/400|duration of hideAnimation (if no hideAnimation default is 0; if hideAnimation is passed and hideAnimationDuration is not set - default is 400 (ms))|
-|customHTML|string|false|custom markup of the notification. Markup you pass will be wrapped into main notification container with build in styles. Remember that you need to style all the custom markup on your own, so provide your own id/classes for styling. Example: 
-```js
-var TouchDeviceNotification = createDesktopNotification({
-  blockedOrientation: 'portrait',
-  onlyMobile: false,
-  customHTML: `<div class="myNotificationClass">Hello, that is my custom notification!</div><img src="./src/img.png" alt="my icon">`,
-});
-```
+|customHTML|string|false|custom markup of the notification. Markup you pass will be wrapped into main notification container with build in styles. Remember that you need to style all the custom markup on your own, so provide your own id/classes for styling.
 
 ## DesktopNotification API
 
@@ -73,6 +61,7 @@ desktopNotificationInit.init();
 |Method|Description|
 |---|---|
 |init()|Creating HTMLElement, appending it in markup and starting notification event listeners (start notification)|
+|destroy()|to stop notification and remove it from markup ( you can still use it again with all the settings passed before using init() method to the variable notification was stored in or you can set variable with notification to null for full destruction)|
 
 ## TouchDeviceNotification API
 
@@ -86,3 +75,4 @@ desktopNotificationInit.init();
 |Method|Description|
 |---|---|
 |init()|Creating HTMLElement, appending it in markup and starting notification event listeners (start notification)|
+|destroy()|to stop notification and remove it from markup ( you can still use it again with all the settings passed before using init() method to the variable notification was stored in or you can set variable with notification to null for full destruction)|
