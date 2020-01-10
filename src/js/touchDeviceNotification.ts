@@ -90,15 +90,15 @@ class TouchDeviceNotification extends NotificationClass {
 
  const a = createTouchDeviceNotification({
    blockedOrientation: 'landscape',
-   appearAnimation: 'animated fadeIn',
-   hideAnimation: 'animated fadeOut',
+   //appearAnimation: 'animated fadeIn',
+   //hideAnimation: 'animated fadeOut',
    responsivePortraitBreak: 769,
    responsiveLandscapeBreak: 1025,
  });
  a.init();
- setTimeout(()=> {
-  a.destroy();
- }, 5000)
- setTimeout(()=> {
-  a.init();
- }, 10000)
+//  setTimeout(()=> {
+//   a.destroy();
+//  }, 5000)
+//  setTimeout(()=> {
+//   a.init();
+//  }, 10000)

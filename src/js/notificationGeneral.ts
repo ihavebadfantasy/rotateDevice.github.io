@@ -5,7 +5,6 @@ const NOTIFICATION_EXTRA_MESSAGE_CLASS = 'notification-extra-message';
 const NOTIFICATION_IMAGE_WRAPPER_CLASS = 'notification-img-wrapper';
 const DEFAULT_ICON_CLASS = 'default-icon';
 const contentWrapper = document.body;
-const ORIENTATIONCHANGE_DELAY = 50; 
 
 export abstract class NotificationClass {
   type: string;
@@ -127,6 +126,9 @@ export abstract class NotificationClass {
     window.addEventListener('click', () => {
       this.hideNotification();
     });
+    window.addEventListener('touchstart', () => {
+      this.hideNotification();
+    }, false);
   }
 
   abstract startNotification(): void; 
@@ -138,11 +140,15 @@ export abstract class NotificationClass {
         this.startNotification();
         this.initialized = true;
       }
-      window.addEventListener('resize', () => {
-        setTimeout( ()=> {
+      if (this.type === 'touchDevice') {
+        window.addEventListener('orientationchange', () => {
           this.startNotification();
-        }, ORIENTATIONCHANGE_DELAY)
-      });
+        })
+      } else {
+        window.addEventListener('resize', () => {
+          this.startNotification();
+        });
+      }
     }
   }
 
