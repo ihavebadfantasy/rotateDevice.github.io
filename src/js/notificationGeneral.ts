@@ -19,7 +19,7 @@ export abstract class NotificationClass {
   hideAnimation: string;
   hideAnimationDuration: number;
   appearAnimationArr?: string[] | [];
-  hideAnimationArr?: string[]| [];
+  hideAnimationArr?: string[] | [];
   notificationState: boolean;
   customHTML: string | boolean;
   initialized: boolean;
@@ -33,14 +33,14 @@ export abstract class NotificationClass {
     this.iconPath = opts.iconPath;
     this.appearAnimation = opts.appearAnimation;
     this.hideAnimation = opts.hideAnimation;
-    this.hideAnimationDuration = (opts.hideAnimationDuration === 0 && opts.hideAnimation !== '')? (400):(opts.hideAnimationDuration);
+    this.hideAnimationDuration = (opts.hideAnimationDuration === 0 && opts.hideAnimation !== '') ? (400) : (opts.hideAnimationDuration);
     this.notificationState = false;
     this.customHTML = opts.customHTML;
     this.initialized = false;
   }
 
   protected deviceType(): string {
-    return /Mobile|webOS|BlackBerry|IEMobile|MeeGo|mini|Fennec|Windows Phone|Android|iP(ad|od|hone)/i.test(navigator.userAgent)?('touchDevice'):('desktop')
+    return /Mobile|webOS|BlackBerry|IEMobile|MeeGo|mini|Fennec|Windows Phone|Android|iP(ad|od|hone)/i.test(navigator.userAgent) ? ('touchDevice') : ('desktop')
   }
 
   protected getWindowWidth(): number {
@@ -77,24 +77,24 @@ export abstract class NotificationClass {
     this.hideAnimationArr = this.getAnimationClasses(this.hideAnimation);
   }
 
-  protected getAnimationClasses (str: string): string[] | [] {
+  protected getAnimationClasses(str: string): string[] | [] {
     if (str.length > 0) {
       return str.split(' ');
     }
     return [];
   }
 
-  protected setAnimationClasses (block: HTMLElement, classes: string[] | []): void {
+  protected setAnimationClasses(block: HTMLElement, classes: string[] | []): void {
     if (classes.length > 0) {
-      classes.forEach( (value: string) => {
+      classes.forEach((value: string) => {
         block.classList.add(value);
       });
     }
   }
 
-  protected removeAnimationClasses (block: HTMLElement, classes: string[] | []): void {
+  protected removeAnimationClasses(block: HTMLElement, classes: string[] | []): void {
     if (classes.length > 0) {
-      classes.forEach( (value: string) => {
+      classes.forEach((value: string) => {
         block.classList.remove(value);
       });
     }
@@ -115,7 +115,7 @@ export abstract class NotificationClass {
     this.removeAnimationClasses(this.notificationWrapper, this.appearAnimationArr);
     this.setAnimationClasses(this.notificationWrapper, this.hideAnimationArr);
     this.notificationState = false;
-    setTimeout( () => {
+    setTimeout(() => {
       this.notificationWrapper.classList.remove(this.showClass);
       contentWrapper.style.overflow = '';
       this.removeAnimationClasses(this.notificationWrapper, this.hideAnimationArr);
@@ -131,9 +131,9 @@ export abstract class NotificationClass {
     }, false);
   }
 
-  abstract startNotification(): void; 
+  abstract startNotification(): void;
 
-  init() {
+  initialization() {
     if (this.type === this.deviceType()) {
       if (!this.notificationWrapper) {
         this.buildNotificationHtml();
@@ -152,13 +152,28 @@ export abstract class NotificationClass {
     }
   }
 
+  init() {
+    this.initialization();
+    window.addEventListener('resize', () => {
+      if (this.deviceType() === this.type && !this.initialized) {
+        this.initialization();
+      } else if (this.deviceType() !== this.type && this.initialized) {
+        this.destroy();
+      }
+    })
+  }
+
   destroy() {
+    console.log(this);
     if (this.initialized) {
-      this.hideNotification();
-      setTimeout( ()=> {
-        contentWrapper.removeChild(this.notificationWrapper);
-        this.notificationWrapper = null;
-      }, this.hideAnimationDuration);
+      this.notificationState = false;
+      this.notificationWrapper.classList.remove(this.showClass);
+      contentWrapper.style.overflow = '';
+      this.removeAnimationClasses(this.notificationWrapper, this.hideAnimationArr);
+      this.removeAnimationClasses(this.notificationWrapper, this.appearAnimationArr);
+      this.initialized = false;
+      contentWrapper.removeChild(this.notificationWrapper);
+      this.notificationWrapper = null;
     }
   }
 
