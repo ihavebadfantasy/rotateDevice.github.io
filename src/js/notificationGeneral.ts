@@ -23,6 +23,7 @@ export abstract class NotificationClass {
   hideAnimationArr?: string[]| [];
   notificationState: boolean;
   customHTML: string | boolean;
+  initialized: boolean;
   constructor(opts: any) {
     this.type = opts.type;
     this.mainMessage = opts.mainMessage;
@@ -36,6 +37,7 @@ export abstract class NotificationClass {
     this.hideAnimationDuration = (opts.hideAnimationDuration === 0 && opts.hideAnimation !== '')? (400):(opts.hideAnimationDuration);
     this.notificationState = false;
     this.customHTML = opts.customHTML;
+    this.initialized = false;
   }
 
   protected deviceType(): string {
@@ -57,13 +59,14 @@ export abstract class NotificationClass {
       if (this.iconPath[0] !== '<') {
         this.iconPath = `<img src="${this.iconPath}" alt="icon">`
       }
+      let extraMessage: HTMLElement | string;
       if (this.extraMessage) {
-        this.extraMessage = `<p class="${this.notificationClassPrefix}-${NOTIFICATION_EXTRA_MESSAGE_CLASS}">${this.extraMessage}</p>`
+        extraMessage = `<p class="${this.notificationClassPrefix}-${NOTIFICATION_EXTRA_MESSAGE_CLASS}">${this.extraMessage}</p>`
       } else {
-        this.extraMessage = '';
+        extraMessage = '';
       }
       notyWrapper.innerHTML = `<div class="${this.notificationClassPrefix}-${NOTIFICATION_BLOCK_CLASS}">
-      <p class="${this.notificationClassPrefix}-${NOTIFICATION_MAIN_MESSAGE_CLASS}">${this.mainMessage}</p> <div class="${this.notificationClassPrefix}-${NOTIFICATION_IMAGE_WRAPPER_CLASS} ${this.notificationClassPrefix}-${DEFAULT_ICON_CLASS}">${this.iconPath}</div> ${this.extraMessage}
+      <p class="${this.notificationClassPrefix}-${NOTIFICATION_MAIN_MESSAGE_CLASS}">${this.mainMessage}</p> <div class="${this.notificationClassPrefix}-${NOTIFICATION_IMAGE_WRAPPER_CLASS} ${this.notificationClassPrefix}-${DEFAULT_ICON_CLASS}">${this.iconPath}</div> ${extraMessage}
       </div>`
     } else {
       notyWrapper.innerHTML = this.customHTML;
@@ -133,6 +136,7 @@ export abstract class NotificationClass {
       if (!this.notificationWrapper) {
         this.buildNotificationHtml();
         this.startNotification();
+        this.initialized = true;
       }
       window.addEventListener('resize', () => {
         setTimeout( ()=> {
@@ -143,11 +147,13 @@ export abstract class NotificationClass {
   }
 
   destroy() {
+    if (this.initialized) {
       this.hideNotification();
       setTimeout( ()=> {
         contentWrapper.removeChild(this.notificationWrapper);
         this.notificationWrapper = null;
       }, this.hideAnimationDuration);
+    }
   }
 
 }

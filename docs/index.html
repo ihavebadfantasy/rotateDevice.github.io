@@ -1,91 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Rotate Device</title>
 <link href="./assets/css/vendors.css" rel="stylesheet"><link href="./assets/css/app.css" rel="stylesheet"></head>
+
 <body>
+
   <body>
-    <div class="wrapper">
+    <div class="page-wrapper">
+      <section class="touch-settings section-margin-bottom">
+        <h2 class="section-title">TouchDeviceNotification Settings
+        </h2>
+        <p class="tezt-block">Pass the settings into creating function. For example:</p>
+        <div class="code-block">
+          <code>
+            <span class="red">var </span>TouchDeviceNotification <span class="red">= </span><span
+              class="violet">createDesktopNotification</span>({ <br>
+            blockedOrientation<span class="red">:</span> 'portrait', <br>
+            customHTML<span class="red">:</span>
+            `&lt;div class="myNotificationClass"&gt;Hello, that is my custom notification!&lt;/div&gt;&lt;img
+            src="./src/img.png" alt="my icon"&gt;`
+            , <br>
+            });
+          </code>
+        </div>
+        <table class="options-table">
+          <tr>
+          <th>Setting</th>
+          <th>Type</th>
+          <th>Default Value</th>
+          <th>Description</th>
+          </tr>
+          <tr>
+            <td>blockedOrientation</td>
+            <td>string</td>
+            <td>'landscape'</td>
+            <td>orientation of device you want to block</td>
+          </tr>
+          <tr>
+            <td>allowContentShow</td>
+            <td>boolean</td>
+            <td>true</td>
+            <td>	allow site/app content show on tap</td>
+          </tr>
+          <tr>
+            <td>mainMessage</td>
+            <td>string</td>
+            <td>'Please turn your device'</td>
+            <td>general notification message (available if you use default notification template)</td>
+          </tr>
+          <tr>
+            <td>extraMessage</td>
+            <td>string</td>
+            <td>'or tap the screen to continue'</td>
+            <td>extra notification message (available if you use default notification template and allowContentShow: true)</td>
+          </tr>
+          <tr>
+            <td>responsivePortraitBreak</td>
+            <td>number</td>
+            <td>767</td>
+            <td>determine the breakpoint on which to show notification for mobile phones (default size is the one that will work on all the mobile phones but not on tablets)</td>
+          </tr>
+          <tr>
+            <td>responsiveLandscapeBreak</td>
+            <td>number</td>
+            <td>850</td>
+            <td>determine the breakpoint on which to show notification for mobile phones (default size is the one that will work on all the mobile phones but not on tablets)</td>
+          </tr>
+          <tr>
+            <td>iconPath</td>
+            <td>string</td>
+            <td>default svg icon</td>
+            <td>path to icon (any format) or svg icon(available if you use default notification template)
+              </td>
+          </tr>
+          <tr>
+            <td>appearAnimation</td>
+            <td>string</td>
+            <td>''</td>
+            <td>pass the string with animation classes you want to set on notification appearance (like animate.css classes 'animated fadeIn)
+              </td>
+          </tr>
+          <tr>
+            <td>hideAnimation</td>
+            <td>string</td>
+            <td>''</td>
+            <td>pass the string with animation classes you want to set on notification hiding (like animate.css classes 'animated fadeOut)</td>
+          </tr>
+          <tr>
+            <td>hideAnimationDuration</td>
+            <td>number</td>
+            <td>0/400</td>
+            <td>duration of hideAnimation (if no hideAnimation default is 0; if hideAnimation is passed and hideAnimationDuration is not set - default is 400 (ms))
+              </td>
+          </tr>
+          <tr>
+              <td>customHTML</td>
+              <td>string</td>
+              <td>false</td>
+              <td>custom markup of the notification. Markup you pass will be wrapped into main notification container with build in styles. Remember that you need to style all the custom markup on your own, so provide your own id/classes for styling.</td>
+            </tr>
+        </table>
+      </section>
+      <!-- /.touch-settings -->
+    </div>
+    <!-- /.page-wrapper -->
+  <script type="text/javascript" src="./assets/js/vendors.js"></script><script type="text/javascript" src="./assets/js/app.js"></script></body>
 
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi nihil ea autem, illum delectus id. Libero maxime necessitatibus, eligendi id aspernatur nesciunt excepturi? Optio magni officia modi, dolor omnis voluptates.
-        Reiciendis illum exercitationem rerum distinctio non nisi, sequi tenetur? Error laborum repudiandae magni quas, ratione odit sapiente in labore possimus mollitia fugiat sunt cupiditate quidem autem eum ipsam. Quibusdam, quam.
-        Libero harum quisquam dolores quasi adipisci mollitia. Assumenda quae nisi iure reprehenderit maxime vel? Dolorum ipsum a sequi, magnam quibusdam animi asperiores odit temporibus laboriosam odio autem corporis facilis est.
-        Reiciendis praesentium qui, modi ea in eligendi aspernatur odit dolorem velit nam perspiciatis blanditiis ex libero fuga eum voluptatibus suscipit? Unde pariatur perspiciatis dolore nostrum illum perferendis, necessitatibus alias velit!
-        Amet cumque recusandae voluptatibus aspernatur officiis. Consequatur alias error autem possimus magni officiis tempora delectus maxime molestiae. Expedita dolore voluptas vel. Aut odit esse magni est quam ut, pariatur quisquam?
-        Magnam accusamus quasi quis provident debitis enim consequatur eius! At totam temporibus officiis, deserunt laudantium dolore esse optio reiciendis, itaque aperiam cum blanditiis, quidem sit porro expedita mollitia numquam consectetur.
-        Sunt iusto consequatur quaerat? Dignissimos dolorum accusantium ex enim quae sed provident veniam, tempore dolore similique perspiciatis nostrum quis unde ab, laborum doloribus porro est molestiae commodi, harum doloremque culpa.
-        Est consequatur iste perspiciatis veritatis molestiae nihil eius distinctio quos ipsa sed, soluta harum, aliquam, molestias maxime nam! Quas saepe officia quia consectetur, repellendus debitis perspiciatis laboriosam exercitationem at tempora?
-        Tempore dolore illum vero. Dolore, earum labore. Dignissimos reprehenderit nostrum, quae unde iste tenetur suscipit, id praesentium velit quibusdam autem soluta pariatur corrupti, qui itaque sunt numquam blanditiis corporis laboriosam?
-        Odio magni fugiat ipsa, impedit sed accusamus eligendi expedita exercitationem aliquid unde, vitae blanditiis ducimus doloremque maxime. Vero at esse cupiditate nostrum, cumque voluptas molestiae iste facilis a hic labore.
-        Ratione dolor, labore voluptatibus quos nisi ex numquam itaque nulla fugiat ipsum tempora iste maiores consequuntur laboriosam voluptates at. Perferendis ut praesentium, fugit accusantium sunt beatae reiciendis? Molestiae, officiis ullam?
-        Inventore itaque laboriosam dicta deserunt tenetur blanditiis atque, natus, quae veniam vero quibusdam maiores modi exercitationem rerum hic nulla perferendis totam expedita voluptates molestias. Amet aliquam suscipit rerum veritatis delectus?
-        Suscipit inventore perferendis itaque enim culpa eaque officiis! Deserunt cum laborum doloremque nobis, eius eaque enim, quam praesentium totam expedita est corporis provident porro corrupti officiis laudantium in velit voluptatem!
-        Placeat quaerat delectus aut, eligendi fuga tempore facere non quam provident deleniti odio nihil eius repellendus cum mollitia ut eum, veniam soluta quo quas quasi? Aliquid eligendi accusamus magnam consectetur.
-        Iure, nobis ratione? Cupiditate cum assumenda eveniet laudantium, neque sapiente, quis quae dolore, ut fugit ullam officia nulla ea velit ipsa? Ex sint necessitatibus laudantium tempore illo adipisci, doloremque iusto!
-        Minima perspiciatis deleniti quia dolor doloremque provident dignissimos autem culpa tenetur, omnis fugiat. Earum, tenetur quae soluta hic error dolor, incidunt fugit esse sequi inventore beatae ullam, ducimus at quia?
-        Earum repellat vero magni in quos labore voluptatem aut sint? Alias aut sed earum. Porro ea praesentium fugit ab. Earum quo excepturi asperiores nam. Commodi laudantium sunt nihil debitis eaque?
-        Provident harum, enim nulla nobis adipisci quisquam consequatur corporis repellendus quidem nesciunt eaque. Consequatur, cum libero voluptas provident maiores dolor fugiat commodi iste unde soluta assumenda, odio amet reiciendis quos.
-        Voluptatem veritatis molestias quasi rem ducimus quo. Aliquam sed expedita ea iste iure esse assumenda nihil voluptate vel? Sint minima odit porro explicabo error dicta impedit at corporis, esse quibusdam?
-        Deserunt atque ad, harum dolore magnam dolores, consectetur quia eos fugit incidunt facere odit porro asperiores! Veniam ipsam iste illo deleniti quisquam quasi in laudantium facilis? Nemo ipsa cumque laborum.</p>
-      </div>
-      <!-- /.wrapper -->
-
-<div class="wrapper">
-  <h1>Some Content</h1>
-</div>
-<div class="wrapper">
-    <h1>Some Content</h1>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur error eius illo saepe consequuntur est ab eveniet fugit animi dolore, ea obcaecati, similique suscipit quaerat soluta ullam vel. Perspiciatis, saepe.
-    Eos at non facere consequatur deserunt praesentium rem quam voluptates ad nihil aspernatur nemo quidem, quasi nostrum ipsum minus. Aliquid vero pariatur tempore distinctio cum suscipit facere et minima! Illum?
-    Voluptates, consectetur sapiente, sint facilis quidem aspernatur molestias aperiam sunt fugiat eius similique temporibus cum, animi distinctio. Sunt rem ducimus quis, id exercitationem, at voluptate eaque itaque voluptas necessitatibus suscipit.
-    Atque cumque natus velit facere deserunt hic accusamus distinctio et molestiae nulla excepturi dicta, adipisci voluptas architecto soluta libero quas id! Optio voluptatum aspernatur ipsum excepturi laboriosam impedit fugit nesciunt!
-    Omnis ex quisquam, incidunt perferendis repellendus cumque in sed sapiente commodi aspernatur maxime ipsum dolor illum, quis vel sequi facilis quia delectus? Earum esse aut velit nostrum deserunt. Suscipit, eum.
-    Maiores aperiam nemo consectetur accusantium labore modi, eos aliquam obcaecati dolorum quo! Animi incidunt provident labore asperiores cumque fugit eum perspiciatis! Aspernatur vitae libero mollitia error sint! Voluptates, doloremque minima!
-    Cumque quidem, sed atque dolor quaerat fugiat officiis omnis nihil facilis quia. Excepturi vero minus dolore aliquid veritatis sint obcaecati ducimus accusantium vitae ipsa neque quam voluptate placeat, fuga sit!
-    Recusandae sapiente, pariatur, sit omnis cupiditate inventore eaque nam consectetur, ea ab iste laborum ullam eligendi? Omnis cumque voluptatem vitae, sed laudantium libero cupiditate modi maiores, saepe minima consectetur magnam.
-    Dolores laboriosam id laborum odit, atque voluptatum veniam eaque optio minus reiciendis reprehenderit, consectetur rem illum dignissimos, dicta amet voluptas nihil corrupti animi. Id dicta totam laborum harum cumque eius.
-    Repellat quasi quas repudiandae necessitatibus, beatae, sed voluptatem consequatur cupiditate earum id facere aspernatur voluptas officia, magni amet vel. Totam ratione minus sit explicabo alias qui aperiam fugiat. Dolor, vitae!
-    Nobis numquam deleniti saepe error optio cupiditate porro aliquid quod blanditiis fugit? Corrupti, voluptatibus quod deleniti sed provident earum ullam quae delectus repudiandae sunt ex in nostrum alias! Ab, dicta.
-    Amet illo ipsa suscipit molestiae dolores libero perspiciatis laudantium ullam culpa tempora? Nostrum, dolores perspiciatis aut distinctio voluptatem explicabo non quaerat, pariatur veritatis ut, voluptatibus obcaecati alias deserunt illo magni.
-    Molestiae eligendi quidem, fuga necessitatibus quia possimus voluptas minima dolores eum, laboriosam perferendis hic quibusdam quisquam laudantium, quo itaque assumenda ad id repellendus voluptatibus a voluptatem nisi. Facere, minus id?
-    Modi id asperiores animi doloribus labore, minima reprehenderit recusandae cum veritatis voluptatem voluptates iste sint alias esse soluta repellat eius distinctio necessitatibus aliquam sapiente nesciunt. Beatae consequatur officia excepturi ab!
-    Temporibus, veniam libero? Nisi omnis sit dolorum cum molestiae aliquid incidunt dicta totam, eum quis veniam? Amet, tenetur natus impedit ullam, aliquid unde voluptates placeat suscipit vel, cupiditate aliquam quod.
-    Illo tempore dolorum voluptatibus corporis iste suscipit quia dolorem veniam, eaque non esse, fugiat, accusantium minima. Vel aperiam eveniet, vitae officia a illum natus officiis consequuntur eligendi dolor voluptatibus suscipit.
-    Quasi laboriosam, perferendis debitis esse id ducimus quisquam aspernatur recusandae, ad reprehenderit nisi corporis qui aliquam quaerat nobis ratione aperiam repudiandae hic dolorem. Impedit magnam culpa ipsam et dicta totam!
-    Earum distinctio quod doloremque similique aliquam illo maxime? Consequuntur ipsa totam quod reiciendis suscipit laudantium a esse, labore at, cupiditate perspiciatis reprehenderit obcaecati odit vel autem aliquid quia atque consectetur.
-    Dolore, veniam fugiat dolorem aut, itaque repudiandae odio iste eveniet minus est, libero illo quas praesentium sunt? Sint autem, assumenda reiciendis perferendis earum quos cupiditate culpa ducimus! Nisi, doloribus molestiae?
-    Accusantium omnis, recusandae impedit corporis nam veniam voluptas optio, incidunt esse voluptatum molestias. Optio amet libero magnam explicabo tempora ea, laborum corporis totam ad, quidem consequuntur ab dolorem? In, deleniti!
-    Ea dignissimos esse sunt quas error explicabo nobis, animi porro quaerat, velit aut corporis dolorum facilis accusamus alias cumque reiciendis omnis corrupti, distinctio repellat architecto ipsa? Animi sequi velit harum!
-    Architecto placeat ab optio necessitatibus magnam dolor rerum sequi possimus impedit suscipit ipsum soluta, corporis distinctio nostrum facilis recusandae perspiciatis illo voluptates asperiores voluptas deleniti? Natus dolor autem earum modi.
-  </div>
-<!-- /.wrapper -->
-<div class="wrapper">
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi nihil ea autem, illum delectus id. Libero maxime necessitatibus, eligendi id aspernatur nesciunt excepturi? Optio magni officia modi, dolor omnis voluptates.
-  Reiciendis illum exercitationem rerum distinctio non nisi, sequi tenetur? Error laborum repudiandae magni quas, ratione odit sapiente in labore possimus mollitia fugiat sunt cupiditate quidem autem eum ipsam. Quibusdam, quam.
-  Libero harum quisquam dolores quasi adipisci mollitia. Assumenda quae nisi iure reprehenderit maxime vel? Dolorum ipsum a sequi, magnam quibusdam animi asperiores odit temporibus laboriosam odio autem corporis facilis est.
-  Reiciendis praesentium qui, modi ea in eligendi aspernatur odit dolorem velit nam perspiciatis blanditiis ex libero fuga eum voluptatibus suscipit? Unde pariatur perspiciatis dolore nostrum illum perferendis, necessitatibus alias velit!
-  Amet cumque recusandae voluptatibus aspernatur officiis. Consequatur alias error autem possimus magni officiis tempora delectus maxime molestiae. Expedita dolore voluptas vel. Aut odit esse magni est quam ut, pariatur quisquam?
-  Magnam accusamus quasi quis provident debitis enim consequatur eius! At totam temporibus officiis, deserunt laudantium dolore esse optio reiciendis, itaque aperiam cum blanditiis, quidem sit porro expedita mollitia numquam consectetur.
-  Sunt iusto consequatur quaerat? Dignissimos dolorum accusantium ex enim quae sed provident veniam, tempore dolore similique perspiciatis nostrum quis unde ab, laborum doloribus porro est molestiae commodi, harum doloremque culpa.
-  Est consequatur iste perspiciatis veritatis molestiae nihil eius distinctio quos ipsa sed, soluta harum, aliquam, molestias maxime nam! Quas saepe officia quia consectetur, repellendus debitis perspiciatis laboriosam exercitationem at tempora?
-  Tempore dolore illum vero. Dolore, earum labore. Dignissimos reprehenderit nostrum, quae unde iste tenetur suscipit, id praesentium velit quibusdam autem soluta pariatur corrupti, qui itaque sunt numquam blanditiis corporis laboriosam?
-  Odio magni fugiat ipsa, impedit sed accusamus eligendi expedita exercitationem aliquid unde, vitae blanditiis ducimus doloremque maxime. Vero at esse cupiditate nostrum, cumque voluptas molestiae iste facilis a hic labore.
-  Ratione dolor, labore voluptatibus quos nisi ex numquam itaque nulla fugiat ipsum tempora iste maiores consequuntur laboriosam voluptates at. Perferendis ut praesentium, fugit accusantium sunt beatae reiciendis? Molestiae, officiis ullam?
-  Inventore itaque laboriosam dicta deserunt tenetur blanditiis atque, natus, quae veniam vero quibusdam maiores modi exercitationem rerum hic nulla perferendis totam expedita voluptates molestias. Amet aliquam suscipit rerum veritatis delectus?
-  Suscipit inventore perferendis itaque enim culpa eaque officiis! Deserunt cum laborum doloremque nobis, eius eaque enim, quam praesentium totam expedita est corporis provident porro corrupti officiis laudantium in velit voluptatem!
-  Placeat quaerat delectus aut, eligendi fuga tempore facere non quam provident deleniti odio nihil eius repellendus cum mollitia ut eum, veniam soluta quo quas quasi? Aliquid eligendi accusamus magnam consectetur.
-  Iure, nobis ratione? Cupiditate cum assumenda eveniet laudantium, neque sapiente, quis quae dolore, ut fugit ullam officia nulla ea velit ipsa? Ex sint necessitatibus laudantium tempore illo adipisci, doloremque iusto!
-  Minima perspiciatis deleniti quia dolor doloremque provident dignissimos autem culpa tenetur, omnis fugiat. Earum, tenetur quae soluta hic error dolor, incidunt fugit esse sequi inventore beatae ullam, ducimus at quia?
-  Earum repellat vero magni in quos labore voluptatem aut sint? Alias aut sed earum. Porro ea praesentium fugit ab. Earum quo excepturi asperiores nam. Commodi laudantium sunt nihil debitis eaque?
-  Provident harum, enim nulla nobis adipisci quisquam consequatur corporis repellendus quidem nesciunt eaque. Consequatur, cum libero voluptas provident maiores dolor fugiat commodi iste unde soluta assumenda, odio amet reiciendis quos.
-  Voluptatem veritatis molestias quasi rem ducimus quo. Aliquam sed expedita ea iste iure esse assumenda nihil voluptate vel? Sint minima odit porro explicabo error dicta impedit at corporis, esse quibusdam?
-  Deserunt atque ad, harum dolore magnam dolores, consectetur quia eos fugit incidunt facere odit porro asperiores! Veniam ipsam iste illo deleniti quisquam quasi in laudantium facilis? Nemo ipsa cumque laborum.</p>
-</div>
-<!-- /.wrapper -->
-
-<script type="text/javascript" src="./assets/js/vendors.js"></script><script type="text/javascript" src="./assets/js/app.js"></script></body>
-</body>
 </html>

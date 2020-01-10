@@ -31,7 +31,7 @@ Pass the settings into creating function. For example:
 
 ```js
 var DesktopNotification = createDesktopNotification({
-  allowontentShow: false,
+  allowContentShow: false,
   customHTML: `<div class="myNotificationClass">Hello, that is my custom notification!</div><img src="./src/img.png" alt="my icon">`,
 });
 ```

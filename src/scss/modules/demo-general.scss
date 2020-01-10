@@ -1,8 +1,67 @@
-.wrapper{
-  display: flex;
-  max-width: 1200px;
-  height: 100vh;
-  justify-content: center;
-  align-items: center;
+*{
+  margin: 0;
+  padding: 0;
+  padding-block-end: 0;
+  padding-block-start: 0;
+}
+
+.page-wrapper {
+  max-width: 1250px;
   margin: 0 auto;
+  padding: 15px;
+  font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1.2;
+  @include media('<=largePhone') {
+    font-size: 14px;
+  }
+}
+
+.section-title {
+  font-size: 24px;
+  margin-bottom: 30px;
+  line-height: 1.4;
+  border-bottom: 1px solid map-get($base, 'base-border-color');
+  @include media('<=largePhone') {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+}
+
+.code-block {
+  background-color: map-get($base, 'secondary-background-color');
+  margin: 20px 0;
+  @include media('<=largePhone') {
+    margin: 10px 0;
+  }
+}
+
+.red{
+  color: red;
+}
+
+.violet {
+  color: violet;
+}
+
+.options-table{
+  margin: 20px 0;
+  border-collapse: collapse;
+  tr:nth-child(2n) {
+    background-color: map-get($base, 'secondary-background-color' );
+  }
+  td, th{
+    border: 1px solid map-get($base, 'base-border-color');
+    padding: 15px;
+  }
+  th{
+    text-align: center;
+  }
+}
+
+.section-margin-bottom {
+  margin-bottom: 50px;
+  @include media('<=largePhone') {
+    margin-bottom: 30px;
+  }
 }
