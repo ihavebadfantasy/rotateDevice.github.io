@@ -21,6 +21,9 @@ module.exports = {
   output: {
     filename: `${PATHS.assets}js/[name].js`,
     path: PATHS.dist,
+    // library: libraryName,
+    libraryTarget: 'umd',
+    umdNamedDefine: true,
     publicPath: '/'
   },
   optimization: {
@@ -47,21 +50,6 @@ module.exports = {
       {
         test: /\.tsx?$/,
         loader: "ts-loader",
-      },
-      {
-        test: /\.vue$/,
-        loader: 'vue-loader',
-        options: {
-          loader: {
-            scss: 'vue-style-loader!css-loader!sass-loader'
-          }
-        }
-      }, {
-        test: /\.(png|jpg|gif|svg)$/,
-        loader: 'file-loader',
-        options: {
-          name: '[name].[ext]'
-        }
       }, {
         test: /\.scss$/,
         use: [
@@ -120,10 +108,7 @@ module.exports = {
       filename: './index.html',
       inject: true
     }),
-    new CopyWebpackPlugin([{
-        from: `${PATHS.src}/img`,
-        to: `${PATHS.assets}img`
-      },
+    new CopyWebpackPlugin([
       {
         from: `${PATHS.src}/static`,
         to: ''

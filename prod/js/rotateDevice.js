@@ -215,18 +215,18 @@ var TouchDeviceNotification = /** @class */ (function (_super) {
 }(notificationGeneral_1.NotificationClass));
 var a = createTouchDeviceNotification({
     blockedOrientation: 'landscape',
-    appearAnimation: 'animated fadeIn',
-    hideAnimation: 'animated fadeOut',
+    //appearAnimation: 'animated fadeIn',
+    //hideAnimation: 'animated fadeOut',
     responsivePortraitBreak: 769,
     responsiveLandscapeBreak: 1025,
 });
 a.init();
-setTimeout(function () {
-    a.destroy();
-}, 5000);
-setTimeout(function () {
-    a.init();
-}, 10000);
+//  setTimeout(()=> {
+//   a.destroy();
+//  }, 5000)
+//  setTimeout(()=> {
+//   a.init();
+//  }, 10000)
 
 
 /***/ }),
@@ -243,7 +243,6 @@ var NOTIFICATION_EXTRA_MESSAGE_CLASS = 'notification-extra-message';
 var NOTIFICATION_IMAGE_WRAPPER_CLASS = 'notification-img-wrapper';
 var DEFAULT_ICON_CLASS = 'default-icon';
 var contentWrapper = document.body;
-var ORIENTATIONCHANGE_DELAY = 50;
 var NotificationClass = /** @class */ (function () {
     function NotificationClass(opts) {
         this.type = opts.type;
@@ -339,8 +338,11 @@ var NotificationClass = /** @class */ (function () {
         window.addEventListener('click', function () {
             _this.hideNotification();
         });
+        window.addEventListener('touchstart', function () {
+            _this.hideNotification();
+        }, false);
     };
-    NotificationClass.prototype.init = function () {
+    NotificationClass.prototype.initialization = function () {
         var _this = this;
         if (this.type === this.deviceType()) {
             if (!this.notificationWrapper) {
@@ -348,21 +350,41 @@ var NotificationClass = /** @class */ (function () {
                 this.startNotification();
                 this.initialized = true;
             }
-            window.addEventListener('resize', function () {
-                setTimeout(function () {
+            if (this.type === 'touchDevice') {
+                window.addEventListener('orientationchange', function () {
                     _this.startNotification();
-                }, ORIENTATIONCHANGE_DELAY);
-            });
+                });
+            }
+            else {
+                window.addEventListener('resize', function () {
+                    _this.startNotification();
+                });
+            }
         }
     };
-    NotificationClass.prototype.destroy = function () {
+    NotificationClass.prototype.init = function () {
         var _this = this;
+        this.initialization();
+        window.addEventListener('resize', function () {
+            if (_this.deviceType() === _this.type && !_this.initialized) {
+                _this.initialization();
+            }
+            else if (_this.deviceType() !== _this.type && _this.initialized) {
+                _this.destroy();
+            }
+        });
+    };
+    NotificationClass.prototype.destroy = function () {
+        console.log(this);
         if (this.initialized) {
-            this.hideNotification();
-            setTimeout(function () {
-                contentWrapper.removeChild(_this.notificationWrapper);
-                _this.notificationWrapper = null;
-            }, this.hideAnimationDuration);
+            this.notificationState = false;
+            this.notificationWrapper.classList.remove(this.showClass);
+            contentWrapper.style.overflow = '';
+            this.removeAnimationClasses(this.notificationWrapper, this.hideAnimationArr);
+            this.removeAnimationClasses(this.notificationWrapper, this.appearAnimationArr);
+            this.initialized = false;
+            contentWrapper.removeChild(this.notificationWrapper);
+            this.notificationWrapper = null;
         }
     };
     return NotificationClass;
@@ -442,6 +464,8 @@ var DesktopNotification = /** @class */ (function (_super) {
 }(notificationGeneral_1.NotificationClass));
 var b = createDesktopNotification({
     hideAnimation: 'animated fadeOut',
+    desktopHeightBreak: 500,
+    desktopWidthBreak: 900,
 });
 b.init();
 
