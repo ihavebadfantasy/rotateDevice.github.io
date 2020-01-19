@@ -213,20 +213,6 @@ var TouchDeviceNotification = /** @class */ (function (_super) {
     };
     return TouchDeviceNotification;
 }(notificationGeneral_1.NotificationClass));
-var a = createTouchDeviceNotification({
-    blockedOrientation: 'landscape',
-    //appearAnimation: 'animated fadeIn',
-    //hideAnimation: 'animated fadeOut',
-    responsivePortraitBreak: 769,
-    responsiveLandscapeBreak: 1025,
-});
-a.init();
-//  setTimeout(()=> {
-//   a.destroy();
-//  }, 5000)
-//  setTimeout(()=> {
-//   a.init();
-//  }, 10000)
 
 
 /***/ }),
@@ -258,6 +244,7 @@ var NotificationClass = /** @class */ (function () {
         this.notificationState = false;
         this.customHTML = opts.customHTML;
         this.initialized = false;
+        this.startNotification = this.startNotification.bind(this);
     }
     NotificationClass.prototype.deviceType = function () {
         return /Mobile|webOS|BlackBerry|IEMobile|MeeGo|mini|Fennec|Windows Phone|Android|iP(ad|od|hone)/i.test(navigator.userAgent) ? ('touchDevice') : ('desktop');
@@ -343,7 +330,6 @@ var NotificationClass = /** @class */ (function () {
         }, false);
     };
     NotificationClass.prototype.initialization = function () {
-        var _this = this;
         if (this.type === this.deviceType()) {
             if (!this.notificationWrapper) {
                 this.buildNotificationHtml();
@@ -351,14 +337,10 @@ var NotificationClass = /** @class */ (function () {
                 this.initialized = true;
             }
             if (this.type === 'touchDevice') {
-                window.addEventListener('orientationchange', function () {
-                    _this.startNotification();
-                });
+                window.addEventListener('orientationchange', this.startNotification);
             }
             else {
-                window.addEventListener('resize', function () {
-                    _this.startNotification();
-                });
+                window.addEventListener('resize', this.startNotification);
             }
         }
     };
@@ -375,13 +357,15 @@ var NotificationClass = /** @class */ (function () {
         });
     };
     NotificationClass.prototype.destroy = function () {
-        console.log(this);
         if (this.initialized) {
+            if (this.type === 'touchDevice') {
+                window.removeEventListener('orientationchange', this.startNotification);
+            }
+            else {
+                window.removeEventListener('resize', this.startNotification);
+            }
             this.notificationState = false;
-            this.notificationWrapper.classList.remove(this.showClass);
             contentWrapper.style.overflow = '';
-            this.removeAnimationClasses(this.notificationWrapper, this.hideAnimationArr);
-            this.removeAnimationClasses(this.notificationWrapper, this.appearAnimationArr);
             this.initialized = false;
             contentWrapper.removeChild(this.notificationWrapper);
             this.notificationWrapper = null;
@@ -462,12 +446,6 @@ var DesktopNotification = /** @class */ (function (_super) {
     };
     return DesktopNotification;
 }(notificationGeneral_1.NotificationClass));
-var b = createDesktopNotification({
-    hideAnimation: 'animated fadeOut',
-    desktopHeightBreak: 500,
-    desktopWidthBreak: 900,
-});
-b.init();
 
 
 /***/ }),

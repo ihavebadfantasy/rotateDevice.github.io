@@ -100,7 +100,7 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: `${PATHS.assets}css/[name].css`,
+      filename: `${PATHS.assets}css/[name].min.css`,
     }),
     // Copy HtmlWebpackPlugin and change index.html for another html page
     new HtmlWebpackPlugin({

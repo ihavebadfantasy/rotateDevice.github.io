@@ -76,11 +76,3 @@ class DesktopNotification extends NotificationClass {
   }
 
 }
-
-
-const b = createDesktopNotification({
-  hideAnimation: 'animated fadeOut',
-  desktopHeightBreak: 500,
-  desktopWidthBreak: 900,
-});
-b.init();
