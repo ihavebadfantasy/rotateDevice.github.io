@@ -21,9 +21,9 @@
     "url": "https://github.com/ihavebadfantasy/rotateDevice.github.io/issues"
   },
   "keywords": [
-    "ES6",
-    "vanillajsplugin",
-    "plugin",
+    "desktop",
+    "touch-device",
+    "orientation",
     "notification",
     "rotate-device",
     "change-orientation"
