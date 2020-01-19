@@ -1,7 +1,7 @@
 {
-  "name": "webpacktemplate",
+  "name": "rotate-device",
   "version": "1.0.0",
-  "description": "My template",
+  "description": "Plugin rotateDevice has been made to ask the users to rotate device/expand browser window to enjoy your site/app fully!",
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --open --config ./webp-build-config/webpack.dev.conf.js",
@@ -12,21 +12,21 @@
     "> 1%",
     "last 3 version"
   ],
-  "author": "https://github.com/vedees",
+  "author": "https://github.com/ihavebadfantasy",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vedees/webpack-template.git"
+    "url": "git+https://github.com/ihavebadfantasy/rotateDevice.github.io"
   },
   "bugs": {
-    "url": "https://github.com/vedees/webpack-template/issues"
+    "url": "https://github.com/ihavebadfantasy/rotateDevice.github.io/issues"
   },
   "keywords": [
-    "webpack",
-    "webpack4",
-    "merge",
-    "bable",
-    "bable7",
-    "scss"
+    "ES6",
+    "vanillajsplugin",
+    "plugin",
+    "notification",
+    "rotate-device",
+    "change-orientation"
   ],
   "license": "MIT",
   "devDependencies": {
@@ -59,13 +59,14 @@
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.10.1",
-    "webpack-merge": "^4.2.2"
-  },
-  "dependencies": {
-    "@typescript-eslint/parser": "^2.16.0",
+    "webpack-merge": "^4.2.2",
     "animate.css": "^3.7.2",
+    "@typescript-eslint/parser": "^2.16.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "typescript-eslint": "0.0.1-alpha.0"
+  },
+  "dependencies": {
+
   }
 }
