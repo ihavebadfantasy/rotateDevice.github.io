@@ -424,10 +424,6 @@ var desktopNotificationConfig = {
     type: 'desktop',
     customHTML: false,
 };
-var createDesktopNotification = function (userOpts) {
-    var opts = __assign(__assign({}, desktopNotificationConfig), userOpts);
-    return new DesktopNotification(opts);
-};
 var DesktopNotification = /** @class */ (function (_super) {
     __extends(DesktopNotification, _super);
     function DesktopNotification(opts) {
@@ -446,6 +442,10 @@ var DesktopNotification = /** @class */ (function (_super) {
     };
     return DesktopNotification;
 }(notificationGeneral_1.NotificationClass));
+var createDesktopNotification = function (userOpts) {
+    var opts = __assign(__assign({}, desktopNotificationConfig), userOpts);
+    return new DesktopNotification(opts);
+};
 
 
 /***/ }),

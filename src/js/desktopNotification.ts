@@ -53,11 +53,6 @@ const desktopNotificationConfig = {
   customHTML: false,
 }
 
-const createDesktopNotification = (userOpts?: object) => {
-  const opts = { ...desktopNotificationConfig, ...userOpts };
-  return new DesktopNotification(opts);
-}
-
 class DesktopNotification extends NotificationClass {
   desktopWidthBreak: number;
   desktopHeightBreak: number;
@@ -75,4 +70,9 @@ class DesktopNotification extends NotificationClass {
     }
   }
 
+}
+
+const createDesktopNotification = (userOpts?: object) => {
+  const opts = { ...desktopNotificationConfig, ...userOpts };
+  return new DesktopNotification(opts);
 }
