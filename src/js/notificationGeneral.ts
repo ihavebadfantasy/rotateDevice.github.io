@@ -37,6 +37,7 @@ export abstract class NotificationClass {
     this.notificationState = false;
     this.customHTML = opts.customHTML;
     this.initialized = false;
+    this.startNotification = this.startNotification.bind(this);
   }
 
   protected deviceType(): string {
@@ -141,13 +142,9 @@ export abstract class NotificationClass {
         this.initialized = true;
       }
       if (this.type === 'touchDevice') {
-        window.addEventListener('orientationchange', () => {
-          this.startNotification();
-        })
+        window.addEventListener('orientationchange', this.startNotification)
       } else {
-        window.addEventListener('resize', () => {
-          this.startNotification();
-        });
+        window.addEventListener('resize', this.startNotification);
       }
     }
   }
@@ -164,13 +161,14 @@ export abstract class NotificationClass {
   }
 
   destroy() {
-    console.log(this);
     if (this.initialized) {
+      if (this.type === 'touchDevice') {
+        window.removeEventListener('orientationchange', this.startNotification)
+      } else {
+        window.removeEventListener('resize', this.startNotification);
+      }
       this.notificationState = false;
-      this.notificationWrapper.classList.remove(this.showClass);
       contentWrapper.style.overflow = '';
-      this.removeAnimationClasses(this.notificationWrapper, this.hideAnimationArr);
-      this.removeAnimationClasses(this.notificationWrapper, this.appearAnimationArr);
       this.initialized = false;
       contentWrapper.removeChild(this.notificationWrapper);
       this.notificationWrapper = null;
