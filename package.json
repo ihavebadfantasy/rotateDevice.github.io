@@ -1,6 +1,6 @@
 {
   "name": "rotate-device",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Plugin rotateDevice has been made to ask the users to rotate device/expand browser window to enjoy your site/app fully!",
   "main": "index.js",
   "scripts": {
@@ -66,7 +66,5 @@
     "eslint-config-airbnb-base": "^14.0.0",
     "typescript-eslint": "0.0.1-alpha.0"
   },
-  "dependencies": {
-
-  }
+  "dependencies": {}
 }
