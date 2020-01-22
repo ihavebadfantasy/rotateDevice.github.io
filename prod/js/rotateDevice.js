@@ -1,4 +1,14 @@
-/******/ (function(modules) { // webpackBootstrap
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else if(typeof exports === 'object')
+		exports["rotateDevice"] = factory();
+	else
+		root["rotateDevice"] = factory();
+})(this, function() {
+return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
@@ -77,7 +87,7 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "./";
+/******/ 	__webpack_require__.p = "";
 /******/
 /******/
 /******/ 	// Load entry module and return exports
@@ -90,370 +100,41 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
-/* harmony import */ var _scss_main_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5);
-/* harmony import */ var _scss_main_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_scss_main_scss__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _scss_main_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
+/* harmony import */ var _scss_main_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_scss_main_scss__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _js_desktopNotification__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5);
+/* harmony import */ var _js_desktopNotification__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_js_desktopNotification__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _js_touchDeviceNotification__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(7);
+/* harmony import */ var _js_touchDeviceNotification__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_js_touchDeviceNotification__WEBPACK_IMPORTED_MODULE_2__);
 // JS - ./js/index.js
- // SCSS
+// SCSS
 
 
+ // export function rotateDevice(type, opts) {
+//   if (type === 'desktop') {
+//     return createDesktopNotification(opts);
+//   } else if (type === 'touchDevice') {
+//     return createTouchDeviceNotification(opts);
+//   } else {
+//     console.warn('Wrong notification type in createRotateDeviceNotification(). Please use "desktop" type argument for desktop notification and "touchDevice" type argument for touch Device notification');
+//   }
+// }
+
+function rotateDevice() {
+  return {
+    createDesktopNotification: (_js_desktopNotification__WEBPACK_IMPORTED_MODULE_1___default()),
+    createTouchDeviceNotification: (_js_touchDeviceNotification__WEBPACK_IMPORTED_MODULE_2___default())
+  };
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (rotateDevice());
 
 /***/ }),
 /* 1 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _touchDeviceNotification_ts__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
-/* harmony import */ var _touchDeviceNotification_ts__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_touchDeviceNotification_ts__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _desktopNotification_ts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(4);
-/* harmony import */ var _desktopNotification_ts__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_desktopNotification_ts__WEBPACK_IMPORTED_MODULE_1__);
-/* eslint-disable no-restricted-syntax */
-// Main js file
-
-
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var notificationGeneral_1 = __webpack_require__(3);
-var notificationSVG = "<svg version=\"1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\"\nviewBox=\"0 0 184.02 312.02\" style=\"enable-background:new 0 0 184.02 312.02;\" xml:space=\"preserve\">\n<style type=\"text/css\">\n.st0{fill:#FFFFFF;}\n</style>\n<g>\n<path d=\"M163.52,312H20.48C9.17,312,0,302.83,0,291.52V20.54C0,9.23,9.17,0.06,20.48,0.06h143.04c11.31,0,20.48,9.17,20.48,20.48\n v270.98C184,302.83,174.83,312,163.52,312z\"/>\n<path class=\"st0\" d=\"M156.34,304.09H27.66c-10.91,0-19.75-8.84-19.75-19.75V25.56c0-10.91,8.84-19.75,19.75-19.75h128.69\n c10.91,0,19.75,8.84,19.75,19.75v258.78C176.09,295.25,167.25,304.09,156.34,304.09z\"/>\n<circle cx=\"92\" cy=\"282.53\" r=\"12.22\"/>\n<path d=\"M113.46,14.44H70.54c-7.5,0-14.3-4.4-17.37-11.23l-1.41-3.14h80.5l-1.41,3.14C127.76,10.04,120.96,14.44,113.46,14.44z\"/>\n</g>\n</svg>";
-var touchDeviceNotificationConfig = {
-    blockedOrientation: 'landscape',
-    allowContentShow: true,
-    mainMessage: 'Please turn your device',
-    extraMessage: 'or tap the screen to continue',
-    responsivePortraitBreak: 767,
-    responsiveLandscapeBreak: 850,
-    showClass: 'show',
-    notificationClassPrefix: 'touch-device',
-    iconPath: notificationSVG,
-    appearAnimation: '',
-    hideAnimation: '',
-    hideAnimationDuration: 0,
-    type: 'touchDevice',
-    customHTML: false,
-};
-var createTouchDeviceNotification = function (userOpts) {
-    var opts = __assign(__assign({}, touchDeviceNotificationConfig), userOpts);
-    return new TouchDeviceNotification(opts);
-};
-var TouchDeviceNotification = /** @class */ (function (_super) {
-    __extends(TouchDeviceNotification, _super);
-    function TouchDeviceNotification(opts) {
-        var _this = _super.call(this, opts) || this;
-        _this.blockedOrientation = opts.blockedOrientation;
-        _this.responsiveLandscapeBreak = opts.responsiveLandscapeBreak;
-        _this.responsivePortraitBreak = opts.responsivePortraitBreak;
-        return _this;
-    }
-    TouchDeviceNotification.prototype.isPortrait = function () {
-        var mql = window.matchMedia('(orientation: portrait)');
-        return mql.matches;
-    };
-    TouchDeviceNotification.prototype.isDeviceInBlockedPortrait = function () {
-        return (window.innerWidth < this.responsivePortraitBreak);
-    };
-    TouchDeviceNotification.prototype.isDeviceInBlockedLandscape = function () {
-        return (window.innerWidth < this.responsiveLandscapeBreak);
-    };
-    TouchDeviceNotification.prototype.startNotification = function () {
-        switch (this.blockedOrientation) {
-            case 'portrait':
-                if (!this.notificationState && this.isPortrait()) {
-                    if (this.isDeviceInBlockedPortrait()) {
-                        this.showNotification();
-                    }
-                }
-                else if (this.notificationState && !this.isPortrait()) {
-                    this.hideNotification();
-                }
-                break;
-            case 'landscape':
-                if (!this.isPortrait() && !this.notificationState) {
-                    if (this.isDeviceInBlockedLandscape()) {
-                        this.showNotification();
-                    }
-                }
-                else if (this.isPortrait() && this.notificationState) {
-                    this.hideNotification();
-                }
-                break;
-            default:
-                break;
-        }
-    };
-    return TouchDeviceNotification;
-}(notificationGeneral_1.NotificationClass));
-
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var NOTIFICATION_WRAPPER_CLASS = 'notification-wrapper';
-var NOTIFICATION_BLOCK_CLASS = 'notification-block';
-var NOTIFICATION_MAIN_MESSAGE_CLASS = 'notification-main-message';
-var NOTIFICATION_EXTRA_MESSAGE_CLASS = 'notification-extra-message';
-var NOTIFICATION_IMAGE_WRAPPER_CLASS = 'notification-img-wrapper';
-var DEFAULT_ICON_CLASS = 'default-icon';
-var contentWrapper = document.body;
-var NotificationClass = /** @class */ (function () {
-    function NotificationClass(opts) {
-        this.type = opts.type;
-        this.mainMessage = opts.mainMessage;
-        this.extraMessage = opts.extraMessage;
-        this.allowContentShow = opts.allowContentShow;
-        this.showClass = 'show';
-        this.notificationClassPrefix = opts.notificationClassPrefix;
-        this.iconPath = opts.iconPath;
-        this.appearAnimation = opts.appearAnimation;
-        this.hideAnimation = opts.hideAnimation;
-        this.hideAnimationDuration = (opts.hideAnimationDuration === 0 && opts.hideAnimation !== '') ? (400) : (opts.hideAnimationDuration);
-        this.notificationState = false;
-        this.customHTML = opts.customHTML;
-        this.initialized = false;
-        this.startNotification = this.startNotification.bind(this);
-    }
-    NotificationClass.prototype.deviceType = function () {
-        return /Mobile|webOS|BlackBerry|IEMobile|MeeGo|mini|Fennec|Windows Phone|Android|iP(ad|od|hone)/i.test(navigator.userAgent) ? ('touchDevice') : ('desktop');
-    };
-    NotificationClass.prototype.getWindowWidth = function () {
-        return window.innerWidth;
-    };
-    NotificationClass.prototype.getWindowHeight = function () {
-        return window.innerHeight;
-    };
-    NotificationClass.prototype.buildNotificationHtml = function () {
-        var notyWrapper = document.createElement('div');
-        notyWrapper.classList.add(this.notificationClassPrefix + "-" + NOTIFICATION_WRAPPER_CLASS);
-        if (typeof this.customHTML === 'boolean') {
-            if (this.iconPath[0] !== '<') {
-                this.iconPath = "<img src=\"" + this.iconPath + "\" alt=\"icon\">";
-            }
-            var extraMessage = void 0;
-            if (this.extraMessage) {
-                extraMessage = "<p class=\"" + this.notificationClassPrefix + "-" + NOTIFICATION_EXTRA_MESSAGE_CLASS + "\">" + this.extraMessage + "</p>";
-            }
-            else {
-                extraMessage = '';
-            }
-            notyWrapper.innerHTML = "<div class=\"" + this.notificationClassPrefix + "-" + NOTIFICATION_BLOCK_CLASS + "\">\n      <p class=\"" + this.notificationClassPrefix + "-" + NOTIFICATION_MAIN_MESSAGE_CLASS + "\">" + this.mainMessage + "</p> <div class=\"" + this.notificationClassPrefix + "-" + NOTIFICATION_IMAGE_WRAPPER_CLASS + " " + this.notificationClassPrefix + "-" + DEFAULT_ICON_CLASS + "\">" + this.iconPath + "</div> " + extraMessage + "\n      </div>";
-        }
-        else {
-            notyWrapper.innerHTML = this.customHTML;
-        }
-        contentWrapper.insertAdjacentElement('afterbegin', notyWrapper);
-        this.notificationWrapper = notyWrapper;
-        this.appearAnimationArr = this.getAnimationClasses(this.appearAnimation);
-        this.hideAnimationArr = this.getAnimationClasses(this.hideAnimation);
-    };
-    NotificationClass.prototype.getAnimationClasses = function (str) {
-        if (str.length > 0) {
-            return str.split(' ');
-        }
-        return [];
-    };
-    NotificationClass.prototype.setAnimationClasses = function (block, classes) {
-        if (classes.length > 0) {
-            classes.forEach(function (value) {
-                block.classList.add(value);
-            });
-        }
-    };
-    NotificationClass.prototype.removeAnimationClasses = function (block, classes) {
-        if (classes.length > 0) {
-            classes.forEach(function (value) {
-                block.classList.remove(value);
-            });
-        }
-    };
-    NotificationClass.prototype.showNotification = function () {
-        this.removeAnimationClasses(this.notificationWrapper, this.hideAnimationArr);
-        this.setAnimationClasses(this.notificationWrapper, this.appearAnimationArr);
-        this.notificationWrapper.classList.add(this.showClass);
-        contentWrapper.style.overflow = 'hidden';
-        this.notificationState = true;
-        if (this.allowContentShow) {
-            this.hideNotificationOnClick();
-        }
-    };
-    NotificationClass.prototype.hideNotification = function () {
-        var _this = this;
-        this.removeAnimationClasses(this.notificationWrapper, this.appearAnimationArr);
-        this.setAnimationClasses(this.notificationWrapper, this.hideAnimationArr);
-        this.notificationState = false;
-        setTimeout(function () {
-            _this.notificationWrapper.classList.remove(_this.showClass);
-            contentWrapper.style.overflow = '';
-            _this.removeAnimationClasses(_this.notificationWrapper, _this.hideAnimationArr);
-        }, this.hideAnimationDuration);
-    };
-    NotificationClass.prototype.hideNotificationOnClick = function () {
-        var _this = this;
-        window.addEventListener('click', function () {
-            _this.hideNotification();
-        });
-        window.addEventListener('touchstart', function () {
-            _this.hideNotification();
-        }, false);
-    };
-    NotificationClass.prototype.initialization = function () {
-        if (this.type === this.deviceType()) {
-            if (!this.notificationWrapper) {
-                this.buildNotificationHtml();
-                this.startNotification();
-                this.initialized = true;
-            }
-            if (this.type === 'touchDevice') {
-                window.addEventListener('orientationchange', this.startNotification);
-            }
-            else {
-                window.addEventListener('resize', this.startNotification);
-            }
-        }
-    };
-    NotificationClass.prototype.init = function () {
-        var _this = this;
-        this.initialization();
-        window.addEventListener('resize', function () {
-            if (_this.deviceType() === _this.type && !_this.initialized) {
-                _this.initialization();
-            }
-            else if (_this.deviceType() !== _this.type && _this.initialized) {
-                _this.destroy();
-            }
-        });
-    };
-    NotificationClass.prototype.destroy = function () {
-        if (this.initialized) {
-            if (this.type === 'touchDevice') {
-                window.removeEventListener('orientationchange', this.startNotification);
-            }
-            else {
-                window.removeEventListener('resize', this.startNotification);
-            }
-            this.notificationState = false;
-            contentWrapper.style.overflow = '';
-            this.initialized = false;
-            contentWrapper.removeChild(this.notificationWrapper);
-            this.notificationWrapper = null;
-        }
-    };
-    return NotificationClass;
-}());
-exports.NotificationClass = NotificationClass;
-
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var notificationGeneral_1 = __webpack_require__(3);
-var notificationSVG = "<svg version=\"1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\"\nviewBox=\"0 0 206 160\" style=\"enable-background:new 0 0 206 160;\" xml:space=\"preserve\">\n<g>\n<g>\n <path d=\"M181.64,160H24.36C10.93,160,0,149.07,0,135.64V24.36C0,10.93,10.93,0,24.36,0h157.28C195.07,0,206,10.93,206,24.36\n   v111.28C206,149.07,195.07,160,181.64,160z M24.36,6C14.24,6,6,14.24,6,24.36v111.28C6,145.76,14.24,154,24.36,154h157.28\n   c10.12,0,18.36-8.24,18.36-18.36V24.36C200,14.24,191.76,6,181.64,6H24.36z\"/>\n</g>\n<g>\n <rect x=\"3\" y=\"33.77\" width=\"200\" height=\"6\"/>\n</g>\n<g>\n <circle cx=\"28.5\" cy=\"21.5\" r=\"4.5\"/>\n</g>\n<g>\n <circle cx=\"41.5\" cy=\"21.5\" r=\"4.5\"/>\n</g>\n<g>\n <circle cx=\"54.5\" cy=\"21.5\" r=\"4.5\"/>\n</g>\n<g>\n <path d=\"M59.7,125.19c-0.99,0-1.96-0.49-2.53-1.38c-0.89-1.39-0.49-3.25,0.91-4.14L151,60.09c1.4-0.89,3.25-0.49,4.14,0.91\n   c0.89,1.39,0.49,3.25-0.91,4.14l-92.92,59.58C60.82,125.04,60.26,125.19,59.7,125.19z\"/>\n</g>\n<g>\n <path d=\"M76.78,129.81c-0.22,0-0.45-0.02-0.67-0.08l-17.92-4.09c-0.78-0.18-1.45-0.65-1.87-1.33c-0.42-0.67-0.56-1.49-0.38-2.26\n   l4.4-19.3c0.37-1.62,1.98-2.63,3.59-2.26c1.62,0.37,2.63,1.98,2.26,3.59l-3.74,16.38l15,3.42c1.62,0.37,2.63,1.98,2.26,3.59\n   C79.38,128.87,78.15,129.81,76.78,129.81z\"/>\n</g>\n<g>\n <path d=\"M148.75,84.58c-0.22,0-0.45-0.02-0.67-0.08c-1.62-0.37-2.63-1.98-2.26-3.59l3.74-16.38l-15-3.42\n   c-1.62-0.37-2.63-1.98-2.26-3.59c0.37-1.62,1.98-2.63,3.59-2.26l17.92,4.09c0.78,0.18,1.45,0.65,1.87,1.33\n   c0.42,0.67,0.56,1.49,0.38,2.26l-4.4,19.3C151.35,83.64,150.11,84.58,148.75,84.58z\"/>\n</g>\n</g>\n</svg>";
-var desktopNotificationConfig = {
-    allowContentShow: true,
-    mainMessage: 'Please expand your browser window',
-    extraMessage: 'or click to continue',
-    desktopHeightBreak: 350,
-    desktopWidthBreak: 400,
-    showClass: 'show',
-    notificationClassPrefix: 'desktop',
-    iconPath: notificationSVG,
-    appearAnimation: '',
-    hideAnimation: '',
-    hideAnimationDuration: 0,
-    type: 'desktop',
-    customHTML: false,
-};
-var DesktopNotification = /** @class */ (function (_super) {
-    __extends(DesktopNotification, _super);
-    function DesktopNotification(opts) {
-        var _this = _super.call(this, opts) || this;
-        _this.desktopWidthBreak = opts.desktopWidthBreak;
-        _this.desktopHeightBreak = opts.desktopHeightBreak;
-        return _this;
-    }
-    DesktopNotification.prototype.startNotification = function () {
-        if (this.getWindowHeight() < this.desktopHeightBreak || this.getWindowWidth() < this.desktopWidthBreak) {
-            this.showNotification();
-        }
-        else {
-            this.hideNotification();
-        }
-    };
-    return DesktopNotification;
-}(notificationGeneral_1.NotificationClass));
-var createDesktopNotification = function (userOpts) {
-    var opts = __assign(__assign({}, desktopNotificationConfig), userOpts);
-    return new DesktopNotification(opts);
-};
-
-
-/***/ }),
-/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(6);
+var content = __webpack_require__(2);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -467,20 +148,20 @@ var options = {"hmr":true}
 options.transform = transform
 options.insertInto = undefined;
 
-var update = __webpack_require__(7)(content, options);
+var update = __webpack_require__(3)(content, options);
 
 if(content.locals) module.exports = content.locals;
 
 if(false) {}
 
 /***/ }),
-/* 6 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // extracted by mini-css-extract-plugin
 
 /***/ }),
-/* 7 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -549,7 +230,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(8);
+var	fixUrls = __webpack_require__(4);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -884,7 +565,7 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 8 */
+/* 4 */
 /***/ (function(module, exports) {
 
 /**
@@ -972,5 +653,343 @@ module.exports = function (css) {
   return fixedCss;
 };
 
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var notificationGeneral_1 = __webpack_require__(6);
+var notificationSVG = "<svg version=\"1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\"\nviewBox=\"0 0 206 160\" style=\"enable-background:new 0 0 206 160;\" xml:space=\"preserve\">\n<g>\n<g>\n <path d=\"M181.64,160H24.36C10.93,160,0,149.07,0,135.64V24.36C0,10.93,10.93,0,24.36,0h157.28C195.07,0,206,10.93,206,24.36\n   v111.28C206,149.07,195.07,160,181.64,160z M24.36,6C14.24,6,6,14.24,6,24.36v111.28C6,145.76,14.24,154,24.36,154h157.28\n   c10.12,0,18.36-8.24,18.36-18.36V24.36C200,14.24,191.76,6,181.64,6H24.36z\"/>\n</g>\n<g>\n <rect x=\"3\" y=\"33.77\" width=\"200\" height=\"6\"/>\n</g>\n<g>\n <circle cx=\"28.5\" cy=\"21.5\" r=\"4.5\"/>\n</g>\n<g>\n <circle cx=\"41.5\" cy=\"21.5\" r=\"4.5\"/>\n</g>\n<g>\n <circle cx=\"54.5\" cy=\"21.5\" r=\"4.5\"/>\n</g>\n<g>\n <path d=\"M59.7,125.19c-0.99,0-1.96-0.49-2.53-1.38c-0.89-1.39-0.49-3.25,0.91-4.14L151,60.09c1.4-0.89,3.25-0.49,4.14,0.91\n   c0.89,1.39,0.49,3.25-0.91,4.14l-92.92,59.58C60.82,125.04,60.26,125.19,59.7,125.19z\"/>\n</g>\n<g>\n <path d=\"M76.78,129.81c-0.22,0-0.45-0.02-0.67-0.08l-17.92-4.09c-0.78-0.18-1.45-0.65-1.87-1.33c-0.42-0.67-0.56-1.49-0.38-2.26\n   l4.4-19.3c0.37-1.62,1.98-2.63,3.59-2.26c1.62,0.37,2.63,1.98,2.26,3.59l-3.74,16.38l15,3.42c1.62,0.37,2.63,1.98,2.26,3.59\n   C79.38,128.87,78.15,129.81,76.78,129.81z\"/>\n</g>\n<g>\n <path d=\"M148.75,84.58c-0.22,0-0.45-0.02-0.67-0.08c-1.62-0.37-2.63-1.98-2.26-3.59l3.74-16.38l-15-3.42\n   c-1.62-0.37-2.63-1.98-2.26-3.59c0.37-1.62,1.98-2.63,3.59-2.26l17.92,4.09c0.78,0.18,1.45,0.65,1.87,1.33\n   c0.42,0.67,0.56,1.49,0.38,2.26l-4.4,19.3C151.35,83.64,150.11,84.58,148.75,84.58z\"/>\n</g>\n</g>\n</svg>";
+var desktopNotificationConfig = {
+    allowContentShow: true,
+    mainMessage: 'Please expand your browser window',
+    extraMessage: 'or click to continue',
+    desktopHeightBreak: 350,
+    desktopWidthBreak: 400,
+    showClass: 'show',
+    notificationClassPrefix: 'desktop',
+    iconPath: notificationSVG,
+    appearAnimation: '',
+    hideAnimation: '',
+    hideAnimationDuration: 0,
+    type: 'desktop',
+    customHTML: false,
+};
+var DesktopNotification = /** @class */ (function (_super) {
+    __extends(DesktopNotification, _super);
+    function DesktopNotification(opts) {
+        var _this = _super.call(this, opts) || this;
+        _this.desktopWidthBreak = opts.desktopWidthBreak;
+        _this.desktopHeightBreak = opts.desktopHeightBreak;
+        return _this;
+    }
+    DesktopNotification.prototype.startNotification = function () {
+        if (this.getWindowHeight() < this.desktopHeightBreak || this.getWindowWidth() < this.desktopWidthBreak) {
+            this.showNotification();
+        }
+        else {
+            this.hideNotification();
+        }
+    };
+    return DesktopNotification;
+}(notificationGeneral_1.NotificationClass));
+function createDesktopNotification(userOpts) {
+    var opts = __assign(__assign({}, desktopNotificationConfig), userOpts);
+    return new DesktopNotification(opts);
+}
+exports.default = createDesktopNotification;
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var NOTIFICATION_WRAPPER_CLASS = 'notification-wrapper';
+var NOTIFICATION_BLOCK_CLASS = 'notification-block';
+var NOTIFICATION_MAIN_MESSAGE_CLASS = 'notification-main-message';
+var NOTIFICATION_EXTRA_MESSAGE_CLASS = 'notification-extra-message';
+var NOTIFICATION_IMAGE_WRAPPER_CLASS = 'notification-img-wrapper';
+var DEFAULT_ICON_CLASS = 'default-icon';
+var contentWrapper = document.body;
+var NotificationClass = /** @class */ (function () {
+    function NotificationClass(opts) {
+        this.type = opts.type;
+        this.mainMessage = opts.mainMessage;
+        this.extraMessage = opts.extraMessage;
+        this.allowContentShow = opts.allowContentShow;
+        this.showClass = 'show';
+        this.notificationClassPrefix = opts.notificationClassPrefix;
+        this.iconPath = opts.iconPath;
+        this.appearAnimation = opts.appearAnimation;
+        this.hideAnimation = opts.hideAnimation;
+        this.hideAnimationDuration = (opts.hideAnimationDuration === 0 && opts.hideAnimation !== '') ? (400) : (opts.hideAnimationDuration);
+        this.notificationState = false;
+        this.customHTML = opts.customHTML;
+        this.initialized = false;
+        this.startNotification = this.startNotification.bind(this);
+    }
+    NotificationClass.prototype.deviceType = function () {
+        return /Mobile|webOS|BlackBerry|IEMobile|MeeGo|mini|Fennec|Windows Phone|Android|iP(ad|od|hone)/i.test(navigator.userAgent) ? ('touchDevice') : ('desktop');
+    };
+    NotificationClass.prototype.getWindowWidth = function () {
+        return window.innerWidth;
+    };
+    NotificationClass.prototype.getWindowHeight = function () {
+        return window.innerHeight;
+    };
+    NotificationClass.prototype.buildNotificationHtml = function () {
+        var notyWrapper = document.createElement('div');
+        notyWrapper.classList.add(this.notificationClassPrefix + "-" + NOTIFICATION_WRAPPER_CLASS);
+        if (typeof this.customHTML === 'boolean') {
+            if (this.iconPath[0] !== '<') {
+                this.iconPath = "<img src=\"" + this.iconPath + "\" alt=\"icon\">";
+            }
+            var extraMessage = void 0;
+            if (this.extraMessage) {
+                extraMessage = "<p class=\"" + this.notificationClassPrefix + "-" + NOTIFICATION_EXTRA_MESSAGE_CLASS + "\">" + this.extraMessage + "</p>";
+            }
+            else {
+                extraMessage = '';
+            }
+            notyWrapper.innerHTML = "<div class=\"" + this.notificationClassPrefix + "-" + NOTIFICATION_BLOCK_CLASS + "\">\n      <p class=\"" + this.notificationClassPrefix + "-" + NOTIFICATION_MAIN_MESSAGE_CLASS + "\">" + this.mainMessage + "</p> <div class=\"" + this.notificationClassPrefix + "-" + NOTIFICATION_IMAGE_WRAPPER_CLASS + " " + this.notificationClassPrefix + "-" + DEFAULT_ICON_CLASS + "\">" + this.iconPath + "</div> " + extraMessage + "\n      </div>";
+        }
+        else {
+            notyWrapper.innerHTML = this.customHTML;
+        }
+        contentWrapper.insertAdjacentElement('afterbegin', notyWrapper);
+        this.notificationWrapper = notyWrapper;
+        this.appearAnimationArr = this.getAnimationClasses(this.appearAnimation);
+        this.hideAnimationArr = this.getAnimationClasses(this.hideAnimation);
+    };
+    NotificationClass.prototype.getAnimationClasses = function (str) {
+        if (str.length > 0) {
+            return str.split(' ');
+        }
+        return [];
+    };
+    NotificationClass.prototype.setAnimationClasses = function (block, classes) {
+        if (classes.length > 0) {
+            classes.forEach(function (value) {
+                block.classList.add(value);
+            });
+        }
+    };
+    NotificationClass.prototype.removeAnimationClasses = function (block, classes) {
+        if (classes.length > 0) {
+            classes.forEach(function (value) {
+                block.classList.remove(value);
+            });
+        }
+    };
+    NotificationClass.prototype.showNotification = function () {
+        this.removeAnimationClasses(this.notificationWrapper, this.hideAnimationArr);
+        this.setAnimationClasses(this.notificationWrapper, this.appearAnimationArr);
+        this.notificationWrapper.classList.add(this.showClass);
+        contentWrapper.style.overflow = 'hidden';
+        this.notificationState = true;
+        if (this.allowContentShow) {
+            this.hideNotificationOnClick();
+        }
+    };
+    NotificationClass.prototype.hideNotification = function () {
+        var _this = this;
+        this.removeAnimationClasses(this.notificationWrapper, this.appearAnimationArr);
+        this.setAnimationClasses(this.notificationWrapper, this.hideAnimationArr);
+        this.notificationState = false;
+        setTimeout(function () {
+            _this.notificationWrapper.classList.remove(_this.showClass);
+            contentWrapper.style.overflow = '';
+            _this.removeAnimationClasses(_this.notificationWrapper, _this.hideAnimationArr);
+        }, this.hideAnimationDuration);
+    };
+    NotificationClass.prototype.hideNotificationOnClick = function () {
+        var _this = this;
+        window.addEventListener('click', function () {
+            _this.hideNotification();
+        });
+        window.addEventListener('touchstart', function () {
+            _this.hideNotification();
+        }, false);
+    };
+    NotificationClass.prototype.initialization = function () {
+        if (this.type === this.deviceType()) {
+            if (!this.notificationWrapper) {
+                this.buildNotificationHtml();
+                this.startNotification();
+                this.initialized = true;
+            }
+            if (this.type === 'touchDevice') {
+                window.addEventListener('orientationchange', this.startNotification);
+            }
+            else {
+                window.addEventListener('resize', this.startNotification);
+            }
+        }
+    };
+    NotificationClass.prototype.init = function () {
+        var _this = this;
+        this.initialization();
+        window.addEventListener('resize', function () {
+            if (_this.deviceType() === _this.type && !_this.initialized) {
+                _this.initialization();
+            }
+            else if (_this.deviceType() !== _this.type && _this.initialized) {
+                _this.destroy();
+            }
+        });
+    };
+    NotificationClass.prototype.destroy = function () {
+        if (this.initialized) {
+            if (this.type === 'touchDevice') {
+                window.removeEventListener('orientationchange', this.startNotification);
+            }
+            else {
+                window.removeEventListener('resize', this.startNotification);
+            }
+            this.notificationState = false;
+            contentWrapper.style.overflow = '';
+            this.initialized = false;
+            contentWrapper.removeChild(this.notificationWrapper);
+            this.notificationWrapper = null;
+        }
+    };
+    return NotificationClass;
+}());
+exports.NotificationClass = NotificationClass;
+
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var notificationGeneral_1 = __webpack_require__(6);
+var notificationSVG = "<svg version=\"1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\"\nviewBox=\"0 0 184.02 312.02\" style=\"enable-background:new 0 0 184.02 312.02;\" xml:space=\"preserve\">\n<style type=\"text/css\">\n.st0{fill:#FFFFFF;}\n</style>\n<g>\n<path d=\"M163.52,312H20.48C9.17,312,0,302.83,0,291.52V20.54C0,9.23,9.17,0.06,20.48,0.06h143.04c11.31,0,20.48,9.17,20.48,20.48\n v270.98C184,302.83,174.83,312,163.52,312z\"/>\n<path class=\"st0\" d=\"M156.34,304.09H27.66c-10.91,0-19.75-8.84-19.75-19.75V25.56c0-10.91,8.84-19.75,19.75-19.75h128.69\n c10.91,0,19.75,8.84,19.75,19.75v258.78C176.09,295.25,167.25,304.09,156.34,304.09z\"/>\n<circle cx=\"92\" cy=\"282.53\" r=\"12.22\"/>\n<path d=\"M113.46,14.44H70.54c-7.5,0-14.3-4.4-17.37-11.23l-1.41-3.14h80.5l-1.41,3.14C127.76,10.04,120.96,14.44,113.46,14.44z\"/>\n</g>\n</svg>";
+var touchDeviceNotificationConfig = {
+    blockedOrientation: 'landscape',
+    allowContentShow: true,
+    mainMessage: 'Please turn your device',
+    extraMessage: 'or tap the screen to continue',
+    responsivePortraitBreak: 767,
+    responsiveLandscapeBreak: 850,
+    showClass: 'show',
+    notificationClassPrefix: 'touch-device',
+    iconPath: notificationSVG,
+    appearAnimation: '',
+    hideAnimation: '',
+    hideAnimationDuration: 0,
+    type: 'touchDevice',
+    customHTML: false,
+};
+var TouchDeviceNotification = /** @class */ (function (_super) {
+    __extends(TouchDeviceNotification, _super);
+    function TouchDeviceNotification(opts) {
+        var _this = _super.call(this, opts) || this;
+        _this.blockedOrientation = opts.blockedOrientation;
+        _this.responsiveLandscapeBreak = opts.responsiveLandscapeBreak;
+        _this.responsivePortraitBreak = opts.responsivePortraitBreak;
+        return _this;
+    }
+    TouchDeviceNotification.prototype.isPortrait = function () {
+        var mql = window.matchMedia('(orientation: portrait)');
+        return mql.matches;
+    };
+    TouchDeviceNotification.prototype.isDeviceInBlockedPortrait = function () {
+        return (window.innerWidth < this.responsivePortraitBreak);
+    };
+    TouchDeviceNotification.prototype.isDeviceInBlockedLandscape = function () {
+        return (window.innerWidth < this.responsiveLandscapeBreak);
+    };
+    TouchDeviceNotification.prototype.startNotification = function () {
+        switch (this.blockedOrientation) {
+            case 'portrait':
+                if (!this.notificationState && this.isPortrait()) {
+                    if (this.isDeviceInBlockedPortrait()) {
+                        this.showNotification();
+                    }
+                }
+                else if (this.notificationState && !this.isPortrait()) {
+                    this.hideNotification();
+                }
+                break;
+            case 'landscape':
+                if (!this.isPortrait() && !this.notificationState) {
+                    if (this.isDeviceInBlockedLandscape()) {
+                        this.showNotification();
+                    }
+                }
+                else if (this.isPortrait() && this.notificationState) {
+                    this.hideNotification();
+                }
+                break;
+            default:
+                break;
+        }
+    };
+    return TouchDeviceNotification;
+}(notificationGeneral_1.NotificationClass));
+function createTouchDeviceNotification(userOpts) {
+    var opts = __assign(__assign({}, touchDeviceNotificationConfig), userOpts);
+    return new TouchDeviceNotification(opts);
+}
+exports.default = createTouchDeviceNotification;
+
+
 /***/ })
 /******/ ]);
+});

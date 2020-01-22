@@ -72,7 +72,7 @@ class DesktopNotification extends NotificationClass {
 
 }
 
-const createDesktopNotification = (userOpts?: object) => {
+export default function createDesktopNotification(userOpts?: object) {
   const opts = { ...desktopNotificationConfig, ...userOpts };
   return new DesktopNotification(opts);
 }

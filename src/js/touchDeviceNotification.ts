@@ -31,11 +31,6 @@ const touchDeviceNotificationConfig = {
   customHTML: false,
 }
 
-const createTouchDeviceNotification = (userOpts?: object) => {
-  const opts = {...touchDeviceNotificationConfig, ...userOpts};
-  return new TouchDeviceNotification(opts);
-}
-
 class TouchDeviceNotification extends NotificationClass {
   blockedOrientation: string;
   responsiveLandscapeBreak: number;
@@ -88,3 +83,7 @@ class TouchDeviceNotification extends NotificationClass {
   }
 }
 
+export default function createTouchDeviceNotification(userOpts?: object){
+  const opts = {...touchDeviceNotificationConfig, ...userOpts};
+  return new TouchDeviceNotification(opts);
+}

@@ -16,9 +16,11 @@ module.exports = {
     rotateDevice: PATHS.src,
   },
   output: {
-    filename: `${PATHS.assets}js/[name].js`,
+    library: 'rotateDevice',
+    libraryTarget: 'umd',
+    globalObject: 'this',
     path: PATHS.dist,
-    publicPath: './'
+    filename: `${PATHS.assets}js/[name].js`,
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js"]

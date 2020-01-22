@@ -19,13 +19,12 @@ module.exports = {
     // module: `${PATHS.src}/your-module.js`,
   },
   output: {
-    filename: `${PATHS.assets}js/[name].js`,
-    path: PATHS.dist,
     library: 'rotateDevice',
     libraryTarget: 'umd',
-    libraryExport: 'default',
-    umdNamedDefine: true,
-    publicPath: '/'
+    globalObject: 'this',
+    path: PATHS.dist,
+    filename: `${PATHS.assets}js/[name].js`,
+    publicPath: '/',
   },
   optimization: {
     splitChunks: {

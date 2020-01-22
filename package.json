@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack-dev-server --open --config ./webp-build-config/webpack.dev.conf.js",
     "build": "webpack --config ./webp-build-config/webpack.build.conf.js",
-    "prod": "webpack --config ./webp-build-config/webpack.prod.conf.js && uglifyjs ./docs/assets/js/app.js -c -m -o ./prod/js/rotateDevice.min.js"
+    "prod": "webpack --config ./webp-build-config/webpack.prod.conf.js && uglifyjs ./prod/js/rotateDevice.js -c -m -o ./prod/js/rotateDevice.min.js"
   },
   "browserslist": [
     "> 1%",
