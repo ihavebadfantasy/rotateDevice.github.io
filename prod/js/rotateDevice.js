@@ -91,6 +91,7 @@ var rotateDevice =
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "rotateDevice", function() { return rotateDevice; });
 /* harmony import */ var _scss_main_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 /* harmony import */ var _scss_main_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_scss_main_scss__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _js_desktopNotification__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5);
@@ -101,25 +102,29 @@ __webpack_require__.r(__webpack_exports__);
 // SCSS
 
 
- // export function rotateDevice(type, opts) {
-//   if (type === 'desktop') {
-//     return createDesktopNotification(opts);
-//   } else if (type === 'touchDevice') {
-//     return createTouchDeviceNotification(opts);
-//   } else {
-//     console.warn('Wrong notification type in createRotateDeviceNotification(). Please use "desktop" type argument for desktop notification and "touchDevice" type argument for touch Device notification');
-//   }
-// }
 
+function rotateDevice(type, opts) {
+  if (type === 'desktop') {
+    return _js_desktopNotification__WEBPACK_IMPORTED_MODULE_1___default()(opts);
+  }
+
+  if (type === 'touchDevice') {
+    return _js_touchDeviceNotification__WEBPACK_IMPORTED_MODULE_2___default()(opts);
+  } else {
+    console.warn('Wrong notification type in createRotateDeviceNotification(). Please use "desktop" type argument for desktop notification and "touchDevice" type argument for touch Device notification');
+  }
+}
+/*
 function rotateDevice() {
   return {
-    createDesktopNotification: (_js_desktopNotification__WEBPACK_IMPORTED_MODULE_1___default()),
-    createTouchDeviceNotification: (_js_touchDeviceNotification__WEBPACK_IMPORTED_MODULE_2___default())
+    createDesktopNotification,
+    createTouchDeviceNotification,
   };
 }
-
 rotateDevice();
-/* harmony default export */ __webpack_exports__["default"] = (rotateDevice);
+
+export default rotateDevice;
+*/
 
 /***/ }),
 /* 1 */
