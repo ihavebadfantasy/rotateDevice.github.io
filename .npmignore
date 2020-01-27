@@ -15,6 +15,7 @@ webp-build-config
 .babelrc
 .eslintrc
 tsconfig.json
+img
 
 # BD, logs
 *.log
