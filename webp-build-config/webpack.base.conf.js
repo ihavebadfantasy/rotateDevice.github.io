@@ -66,7 +66,7 @@ module.exports = {
             options: {
               sourceMap: true,
               config: {
-                path: `${PATHS.src}/js/postcss.config.js`
+                path: `./webp-build-config/postcss.config.js`
               }
             }
           }, {

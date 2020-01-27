@@ -1,4 +1,4 @@
-// JS - ./js/index.js
+
 
 // SCSS
 import './scss/main.scss';

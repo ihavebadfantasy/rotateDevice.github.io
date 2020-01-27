@@ -1,13 +1,125 @@
+## Getting started with rotate-device
+
+<strong>1. Download and install rotate-device</strong>
+
+First of all we need to download required rotate-device files:
+ - We can download them from <a href="https://github.com/ihavebadfantasy/rotateDevice.github.io">rotate-device repository</a> The files you need to use located at prod folder. You need both js and css files. Feel free to choose if you want to include min.js or .js version to your website/app.
+
+ - Or we can install them via NPM, enter in terminal:
+
+ ```bash
+$ npm install rotate-device
+});
+```
+
+
+<strong>2. Include rotate-device Files To Website/App</strong>
+
+ ```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    ...
+    <link rel="stylesheet" href="path/to/rotateDevice.css">
+</head>
+<body>
+    ...
+    <script src="path/to/rotateDevice.min.js"></script>
+</body>
+</html>
+});
+```
+<strong>rotate-device Layout and styles</strong>
+
+No HTML layout, no extra classes, or blocks needed to start notificating your users.
+
+We also have some default notification styling for both touchDeviceNotification and desktopNotification which include message and icon. This template is pretty configurable but if you want to give it more changes than you can with settings just use customHTML setting, add your classes and your own styles.
+
+## Initialize rotate-device
+
+<strong>Initializing in .html</strong>
+
+The best option will be in inline script or in script file that is included in the very end of body (right before closing </body> tag):
+
+ ```html
+  <body>
+  ...
+  <script>
+  rotateDevice.touchDeviceNotification({
+    blockedOrientation: 'portrait',
+    onlyMobile: false,
+    customHTML: `<div class="myNotificationClass">Hello, that is my custom notification!</div><img src="./src/img.png" alt="my icon">`,
+  });
+
+  rotateDevice.desktopNotification({
+    allowContentShow: false,
+    customHTML: `<div class="myNotificationClass">Hello, that is my custom notification!</div><img src="./src/img.png" alt="my icon">`,
+  });
+  </script>
+</body>
+});
+```
+Otherwise (but not recommended), you can initialize it within window.onload event:
+
+ ```html
+window.onload = function () {
+  rotateDevice.touchDeviceNotification({
+    blockedOrientation: 'portrait',
+    onlyMobile: false,
+    customHTML: `<div class="myNotificationClass">Hello, that is my custom notification!</div><img src="./src/img.png" alt="my icon">`,
+  });
+
+  rotateDevice.desktopNotification({
+    allowContentShow: false,
+    customHTML: `<div class="myNotificationClass">Hello, that is my custom notification!</div><img src="./src/img.png" alt="my icon">`,
+  });
+};
+});
+```
+<strong>As a CommonJs module</strong>
+
+```js
+  var rotateDevice = require('rotateDevice');
+
+  rotateDevice.touchDeviceNotification({
+    blockedOrientation: 'portrait',
+    onlyMobile: false,
+    customHTML: `<div class="myNotificationClass">Hello, that is my custom notification!</div><img src="./src/img.png" alt="my icon">`,
+  });
+
+  rotateDevice.desktopNotification({
+    allowContentShow: false,
+    customHTML: `<div class="myNotificationClass">Hello, that is my custom notification!</div><img src="./src/img.png" alt="my icon">`,
+  });
+```
+
+<strong>As an ES module</strong>
+
+```js
+  import rotateDevice from 'rotate-device';
+
+  rotateDevice.touchDeviceNotification({
+    blockedOrientation: 'portrait',
+    onlyMobile: false,
+    customHTML: `<div class="myNotificationClass">Hello, that is my custom notification!</div><img src="./src/img.png" alt="my icon">`,
+  });
+
+  rotateDevice.desktopNotification({
+    allowContentShow: false,
+    customHTML: `<div class="myNotificationClass">Hello, that is my custom notification!</div><img src="./src/img.png" alt="my icon">`,
+  });
+```
+
 ## TouchDeviceNotification Settings
 
 Pass the settings into creating function. For example:
 
 ```js
-var TouchDeviceNotification = createDesktopNotification({
-  blockedOrientation: 'portrait',
-  onlyMobile: false,
-  customHTML: `<div class="myNotificationClass">Hello, that is my custom notification!</div><img src="./src/img.png" alt="my icon">`,
-});
+  rotateDevice.touchDeviceNotification({
+    blockedOrientation: 'portrait',
+    onlyMobile: false,
+    customHTML: `<div class="myNotificationClass">Hello, that is my custom notification!</div><img src="./src/img.png" alt="my icon">`,
+  });
 ```
 
 |Setting|Type|Default Value|Description|
@@ -30,10 +142,10 @@ var TouchDeviceNotification = createDesktopNotification({
 Pass the settings into creating function. For example:
 
 ```js
-var DesktopNotification = createDesktopNotification({
-  allowContentShow: false,
-  customHTML: `<div class="myNotificationClass">Hello, that is my custom notification!</div><img src="./src/img.png" alt="my icon">`,
-});
+  rotateDevice.desktopNotification({
+    allowContentShow: false,
+    customHTML: `<div class="myNotificationClass">Hello, that is my custom notification!</div><img src="./src/img.png" alt="my icon">`,
+  });
 ```
 
 |Setting|Type|Default Value|Description|

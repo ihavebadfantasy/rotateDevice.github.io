@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Rotate Device</title>
+<link href="./assets/css/vendors.min.css" rel="stylesheet"><link href="./assets/css/app.min.css" rel="stylesheet"></head>
+
+<body>
+
+  <body>
+    <div class="page-wrapper">
+      <section class="touch-settings section-margin-bottom">
+        <h2 class="section-title">TouchDeviceNotification Settings
+        </h2>
+        <p class="text-block">Pass the settings into creating function. For example:</p>
+        <div class="code-block">
+          <code>
+            <span class="red">var </span>TouchDeviceNotification <span class="red">= </span><span
+              class="violet">createDesktopNotification</span>({ <br>
+            blockedOrientation<span class="red">:</span> 'portrait', <br>
+            customHTML<span class="red">:</span>
+            `&lt;div class="myNotificationClass"&gt;Hello, that is my custom notification!&lt;/div&gt;&lt;img
+            src="./src/img.png" alt="my icon"&gt;`
+            , <br>
+            });
+          </code>
+        </div>
+        <table class="options-table">
+          <tr>
+            <th>Setting</th>
+            <th>Type</th>
+            <th>Default Value</th>
+            <th>Description</th>
+          </tr>
+          <tr>
+            <td>blockedOrientation</td>
+            <td>string</td>
+            <td>'landscape'</td>
+            <td>orientation of device you want to block</td>
+          </tr>
+          <tr>
+            <td>allowContentShow</td>
+            <td>boolean</td>
+            <td>true</td>
+            <td> allow site/app content show on tap</td>
+          </tr>
+          <tr>
+            <td>mainMessage</td>
+            <td>string</td>
+            <td>'Please turn your device'</td>
+            <td>general notification message (available if you use default notification template)</td>
+          </tr>
+          <tr>
+            <td>extraMessage</td>
+            <td>string</td>
+            <td>'or tap the screen to continue'</td>
+            <td>extra notification message (available if you use default notification template and allowContentShow:
+              true)</td>
+          </tr>
+          <tr>
+            <td>responsivePortraitBreak</td>
+            <td>number</td>
+            <td>767</td>
+            <td>determine the breakpoint on which to show notification for mobile phones (default size is the one that
+              will work on all the mobile phones but not on tablets)</td>
+          </tr>
+          <tr>
+            <td>responsiveLandscapeBreak</td>
+            <td>number</td>
+            <td>850</td>
+            <td>determine the breakpoint on which to show notification for mobile phones (default size is the one that
+              will work on all the mobile phones but not on tablets)</td>
+          </tr>
+          <tr>
+            <td>iconPath</td>
+            <td>string</td>
+            <td>default svg icon</td>
+            <td>path to icon (any format) or svg icon(available if you use default notification template)
+            </td>
+          </tr>
+          <tr>
+            <td>appearAnimation</td>
+            <td>string</td>
+            <td>''</td>
+            <td>pass the string with animation classes you want to set on notification appearance (like animate.css
+              classes 'animated fadeIn)
+            </td>
+          </tr>
+          <tr>
+            <td>hideAnimation</td>
+            <td>string</td>
+            <td>''</td>
+            <td>pass the string with animation classes you want to set on notification hiding (like animate.css classes
+              'animated fadeOut)</td>
+          </tr>
+          <tr>
+            <td>hideAnimationDuration</td>
+            <td>number</td>
+            <td>0/400</td>
+            <td>duration of hideAnimation (if no hideAnimation default is 0; if hideAnimation is passed and
+              hideAnimationDuration is not set - default is 400 (ms))
+            </td>
+          </tr>
+          <tr>
+            <td>customHTML</td>
+            <td>string</td>
+            <td>false</td>
+            <td>custom markup of the notification. Markup you pass will be wrapped into main notification container with
+              build in styles. Remember that you need to style all the custom markup on your own, so provide your own
+              id/classes for styling.</td>
+          </tr>
+        </table>
+      </section>
+      <!-- /.touch-settings -->
+    </div>
+    <!-- /.page-wrapper -->
+  <script type="text/javascript" src="./assets/js/vendors.js"></script><script type="text/javascript" src="./assets/js/app.js"></script></body>
+
+</html>
