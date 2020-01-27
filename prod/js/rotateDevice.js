@@ -1,5 +1,14 @@
-var rotateDevice =
-/******/ (function(modules) { // webpackBootstrap
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else if(typeof exports === 'object')
+		exports["rotateDevice"] = factory();
+	else
+		root["rotateDevice"] = factory();
+})(this, function() {
+return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
@@ -91,7 +100,6 @@ var rotateDevice =
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "rotateDevice", function() { return rotateDevice; });
 /* harmony import */ var _scss_main_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 /* harmony import */ var _scss_main_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_scss_main_scss__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _js_desktopNotification__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5);
@@ -103,28 +111,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function rotateDevice(type, opts) {
-  if (type === 'desktop') {
-    return _js_desktopNotification__WEBPACK_IMPORTED_MODULE_1___default()(opts);
-  }
 
-  if (type === 'touchDevice') {
-    return _js_touchDeviceNotification__WEBPACK_IMPORTED_MODULE_2___default()(opts);
-  } else {
-    console.warn('Wrong notification type in createRotateDeviceNotification(). Please use "desktop" type argument for desktop notification and "touchDevice" type argument for touch Device notification');
-  }
-}
-/*
 function rotateDevice() {
   return {
-    createDesktopNotification,
-    createTouchDeviceNotification,
+    createDesktopNotification: (_js_desktopNotification__WEBPACK_IMPORTED_MODULE_1___default()),
+    createTouchDeviceNotification: (_js_touchDeviceNotification__WEBPACK_IMPORTED_MODULE_2___default())
   };
 }
-rotateDevice();
 
-export default rotateDevice;
-*/
+/* harmony default export */ __webpack_exports__["default"] = (rotateDevice());
 
 /***/ }),
 /* 1 */
@@ -988,4 +983,5 @@ exports.default = createTouchDeviceNotification;
 
 
 /***/ })
-/******/ ])["default"];
+/******/ ]);
+});

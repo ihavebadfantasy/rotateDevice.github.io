@@ -3,6 +3,7 @@
   "version": "1.0.9",
   "description": "Plugin rotateDevice has been made to ask the users to rotate device/expand browser window to enjoy your site/app fully!",
   "main": "prod/js/rotateDevice.js",
+  "module": "prod/js/rotateDevice.js",
   "scripts": {
     "dev": "webpack-dev-server --open --config ./webp-build-config/webpack.dev.conf.js",
     "build": "webpack --config ./webp-build-config/webpack.build.conf.js",
