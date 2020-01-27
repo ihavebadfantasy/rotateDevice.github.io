@@ -983,4 +983,4 @@ exports.default = createTouchDeviceNotification;
 
 
 /***/ })
-/******/ ]);
+/******/ ])["default"];
