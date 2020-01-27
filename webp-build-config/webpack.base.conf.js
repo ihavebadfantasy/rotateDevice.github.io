@@ -21,7 +21,7 @@ module.exports = {
   output: {
     library: 'rotateDevice',
     libraryTarget: 'umd',
-    //libraryExport: 'default',
+    libraryExport: 'default',
     globalObject: 'this',
     path: PATHS.dist,
     filename: `${PATHS.assets}js/[name].js`,
