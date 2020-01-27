@@ -106,7 +106,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _js_desktopNotification__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_js_desktopNotification__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _js_touchDeviceNotification__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(7);
 /* harmony import */ var _js_touchDeviceNotification__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_js_touchDeviceNotification__WEBPACK_IMPORTED_MODULE_2__);
-// JS - ./js/index.js
 // SCSS
 
 

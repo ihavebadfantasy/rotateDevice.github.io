@@ -14,10 +14,4 @@ function rotateDevice() {
   };
 }
 
-const desktopNotification = createDesktopNotification();
-desktopNotification.init();
-
-const desktopsNotification = createTouchDeviceNotification();
-desktopsNotification.init();
-
 export default rotateDevice();
