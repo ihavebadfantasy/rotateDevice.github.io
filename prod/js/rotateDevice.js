@@ -118,7 +118,7 @@ function rotateDevice() {
   };
 }
 
-/* harmony default export */ __webpack_exports__["default"] = (rotateDevice());
+/* harmony default export */ __webpack_exports__["default"] = (rotateDevice);
 
 /***/ }),
 /* 1 */

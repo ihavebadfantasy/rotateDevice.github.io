@@ -23,4 +23,4 @@ function rotateDevice() {
   };
 }
 
-export default rotateDevice();
+export default rotateDevice;
