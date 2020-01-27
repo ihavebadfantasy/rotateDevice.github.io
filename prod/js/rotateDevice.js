@@ -118,6 +118,7 @@ function rotateDevice() {
   };
 }
 
+rotateDevice();
 /* harmony default export */ __webpack_exports__["default"] = (rotateDevice);
 
 /***/ }),

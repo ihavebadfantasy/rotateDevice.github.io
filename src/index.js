@@ -22,5 +22,6 @@ function rotateDevice() {
     createTouchDeviceNotification,
   };
 }
+rotateDevice();
 
 export default rotateDevice;
