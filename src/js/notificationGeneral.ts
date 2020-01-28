@@ -68,12 +68,6 @@ export abstract class NotificationClass {
       notyWrapper.innerHTML = `<div class="${this.notificationClassPrefix}-${NOTIFICATION_BLOCK_CLASS}">
       <p class="${this.notificationClassPrefix}-${NOTIFICATION_MAIN_MESSAGE_CLASS}">${this.mainMessage}</p> <div class="${this.notificationClassPrefix}-${NOTIFICATION_IMAGE_WRAPPER_CLASS} ${this.notificationClassPrefix}-${DEFAULT_ICON_CLASS}">${this.iconPath}</div> ${extraMessage}
       </div>`;
-      notyWrapper.style.width = window.screen.availWidth + 'px';
-      notyWrapper.style.height = window.screen.availHeight + 'px';
-      window.addEventListener('resize', ()=> {
-        notyWrapper.style.width = window.screen.availWidth + 'px';
-        notyWrapper.style.height = window.screen.availHeight + 'px';
-      })
     } else {
       notyWrapper.innerHTML = this.customHTML;
     }

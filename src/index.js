@@ -14,4 +14,15 @@ function rotateDevice() {
   };
 }
 
+
+const a = createTouchDeviceNotification({
+  blockedOrientation: 'portrait',
+  // appearAnimation: 'animated fadeIn',
+  // hideAnimation: 'animated fadeOut',
+  responsivePortraitBreak: 769,
+  responsiveLandscapeBreak: 1025,
+  allowContentShow: true,
+});
+a.init();
+
 export default rotateDevice();
