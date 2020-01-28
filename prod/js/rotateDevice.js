@@ -691,6 +691,7 @@ var desktopNotificationConfig = {
     hideAnimationDuration: 0,
     type: 'desktop',
     customHTML: false,
+    backgroundColor: '#ffffff',
 };
 var DesktopNotification = /** @class */ (function (_super) {
     __extends(DesktopNotification, _super);
@@ -749,6 +750,7 @@ var NotificationClass = /** @class */ (function () {
         this.startNotification = this.startNotification.bind(this);
         this.mql = opts.mql;
         this.isPortrait = opts.isPortrait;
+        this.backgroundColor = opts.backgroundColor;
     }
     NotificationClass.prototype.deviceType = function () {
         return /Mobile|webOS|BlackBerry|IEMobile|MeeGo|mini|Fennec|Windows Phone|Android|iP(ad|od|hone)/i.test(navigator.userAgent) ? ('touchDevice') : ('desktop');
@@ -761,6 +763,7 @@ var NotificationClass = /** @class */ (function () {
     };
     NotificationClass.prototype.buildNotificationHtml = function () {
         var notyWrapper = document.createElement('div');
+        notyWrapper.style.backgroundColor = this.backgroundColor;
         notyWrapper.classList.add(this.notificationClassPrefix + "-" + NOTIFICATION_WRAPPER_CLASS);
         if (typeof this.customHTML === 'boolean') {
             if (this.iconPath[0] !== '<') {
@@ -933,6 +936,7 @@ var touchDeviceNotificationConfig = {
     type: 'touchDevice',
     customHTML: false,
     mql: window.matchMedia("(orientation: portrait)"),
+    backgroundColor: '#ffffff',
 };
 var TouchDeviceNotification = /** @class */ (function (_super) {
     __extends(TouchDeviceNotification, _super);
@@ -951,7 +955,6 @@ var TouchDeviceNotification = /** @class */ (function (_super) {
         return (window.screen.availWidth < this.responsiveLandscapeBreak);
     };
     TouchDeviceNotification.prototype.startNotification = function () {
-        console.log(this.isPortrait);
         switch (this.blockedOrientation) {
             case 'portrait':
                 if (!this.notificationState && this.isPortrait) {

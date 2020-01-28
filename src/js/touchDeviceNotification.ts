@@ -30,6 +30,7 @@ const touchDeviceNotificationConfig = {
   type: 'touchDevice',
   customHTML: false,
   mql: window.matchMedia("(orientation: portrait)"),
+  backgroundColor: '#ffffff',
 }
 
 class TouchDeviceNotification extends NotificationClass {

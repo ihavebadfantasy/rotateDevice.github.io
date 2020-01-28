@@ -154,7 +154,8 @@ Pass the settings into creating function. For example:
 |appearAnimation|string|''|pass the string with animation classes you want to set on notification appearance (like animate.css classes 'animated fadeIn)|
 |hideAnimation|string|''|pass the string with animation classes you want to set on notification hiding (like animate.css classes 'animated fadeOut)|
 |hideAnimationDuration|number|0/400|duration of hideAnimation (if no hideAnimation default is 0; if hideAnimation is passed and hideAnimationDuration is not set - default is 400 (ms))|
-|customHTML|string|false|custom markup of the notification. Markup you pass will be wrapped into main notification container with build in styles. Remember that you need to style all the custom markup on your own, so provide your own id/classes for styling. Example: 
+|customHTML|string|false|custom markup of the notification. Markup you pass will be wrapped into main notification container with build in styles. Remember that you need to style all the custom markup on your own, so provide your own id/classes for styling.|
+backgroundColor|string|'#ffffff'|background of main notification container|
 
 
 ## DesktopNotification Settings
@@ -180,7 +181,8 @@ iconPath|string or SVGHTMLElement|default svg icon|path to icon or svg icon (ava
 appearAnimation|string|''|pass the string with animation classes you want to set on notification appearance (like animate.css classes 'animated fadeIn)|
 hideAnimation|string|''|pass the string with animation classes you want to set on notification hiding (like animate.css classes 'animated fadeOut)|
 hideAnimationDuration|number|0/400|duration of hideAnimation (if no hideAnimation default is 0; if hideAnimation is passed and hideAnimationDuration is not set - default is 400 (ms))|
-|customHTML|string|false|custom markup of the notification. Markup you pass will be wrapped into main notification container with build in styles. Remember that you need to style all the custom markup on your own, so provide your own id/classes for styling.
+|customHTML|string|false|custom markup of the notification. Markup you pass will be wrapped into main notification container with build in styles. Remember that you need to style all the custom markup on your own, so provide your own id/classes for styling.|
+backgroundColor|string|'#ffffff'|background of main notification container|
 
 ## DesktopNotification API
 

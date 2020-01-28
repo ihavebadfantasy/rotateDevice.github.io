@@ -25,6 +25,7 @@ export abstract class NotificationClass {
   initialized: boolean;
   mql: any;
   isPortrait: boolean;
+  backgroundColor: string;
   constructor(opts: any) {
     this.type = opts.type;
     this.mainMessage = opts.mainMessage;
@@ -42,6 +43,7 @@ export abstract class NotificationClass {
     this.startNotification = this.startNotification.bind(this);
     this.mql = opts.mql;
     this.isPortrait = opts.isPortrait;
+    this.backgroundColor = opts.backgroundColor;
   }
 
   protected deviceType(): string {
@@ -58,6 +60,7 @@ export abstract class NotificationClass {
 
   protected buildNotificationHtml() {
     const notyWrapper = document.createElement('div');
+    notyWrapper.style.backgroundColor = this.backgroundColor;
     notyWrapper.classList.add(`${this.notificationClassPrefix}-${NOTIFICATION_WRAPPER_CLASS}`);
     if (typeof this.customHTML === 'boolean') {
       if (this.iconPath[0] !== '<') {

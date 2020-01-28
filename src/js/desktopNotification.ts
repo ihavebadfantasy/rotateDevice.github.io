@@ -51,6 +51,7 @@ const desktopNotificationConfig = {
   hideAnimationDuration: 0,
   type: 'desktop',
   customHTML: false,
+  backgroundColor: '#ffffff',
 }
 
 class DesktopNotification extends NotificationClass {
