@@ -43,16 +43,15 @@ class TouchDeviceNotification extends NotificationClass {
   }
 
   isPortrait() {
-     const mql = window.matchMedia('(orientation: portrait)');
-     return mql.matches;
+     return window.screen.availWidth < window.screen.availHeight;
   }
 
   isDeviceInBlockedPortrait() {
-    return (window.innerWidth < this.responsivePortraitBreak);
+    return (window.screen.availWidth < this.responsivePortraitBreak);
   }
 
   isDeviceInBlockedLandscape() {
-    return (window.innerWidth < this.responsiveLandscapeBreak);
+    return (window.screen.availWidth < this.responsiveLandscapeBreak);
   }
 
   startNotification () {
