@@ -735,7 +735,7 @@ var NotificationClass = /** @class */ (function () {
     function NotificationClass(opts) {
         this.type = opts.type;
         this.mainMessage = opts.mainMessage;
-        this.extraMessage = opts.extraMessage;
+        this.extraMessage = (opts.allowContentShow) ? opts.extraMessage : "";
         this.allowContentShow = opts.allowContentShow;
         this.showClass = 'show';
         this.notificationClassPrefix = opts.notificationClassPrefix;
@@ -772,6 +772,12 @@ var NotificationClass = /** @class */ (function () {
                 extraMessage = '';
             }
             notyWrapper.innerHTML = "<div class=\"" + this.notificationClassPrefix + "-" + NOTIFICATION_BLOCK_CLASS + "\">\n      <p class=\"" + this.notificationClassPrefix + "-" + NOTIFICATION_MAIN_MESSAGE_CLASS + "\">" + this.mainMessage + "</p> <div class=\"" + this.notificationClassPrefix + "-" + NOTIFICATION_IMAGE_WRAPPER_CLASS + " " + this.notificationClassPrefix + "-" + DEFAULT_ICON_CLASS + "\">" + this.iconPath + "</div> " + extraMessage + "\n      </div>";
+            notyWrapper.style.width = window.screen.availWidth + 'px';
+            notyWrapper.style.height = window.screen.availHeight + 'px';
+            window.addEventListener('resize', function () {
+                notyWrapper.style.width = window.screen.availWidth + 'px';
+                notyWrapper.style.height = window.screen.availHeight + 'px';
+            });
         }
         else {
             notyWrapper.innerHTML = this.customHTML;
@@ -937,14 +943,13 @@ var TouchDeviceNotification = /** @class */ (function (_super) {
         return _this;
     }
     TouchDeviceNotification.prototype.isPortrait = function () {
-        var mql = window.matchMedia('(orientation: portrait)');
-        return mql.matches;
+        return window.screen.availWidth < window.screen.availHeight;
     };
     TouchDeviceNotification.prototype.isDeviceInBlockedPortrait = function () {
-        return (window.innerWidth < this.responsivePortraitBreak);
+        return (window.screen.availWidth < this.responsivePortraitBreak);
     };
     TouchDeviceNotification.prototype.isDeviceInBlockedLandscape = function () {
-        return (window.innerWidth < this.responsiveLandscapeBreak);
+        return (window.screen.availWidth < this.responsiveLandscapeBreak);
     };
     TouchDeviceNotification.prototype.startNotification = function () {
         switch (this.blockedOrientation) {
