@@ -29,21 +29,20 @@ const touchDeviceNotificationConfig = {
   hideAnimationDuration: 0,
   type: 'touchDevice',
   customHTML: false,
+  mql: window.matchMedia("(orientation: portrait)"),
 }
 
 class TouchDeviceNotification extends NotificationClass {
   blockedOrientation: string;
   responsiveLandscapeBreak: number;
   responsivePortraitBreak: number;
+  isPortrait: boolean;
   constructor(opts: any) {
     super(opts);
     this.blockedOrientation = opts.blockedOrientation;
     this.responsiveLandscapeBreak = opts.responsiveLandscapeBreak;
     this.responsivePortraitBreak = opts.responsivePortraitBreak;
-  }
-
-  isPortrait() {
-     return window.screen.availWidth < window.screen.availHeight;
+    this.isPortrait = this.mql.matches
   }
 
   isDeviceInBlockedPortrait() {
@@ -55,23 +54,25 @@ class TouchDeviceNotification extends NotificationClass {
   }
 
   startNotification () {
+    console.log(this.isPortrait)
+
       switch (this.blockedOrientation) {
         case 'portrait':
-          if (!this.notificationState && this.isPortrait()) {
+          if (!this.notificationState && this.isPortrait) {
             if (this.isDeviceInBlockedPortrait()) {
             this.showNotification();
             }
-          } else if (this.notificationState && !this.isPortrait()) {
+          } else if (this.notificationState && !this.isPortrait) {
             this.hideNotification();
           }
           break;
 
         case 'landscape':
-          if (!this.isPortrait() && !this.notificationState) {
+          if (!this.isPortrait && !this.notificationState) {
             if (this.isDeviceInBlockedLandscape()) {
               this.showNotification();
               }
-          } else if (this.isPortrait() && this.notificationState) {
+          } else if (this.isPortrait && this.notificationState) {
             this.hideNotification();
           }
           break;

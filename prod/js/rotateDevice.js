@@ -747,6 +747,8 @@ var NotificationClass = /** @class */ (function () {
         this.customHTML = opts.customHTML;
         this.initialized = false;
         this.startNotification = this.startNotification.bind(this);
+        this.mql = opts.mql;
+        this.isPortrait = opts.isPortrait;
     }
     NotificationClass.prototype.deviceType = function () {
         return /Mobile|webOS|BlackBerry|IEMobile|MeeGo|mini|Fennec|Windows Phone|Android|iP(ad|od|hone)/i.test(navigator.userAgent) ? ('touchDevice') : ('desktop');
@@ -772,12 +774,6 @@ var NotificationClass = /** @class */ (function () {
                 extraMessage = '';
             }
             notyWrapper.innerHTML = "<div class=\"" + this.notificationClassPrefix + "-" + NOTIFICATION_BLOCK_CLASS + "\">\n      <p class=\"" + this.notificationClassPrefix + "-" + NOTIFICATION_MAIN_MESSAGE_CLASS + "\">" + this.mainMessage + "</p> <div class=\"" + this.notificationClassPrefix + "-" + NOTIFICATION_IMAGE_WRAPPER_CLASS + " " + this.notificationClassPrefix + "-" + DEFAULT_ICON_CLASS + "\">" + this.iconPath + "</div> " + extraMessage + "\n      </div>";
-            notyWrapper.style.width = window.screen.availWidth + 'px';
-            notyWrapper.style.height = window.screen.availHeight + 'px';
-            window.addEventListener('resize', function () {
-                notyWrapper.style.width = window.screen.availWidth + 'px';
-                notyWrapper.style.height = window.screen.availHeight + 'px';
-            });
         }
         else {
             notyWrapper.innerHTML = this.customHTML;
@@ -838,6 +834,7 @@ var NotificationClass = /** @class */ (function () {
         }, false);
     };
     NotificationClass.prototype.initialization = function () {
+        var _this = this;
         if (this.type === this.deviceType()) {
             if (!this.notificationWrapper) {
                 this.buildNotificationHtml();
@@ -845,7 +842,10 @@ var NotificationClass = /** @class */ (function () {
                 this.initialized = true;
             }
             if (this.type === 'touchDevice') {
-                window.addEventListener('orientationchange', this.startNotification);
+                this.mql.addListener(function (m) {
+                    _this.isPortrait = m.matches;
+                    _this.startNotification();
+                });
             }
             else {
                 window.addEventListener('resize', this.startNotification);
@@ -932,6 +932,7 @@ var touchDeviceNotificationConfig = {
     hideAnimationDuration: 0,
     type: 'touchDevice',
     customHTML: false,
+    mql: window.matchMedia("(orientation: portrait)"),
 };
 var TouchDeviceNotification = /** @class */ (function (_super) {
     __extends(TouchDeviceNotification, _super);
@@ -940,11 +941,9 @@ var TouchDeviceNotification = /** @class */ (function (_super) {
         _this.blockedOrientation = opts.blockedOrientation;
         _this.responsiveLandscapeBreak = opts.responsiveLandscapeBreak;
         _this.responsivePortraitBreak = opts.responsivePortraitBreak;
+        _this.isPortrait = _this.mql.matches;
         return _this;
     }
-    TouchDeviceNotification.prototype.isPortrait = function () {
-        return window.screen.availWidth < window.screen.availHeight;
-    };
     TouchDeviceNotification.prototype.isDeviceInBlockedPortrait = function () {
         return (window.screen.availWidth < this.responsivePortraitBreak);
     };
@@ -952,24 +951,25 @@ var TouchDeviceNotification = /** @class */ (function (_super) {
         return (window.screen.availWidth < this.responsiveLandscapeBreak);
     };
     TouchDeviceNotification.prototype.startNotification = function () {
+        console.log(this.isPortrait);
         switch (this.blockedOrientation) {
             case 'portrait':
-                if (!this.notificationState && this.isPortrait()) {
+                if (!this.notificationState && this.isPortrait) {
                     if (this.isDeviceInBlockedPortrait()) {
                         this.showNotification();
                     }
                 }
-                else if (this.notificationState && !this.isPortrait()) {
+                else if (this.notificationState && !this.isPortrait) {
                     this.hideNotification();
                 }
                 break;
             case 'landscape':
-                if (!this.isPortrait() && !this.notificationState) {
+                if (!this.isPortrait && !this.notificationState) {
                     if (this.isDeviceInBlockedLandscape()) {
                         this.showNotification();
                     }
                 }
-                else if (this.isPortrait() && this.notificationState) {
+                else if (this.isPortrait && this.notificationState) {
                     this.hideNotification();
                 }
                 break;

@@ -23,6 +23,8 @@ export abstract class NotificationClass {
   notificationState: boolean;
   customHTML: string | boolean;
   initialized: boolean;
+  mql: any;
+  isPortrait: boolean;
   constructor(opts: any) {
     this.type = opts.type;
     this.mainMessage = opts.mainMessage;
@@ -38,6 +40,8 @@ export abstract class NotificationClass {
     this.customHTML = opts.customHTML;
     this.initialized = false;
     this.startNotification = this.startNotification.bind(this);
+    this.mql = opts.mql;
+    this.isPortrait = opts.isPortrait;
   }
 
   protected deviceType(): string {
@@ -142,7 +146,10 @@ export abstract class NotificationClass {
         this.initialized = true;
       }
       if (this.type === 'touchDevice') {
-        window.addEventListener('orientationchange', this.startNotification)
+        this.mql.addListener((m: any)=> {
+          this.isPortrait = m.matches;
+          this.startNotification();
+        });
       } else {
         window.addEventListener('resize', this.startNotification);
       }
