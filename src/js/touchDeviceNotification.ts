@@ -54,8 +54,6 @@ class TouchDeviceNotification extends NotificationClass {
   }
 
   startNotification () {
-    console.log(this.isPortrait)
-
       switch (this.blockedOrientation) {
         case 'portrait':
           if (!this.notificationState && this.isPortrait) {
