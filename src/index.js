@@ -29,6 +29,7 @@ const a = createTouchDeviceNotification({
   responsivePortraitBreak: 769,
   responsiveLandscapeBreak: 1025,
   mainMessage: 'hhh',
+  allowContentShow: false,
 });
 a.init();
 

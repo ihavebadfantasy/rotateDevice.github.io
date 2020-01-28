@@ -26,7 +26,7 @@ export abstract class NotificationClass {
   constructor(opts: any) {
     this.type = opts.type;
     this.mainMessage = opts.mainMessage;
-    this.extraMessage = opts.extraMessage;
+    this.extraMessage = (opts.allowContentShow) ? opts.extraMessage : "";
     this.allowContentShow = opts.allowContentShow;
     this.showClass = 'show';
     this.notificationClassPrefix = opts.notificationClassPrefix;
@@ -67,7 +67,9 @@ export abstract class NotificationClass {
       }
       notyWrapper.innerHTML = `<div class="${this.notificationClassPrefix}-${NOTIFICATION_BLOCK_CLASS}">
       <p class="${this.notificationClassPrefix}-${NOTIFICATION_MAIN_MESSAGE_CLASS}">${this.mainMessage}</p> <div class="${this.notificationClassPrefix}-${NOTIFICATION_IMAGE_WRAPPER_CLASS} ${this.notificationClassPrefix}-${DEFAULT_ICON_CLASS}">${this.iconPath}</div> ${extraMessage}
-      </div>`
+      </div>`;
+      // notyWrapper.style.width = window.screen.availWidth + 'px';
+      // notyWrapper.style.height = window.screen.availHeight + 'px';
     } else {
       notyWrapper.innerHTML = this.customHTML;
     }
